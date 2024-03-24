@@ -1,4 +1,6 @@
 import React from 'react';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useHistory } from 'react-router-dom';
 import RegisterForm from '../RegisterForm/RegisterForm';
@@ -7,7 +9,7 @@ function RegisterPage() {
   const history = useHistory();
 
   return (
-    <div>
+    <div className="container">
       <RegisterForm />
 
       <center>

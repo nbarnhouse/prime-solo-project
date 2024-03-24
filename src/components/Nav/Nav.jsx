@@ -9,39 +9,54 @@ function Nav() {
 
   return (
     <div className="nav">
-      <Link to="/home">
-        <h2 className="nav-title">Prime Solo Project</h2>
+      <Link className="nav-title" to="/home">
+        Home
       </Link>
-      <div>
-        {/* If no user is logged in, show these links */}
-        {!user.id && (
-          // If there's no user, show login/registration links
-          <Link className="navLink" to="/login">
-            Login / Register
-          </Link>
-        )}
+      <Link className="nav-title" to="/about">
+        About
+      </Link>
+      <Link className="nav-title" to="/contact">
+        Contact
+      </Link>
 
-        {/* If a user is logged in, show these links */}
-        {user.id && (
-          <>
-            <Link className="navLink" to="/user">
-              Home
-            </Link>
-
-            <Link className="navLink" to="/info">
-              Info Page
-            </Link>
-
-            <LogOutButton className="navLink" />
-          </>
-        )}
-
-        <Link className="navLink" to="/about">
-          About
-        </Link>
-      </div>
+      <Link className="nav-title navLink" to="/login">
+        Login
+        <svg
+          data-slot="icon"
+          fill="none"
+          stroke-width="1.5"
+          stroke="currentColor"
+          viewBox="0 0 32 32"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+          ></path>
+        </svg>
+      </Link>
     </div>
   );
 }
 
 export default Nav;
+
+// <div>
+//   {/* If no user is logged in, show these links */}
+//   {!user.id && (
+//     // If there's no user, show login/registration links
+//     <Link className="navLink" to="/login">
+//       <img src="" alt="" />
+//       Login
+//     </Link>
+//   )}
+
+//   {/* If a user is logged in, show these links */}
+//   {user.id && (
+//     <>
+//       <LogOutButton className="navLink" />
+//     </>
+//   )}
+// </div>

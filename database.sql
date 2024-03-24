@@ -1,3 +1,4 @@
+--Database is called prime_app
 
 CREATE TABLE "users" (
     "id" SERIAL PRIMARY KEY,

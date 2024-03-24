@@ -1,16 +1,31 @@
 import React from 'react';
 
-// This is one of our simplest components
-// It doesn't have local state,
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is'
-
 function AboutPage() {
   return (
     <div className="container">
+      <h2>Founded on a Passion for Better</h2>
+      <p>
+        Welcome to TCA Sub Scheduling, where simplicity meets efficiency in
+        managing substitute teacher requests. Designed with TCA Teachers in
+        mind, our platform streamlines the process of finding and scheduling
+        substitutes, making it easy for you to focus on what matters most –
+        providing quality education.
+      </p>
+
       <div>
-        <p>This about page is for anyone to read!</p>
+        <img src="" alt="" />
       </div>
+
+      <ul className="points">
+        <li>
+          Eliminate stressful processes that administrators and teachers dread
+        </li>
+        <li>Save time and money lost to manual processes</li>
+        <li>
+          Provide consistent, high-quality student instruction with qualified
+          and available subs
+        </li>
+      </ul>
     </div>
   );
 }

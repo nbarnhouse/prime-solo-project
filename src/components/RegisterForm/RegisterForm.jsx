@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 function RegisterForm() {
@@ -31,9 +31,9 @@ function RegisterForm() {
           {errors.registrationMessage}
         </h3>
       )}
-      <div>
+      <div className="formGroup">
         <label htmlFor="firstname">
-          First Name:
+          First Name
           <input
             type="text"
             name="firstname"
@@ -43,9 +43,9 @@ function RegisterForm() {
           />
         </label>
       </div>
-      <div>
+      <div className="formGroup">
         <label htmlFor="lastname">
-          Last Name:
+          Last Name
           <input
             type="text"
             name="lastname"
@@ -55,9 +55,9 @@ function RegisterForm() {
           />
         </label>
       </div>
-      <div>
+      <div className="formGroup">
         <label htmlFor="email">
-          Email:
+          Email
           <input
             type="text"
             name="email"
@@ -67,9 +67,9 @@ function RegisterForm() {
           />
         </label>
       </div>
-      <div>
+      <div className="formGroup">
         <label htmlFor="password">
-          Password:
+          Password
           <input
             type="password"
             name="password"

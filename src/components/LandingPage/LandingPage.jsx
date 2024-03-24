@@ -15,7 +15,8 @@ function LandingPage() {
 
   return (
     <div className="container">
-      <h2>{heading}</h2>
+      <h2>Sub Scheduling</h2>
+      <h4>Made Easy</h4>
 
       <div className="grid">
         <div className="grid-col grid-col_8">
@@ -40,15 +41,6 @@ function LandingPage() {
             euismod, augue at condimentum rhoncus, massa lorem semper lacus, sed
             lobortis augue mi vel felis. Duis ultrices sapien at est convallis
             congue.
-          </p>
-
-          <p>
-            Fusce porta diam ac tortor elementum, ut imperdiet metus volutpat.
-            Suspendisse posuere dapibus maximus. Aliquam vitae felis libero. In
-            vehicula sapien at semper ultrices. Vivamus sed feugiat libero. Sed
-            sagittis neque id diam euismod, ut egestas felis ultricies. Nullam
-            non fermentum mauris. Sed in enim ac turpis faucibus pretium in sit
-            amet nisi.
           </p>
         </div>
         <div className="grid-col grid-col_4">
