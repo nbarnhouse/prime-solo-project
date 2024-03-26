@@ -17,8 +17,8 @@
 
 .navLink {
   margin-left: auto;
-  background-color: green;
-  justify-content: center;
+  background-color: black;
+  padding-right: 100px;
 }
 
 .navLink svg {

@@ -1,33 +1,35 @@
 const express = require('express');
-const pool = require('../modules/pool');
 const axios = require('axios');
 require('dotenv').config();
 
 const router = express.Router();
 
 const USER_AGENT = process.env.USER_AGENT;
-// console.log('User Agent(API KEY):', USER_AGENT);
 
 router.get('/', (req, res) => {
-  // const { searchTerm, pageLimit } = req.body;
-  console.log('SearchTerm:', searchTerm);
   const endpointURL = `https://api.weather.gov/gridpoints/TSA/42,99/forecast`;
-  console.log('Endpoint URL:', endpointURL);
+
   axios
-    .get(endpointURL)
+    .get(endpointURL, {
+      headers: {
+        'User-Agent': USER_AGENT,
+      },
+    })
     .then((response) => {
-      // package response
-      const searchResponse = response.data.data.map((item) => {
+      // Process response data as needed
+      const searchResponse = response.data.properties.periods.map((item) => {
         return {
-          id: item.id,
+          id: item.number,
           name: item.name,
+          detailedForecast: item.detailedForecast, // Adjust as needed
         };
       });
       res.send(searchResponse);
     })
     .catch((err) => {
-      console.log('ERROR in server /search/ POST ROUTE:', err);
-      res.sendStatus(500);
+      console.log('ERROR in server /search/ GET route:', err);
+      // Send back a meaningful error response
+      res.status(500).json({ error: 'Internal Server Error' });
     });
 });
 
