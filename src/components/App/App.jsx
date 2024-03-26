@@ -9,7 +9,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 
 import TopNav from '../Navigation/TopNav/TopNav';
-import SideNavSub from '../Navigation/SideNavSub/SideNav.jsx';
+import SideNavSub from '../Navigation/SideNavSub/SideNavSub.jsx';
 import SideNavTeacher from '../Navigation/SideNavTeacher/SideNavTeacher.jsx';
 import Footer from '../Footer/Footer';
 
