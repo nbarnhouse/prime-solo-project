@@ -1,7 +1,6 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-import LogOutButton from '../Buttons/LogOutButton/LogOutButton';
-import './Nav.css';
+// import LogOutButton from '../../Buttons/LogOutButton/LogOutButton';
+import './TopNav.css';
 import { useSelector } from 'react-redux';
 
 function Nav() {
