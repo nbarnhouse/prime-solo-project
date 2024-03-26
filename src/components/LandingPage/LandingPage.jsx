@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './LandingPage.css';
 
-// CUSTOM COMPONENTS
-import RegisterForm from '../RegisterForm/RegisterForm';
-
 function LandingPage() {
   const [heading, setHeading] = useState('Welcome');
   const history = useHistory();
@@ -14,47 +11,36 @@ function LandingPage() {
   };
 
   return (
-    <div className="container">
-      <h2>Sub Scheduling</h2>
-      <h4>Made Easy</h4>
+    <>
+      <div className="container"></div>
 
-      <div className="grid">
-        <div className="grid-col grid-col_8">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            id felis metus. Vestibulum et pulvinar tortor. Morbi pharetra lacus
-            ut ex molestie blandit. Etiam et turpis sit amet risus mollis
-            interdum. Suspendisse et justo vitae metus bibendum fringilla sed
-            sed justo. Aliquam sollicitudin dapibus lectus, vitae consequat odio
-            elementum eget. Praesent efficitur eros vitae nunc interdum, eu
-            interdum justo facilisis. Sed pulvinar nulla ac dignissim efficitur.
-            Quisque eget eros metus. Vestibulum bibendum fringilla nibh a
-            luctus. Duis a sapien metus.
-          </p>
-
-          <p>
-            Praesent consectetur orci dui, id elementum eros facilisis id. Sed
-            id dolor in augue porttitor faucibus eget sit amet ante. Nunc
-            consectetur placerat pharetra. Aenean gravida ex ut erat commodo, ut
-            finibus metus facilisis. Nullam eget lectus non urna rhoncus
-            accumsan quis id massa. Curabitur sit amet dolor nisl. Proin
-            euismod, augue at condimentum rhoncus, massa lorem semper lacus, sed
-            lobortis augue mi vel felis. Duis ultrices sapien at est convallis
-            congue.
-          </p>
-        </div>
-        <div className="grid-col grid-col_4">
-          <RegisterForm />
-
-          <center>
-            <h4>Already a Member?</h4>
-            <button className="btn btn_sizeSm" onClick={onLogin}>
-              Login
-            </button>
-          </center>
-        </div>
+      <div className="title">
+        <h1>Sub Scheduling</h1>
+        <h3>Made Easy</h3>
       </div>
-    </div>
+
+      <div className="info">
+        <p>Paragraph description</p>
+      </div>
+
+      <div className="infotwo">
+        <p>Paragraph two description</p>
+      </div>
+
+      <div className="questions">
+        <h2>
+          Questions? <br></br>We're here to help?
+        </h2>
+        <button
+          className="btn"
+          onClick={() => {
+            history.push('/contact');
+          }}
+        >
+          Contact
+        </button>
+      </div>
+    </>
   );
 }
 

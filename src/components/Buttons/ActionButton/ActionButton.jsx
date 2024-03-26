@@ -3,14 +3,21 @@ import { useDispatch } from 'react-redux';
 
 function ActionButton(props) {
   const dispatch = useDispatch();
+
+  const handleClick = () => {
+    // Determine the action type based on the prop passed
+    const actionType =
+      props.type === 'back' ? 'NAVIGATE_BACK' : 'NAVIGATE_NEXT';
+    dispatch({ type: actionType });
+  };
+
   return (
     <button
-      // This button shows up in multiple locations and is styled differently
-      // because it's styled differently depending on where it is used, the className
-      // is passed to it from it's parents through React props
+      // The className is passed to it from its parent through React props
       className={props.className}
+      onClick={handleClick}
     >
-      Next
+      {props.type === 'back' ? 'Back' : 'Next'}
     </button>
   );
 }

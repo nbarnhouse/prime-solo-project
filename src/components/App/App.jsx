@@ -9,8 +9,6 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 
 import TopNav from '../Navigation/TopNav/TopNav';
-import SideNavSub from '../Navigation/SideNavSub/SideNavSub.jsx';
-import SideNavTeacher from '../Navigation/SideNavTeacher/SideNavTeacher.jsx';
 import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
@@ -43,7 +41,8 @@ function App() {
     <Router>
       <div>
         <TopNav />
-        <SideNavTeacher />
+        {/* <SideNavTeacher /> */}
+        {/* <SideNavSub /> */}
         <Switch>
           {/* Visiting localhost:5173 will redirect to localhost:5173/home */}
           <Redirect exact from="/" to="/home" />
@@ -129,7 +128,7 @@ function App() {
             <h1>404</h1>
           </Route>
         </Switch>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </Router>
   );

@@ -24,5 +24,12 @@ export default function RegisterPageRole() {
     history.push('/profile');
     setRole('');
   };
-  return <>Register Page Choose Role</>;
+  return (
+    <>
+      <h1>What is your role?:</h1>
+      <button>Administrator</button>
+      <button>Teacher</button>
+      <button>Substitute</button>
+    </>
+  );
 }

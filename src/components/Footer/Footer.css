@@ -1,16 +1,10 @@
 footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  color: white;
-  padding: 20px;
-  text-align: center;
   background-color: black;
+  color: white;
+  padding: 10px 0px 20px 0px;
 }
 
 footer img {
   height: 35px;
   width: 35px;
-  align-items: center;
 }
