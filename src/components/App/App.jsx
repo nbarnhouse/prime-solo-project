@@ -8,9 +8,9 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 
-//import TopMainNav from '../Navigation/TopMainNav/TopMainNav';
+import TopMainNav from '../Navigation/TopMainNav/TopMainNav';
 import SideNavSub from '../Navigation/SideNavSub/SideNavSub.jsx';
-//import SideNavTeacher from '../Navigation/SideNavTeacher/SideNavTeacher.jsx';
+import SideNavTeacher from '../Navigation/SideNavTeacher/SideNavTeacher.jsx';
 import TopLoginNav from '../Navigation/TopLoginNav/TopLoginNav.jsx';
 
 import Footer from '../Footer/Footer';
@@ -21,19 +21,21 @@ import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import ContactPage from '../ContactPage/ContactPage';
 import LandingPage from '../LandingPage/LandingPage';
+
 import LoginPage from '../LoginPage/LoginPage';
+
 import RegistrationPage from '../RegistrationPage/RegistrationPage.jsx';
-import HomeSub from '../HomeSub/HomeSub.jsx';
-import ScheduleSub from '../ScheduleSub/ScheduleSub.jsx';
-import AvailabilitySub from '../AvailabilitySub/AvailabilitySub.jsx';
-import HomeTeacher from '../HomeTeacher/HomeTeacher.jsx';
-import ScheduleTeacher from '../ScheduleTeacher/ScheduleTeacher.jsx';
-import AbsenceTeacher from '../AbsenceTeacher/AbsenceTeacher.jsx';
 import RegisterPageRole from '../RegisterPageRole/RegisterPageRole.jsx';
 import ProfilePageSub from '../ProfilePageSub/ProfilePageSub.jsx';
 import ProfilePageTeacher from '../ProfilePageTeacher/ProfilePageTeacher.jsx';
-// import CalendarView from '../Dates/CalendarView/CalendarView.jsx';
-// import DatePicker from '../Dates/DatePicker/DatePicker.jsx';
+
+import HomeSub from '../HomeSub/HomeSub.jsx';
+import ScheduleSub from '../ScheduleSub/ScheduleSub.jsx';
+import AvailabilitySub from '../AvailabilitySub/AvailabilitySub.jsx';
+
+import HomeTeacher from '../HomeTeacher/HomeTeacher.jsx';
+import ScheduleTeacher from '../ScheduleTeacher/ScheduleTeacher.jsx';
+import AbsenceTeacher from '../AbsenceTeacher/AbsenceTeacher.jsx';
 
 import './App.css';
 
@@ -49,87 +51,84 @@ function App() {
   return (
     <Router>
       <div>
-        {/* <TopMainNav /> */}
+        <TopMainNav />
         {/* <SideNavTeacher /> */}
-
-        <TopLoginNav />
-        <SideNavSub />
+        {/* <TopLoginNav /> */}
+        {/* <SideNavSub /> */}
 
         <Switch>
-          {/* Visiting localhost:5173 will redirect to localhost:5173/home */}
-          <Redirect exact from="/" to="/home" />
-          {/* Visiting localhost:5173/about will show the about page. */}
-          <Route
-            // shows AboutPage at all times (logged in or not)
+          <Redirect
             exact
-            path="/about"
+            from="/"
+            to="/home" //Will redirect from / to /home
+          />
+          <Route
+            exact
+            path="/about" // shows About Page (logged in or not)
           >
             <AboutPage />
           </Route>
-          {/* ------------- */}
           <Route
-            // shows AboutPage at all times (logged in or not)
             exact
-            path="/contact"
+            path="/contact" // shows Contact Page at all times (logged in or not)
           >
             <ContactPage />
           </Route>
-          {/* ------------------------------------------------------------------------- */}
-
-          <Route exact path="/registration">
-            <RegistrationPage />
-          </Route>
 
           <Route
-            // logged in shows UserPage else shows LoginPage
             exact
-            path="/role"
+            path="/registration" // shows Registration Page at all times (logged in or not)
           >
-            <RegisterPageRole />
+            <RegistrationPage />
           </Route>
-          {/* ------------------------------------------------------------------------- */}
-          {/* Component Testing */}
-
-          {/* <Route exact path="/cal">
-            <CalendarView />
-          </Route>
-
-          <Route exact path="/date">
-            <DatePicker />
-          </Route> */}
-
-          {/* ------------------------------------------------------------------------- */}
-          {/* Staging area for teacher/sub routes.  */}
-          <Route exact path="/homesub">
+          <ProtectedRoute
+            exact
+            path="/user" //  shows User Page (logged in)
+          >
+            <UserPage />
+          </ProtectedRoute>
+          <ProtectedRoute
+            exact
+            path="/homesub" // shows Sub Home Page (logged in)
+          >
             <HomeSub />
-          </Route>
-          <Route exact path="/schedulesub">
+          </ProtectedRoute>
+          <ProtectedRoute
+            exact
+            path="/schedulesub" // shows Teacher Home Page (logged in)
+          >
             <ScheduleSub />
-          </Route>
-          <Route exact path="/availabilitysub">
+          </ProtectedRoute>
+
+          {/* -------------------------------------------------------------------------
+          ------------------------------------------------------------------------- */}
+          {/* Staging area for teacher/sub routes.  */}
+
+          <ProtectedRoute exact path="/availabilitysub">
             <AvailabilitySub />
-          </Route>
-          <Route exact path="/hometeacher">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/hometeacher">
             <HomeTeacher />
-          </Route>
-          <Route exact path="/scheduleteacher">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/scheduleteacher">
             <ScheduleTeacher />
-          </Route>
-          <Route exact path="/absenceteacher">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/absenceteacher">
             <AbsenceTeacher />
-          </Route>
+          </ProtectedRoute>
           {/* -------------------------------------------------------------------------
           ------------------------------------------------------------------------- */}
           {/* Staging area for teacher/sub profile and registration pages.  */}
 
-          <Route exact path="/profilesub">
+          <ProtectedRoute exact path="/profilesub">
             <ProfilePageSub />
-          </Route>
-
-          <Route exact path="/profileteacher">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/profileteacher">
             <ProfilePageTeacher />
-          </Route>
-
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/role">
+            <RegisterPageRole />
+          </ProtectedRoute>
           {/* -------------------------------------------------------------------------
           ------------------------------------------------------------------------- */}
           {/* For protected routes, the view could show one of several things on the same route.
@@ -137,19 +136,20 @@ function App() {
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:5173/user */}
 
-          <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
-            exact
-            path="/user"
-          >
-            <UserPage />
-          </ProtectedRoute>
-
           <Route exact path="/registration">
             {user.id ? (
               // If the user is already logged in,
-              // redirect them to the /user page
-              <Redirect to="/user" />
+              // redirect them based on their role
+              (() => {
+                switch (user.type) {
+                  case 'teacher':
+                    return <Redirect to="/profileteacher" />;
+                  case 'substitute':
+                    return <Redirect to="/profilesub" />;
+                  default:
+                    return <Redirect to="/user" />; // Default to a generic profile page
+                }
+              })()
             ) : (
               // Otherwise, show the registration page
               <RegistrationPage />
@@ -159,8 +159,17 @@ function App() {
           <Route exact path="/login">
             {user.id ? (
               // If the user is already logged in,
-              // redirect to the /user page
-              <Redirect to="/user" />
+              // redirect them based on their role
+              (() => {
+                switch (user.type) {
+                  case 'teacher':
+                    return <Redirect to="/profileteacher" />;
+                  case 'substitute':
+                    return <Redirect to="/profilesub" />;
+                  default:
+                    return <Redirect to="/user" />; // Default to a generic profile page
+                }
+              })()
             ) : (
               // Otherwise, show the login page
               <LoginPage />
@@ -170,8 +179,17 @@ function App() {
           <Route exact path="/home">
             {user.id ? (
               // If the user is already logged in,
-              // redirect them to the /user page
-              <Redirect to="/user" />
+              // redirect them based on their role
+              (() => {
+                switch (user.type) {
+                  case 'teacher':
+                    return <Redirect to="/profileteacher" />;
+                  case 'substitute':
+                    return <Redirect to="/profilesub" />;
+                  default:
+                    return <Redirect to="/user" />; // Default to a generic profile page
+                }
+              })()
             ) : (
               // Otherwise, show the Landing page
               <LandingPage />

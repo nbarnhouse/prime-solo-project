@@ -20,11 +20,13 @@ function RegistrationPage() {
     dispatch({
       type: 'REGISTER',
       payload: {
-        username: email,
+        first_name: firstname,
+        last_name: lastname,
+        username: username,
         password: password,
       },
     });
-    //history.push('/role');
+    history.push('/role');
   }; // end registerUser
 
   return (

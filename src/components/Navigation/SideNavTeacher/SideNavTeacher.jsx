@@ -1,4 +1,7 @@
 import { Link } from 'react-router-dom';
+// import HomeTeacher from '../HomeTeacher/HomeTeacher.jsx';
+// import ScheduleTeacher from '../ScheduleTeacher/ScheduleTeacher.jsx';
+// import AbsenceTeacher from '../AbsenceTeacher/AbsenceTeacher.jsx';
 
 import '../SideNav.css';
 

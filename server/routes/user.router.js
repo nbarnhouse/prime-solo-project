@@ -28,17 +28,17 @@ router.get('/register', (req, res) => {
     });
 });
 
-// Handles POST request with new user data
-// The only thing different from this and every other post we've seen
-// is that the password gets encrypted before being inserted
+//POST route for user registration
 router.post('/register', (req, res, next) => {
+  const firstname = req.body.first_name;
+  const lastname = req.body.last_name;
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
 
-  const queryText = `INSERT INTO "user" (username, password)
-    VALUES ($1, $2) RETURNING id`;
+  const queryText = `INSERT INTO "user" (first_name, last_name, username, password)
+    VALUES ($1, $2, $3, $4) RETURNING id`;
   pool
-    .query(queryText, [username, password])
+    .query(queryText, [firstname, lastname, username, password])
     .then(() => res.sendStatus(201))
     .catch((err) => {
       console.log('User registration failed: ', err);
@@ -59,6 +59,21 @@ router.post('/logout', (req, res) => {
   // Use passport's built-in method to log out the user
   req.logout();
   res.sendStatus(200);
+});
+
+//PUT route to update role
+router.put('/:id', (req, res) => {
+  pool
+    .query(`UPDATE "user" SET "role" = 'substitute' WHERE "id" = $1;`, [
+      req.params.id,
+    ])
+    .then((response) => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;

@@ -19,9 +19,9 @@ export default function RegisterPageRole() {
     event.preventDefault();
     // Dispatch and hold user role.
     dispatch({
-      type: 'SUBMIT_Role',
+      type: 'SET_ROLE',
       payload: {
-        role,
+        role: role,
       },
     });
 
@@ -54,7 +54,7 @@ export default function RegisterPageRole() {
       >
         Substitute
       </button>
-      <button className="btn" onClick={handleSubmit}>
+      <button className="btn small" onClick={handleSubmit}>
         Submit
       </button>
     </div>
