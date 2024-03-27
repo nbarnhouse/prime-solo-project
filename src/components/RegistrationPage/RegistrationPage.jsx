@@ -3,11 +3,13 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-function RegisterPage() {
+import '../App/App.css';
+
+function RegistrationPage() {
   const history = useHistory();
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
@@ -18,12 +20,11 @@ function RegisterPage() {
     dispatch({
       type: 'REGISTER',
       payload: {
-        firstname: firstname,
-        lastname: lastname,
-        email: email,
+        username: email,
         password: password,
       },
     });
+    //history.push('/role');
   }; // end registerUser
 
   return (
@@ -61,15 +62,16 @@ function RegisterPage() {
             />
           </label>
         </div>
+
         <div className="formGroup">
-          <label htmlFor="email">
+          <label htmlFor="username">
             <input
               type="text"
-              name="email"
+              name="username"
               placeholder="Email"
-              value={email}
+              value={username}
               required
-              onChange={(event) => setEmail(event.target.value)}
+              onChange={(event) => setUsername(event.target.value)}
             />
           </label>
         </div>
@@ -97,17 +99,12 @@ function RegisterPage() {
             <span className="boldText"> Log in</span>
           </button>
         </div>
+        <div>
+          <input className="btn" type="submit" name="submit" value="Register" />
+        </div>
       </form>
-      <div className="center">
-        <input
-          className="btn fixed"
-          type="submit"
-          name="submit"
-          value="Register"
-        />
-      </div>
     </>
   );
 }
 
-export default RegisterPage;
+export default RegistrationPage;

@@ -21,10 +21,14 @@ router.get('/', (req, res) => {
         return {
           id: item.number,
           name: item.name,
-          detailedForecast: item.detailedForecast, // Adjust as needed
+          icon: item.icon,
+          temp: item.temperature,
         };
       });
-      res.send(searchResponse);
+
+      // Limit the number of entries to 10
+      const limitedResponse = searchResponse.slice(0, 5);
+      res.send(limitedResponse);
     })
     .catch((err) => {
       console.log('ERROR in server /search/ GET route:', err);

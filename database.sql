@@ -10,11 +10,9 @@ CREATE TABLE "user" (
     "phone" VARCHAR (10)
 );
 
-
 INSERT INTO "user" ("first_name", "last_name", "email", "pass_hash")
 VALUES ('Nicole', 'Barnhouse', 'nicolebarnhouse@gmail.com', '$2b$10$uxPm0qeJAz70oqhEg8dX6uXlYc2PWUtPuZhTa65OiDv2LCHA41OLq', 
 'Tracy', 'Tyson', 'ttyson@tca.org', '$2b$10$uxPm0qeJAz70oqhEg8dX6uXlYc2PWUtPuZhTa65OiDv2LCHA41OLq');
-
 
 CREATE TABLE "teacher" (
     "id" SERIAL PRIMARY KEY,

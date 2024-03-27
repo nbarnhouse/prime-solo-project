@@ -1,0 +1,32 @@
+.nav {
+  display: flex;
+  justify-content: flex-end;
+  background-color: red;
+  overflow: hidden;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.navLink {
+  background-color: green;
+  font-size: 15px;
+  color: black;
+  font-weight: 700;
+  padding: 24px 10px;
+  text-decoration: none;
+}
+
+.navLink svg {
+  color: red;
+  height: 50px;
+  width: 50px;
+}
+
+.nav-title:hover {
+  background-color: purple;
+}
+.navLink:hover {
+  background-color: purple;
+}

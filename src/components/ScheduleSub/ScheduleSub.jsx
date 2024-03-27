@@ -8,7 +8,8 @@ export default function ScheduleSub() {
 
   return (
     <>
-      <SideNavSub />
+      {/* <SideNavSub /> */}
+      <h1>Schedule</h1>
       <div className="container">Schedule for Subs</div>
     </>
   );

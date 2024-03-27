@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 // import LogOutButton from '../../Buttons/LogOutButton/LogOutButton';
-import './TopNav.css';
+import './TopMainNav.css';
 import { useSelector } from 'react-redux';
 
-function Nav() {
+function TopMainNav() {
   const user = useSelector((store) => store.user);
 
   return (
@@ -40,7 +40,7 @@ function Nav() {
   );
 }
 
-export default Nav;
+export default TopMainNav;
 
 // <div>
 //   {/* If no user is logged in, show these links */}

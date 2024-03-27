@@ -9,10 +9,13 @@ const passport = require('./strategies/user.strategy');
 
 // Route Includes
 const userRouter = require('./routes/user.router');
+const availabilityRouter = require('./routes/availability.router');
+const requestRouter = require('./routes/requests.router');
+const weatherRouter = require('./routes/weather.router');
 
 // Express Middleware
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static('build'));
 
 // Passport Session Configuration
@@ -24,6 +27,9 @@ app.use(passport.session());
 
 // Routes
 app.use('/api/user', userRouter);
+app.use('/api/availability', availabilityRouter);
+app.use('/api/request', requestRouter);
+app.use('/api/weather', weatherRouter);
 
 // Listen Server & Port
 app.listen(PORT, () => {

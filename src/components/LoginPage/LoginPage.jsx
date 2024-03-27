@@ -4,8 +4,9 @@ import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 function LoginPage() {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const userType = useSelector((store) => store.user.userType);
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -13,14 +14,26 @@ function LoginPage() {
   const login = (event) => {
     event.preventDefault();
 
-    if (email && password) {
+    if (username && password) {
       dispatch({
         type: 'LOGIN',
         payload: {
-          email: email,
+          username: username,
           password: password,
         },
+        //   callback: () => {
+        //     // Redirect based on user type
+        //     if (userType === 'teacher') {
+        //       history.push('/hometeacher');
+        //     } else if (userType === 'substitute') {
+        //       history.push('/homesub');
+        //     } else {
+        //       history.push('/user'); // Default profile page
+        //     }
+        //   },
       });
+
+      history.push('/homesub');
     } else {
       dispatch({ type: 'LOGIN_INPUT_ERROR' });
     }
@@ -35,14 +48,14 @@ function LoginPage() {
           </h3>
         )}
         <div className="formGroup">
-          <label htmlFor="email">
+          <label htmlFor="username">
             <input
               type="text"
-              name="email"
+              name="username"
               required
-              placeholder="Email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
+              placeholder="Username"
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
             />
           </label>
         </div>
