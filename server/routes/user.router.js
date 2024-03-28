@@ -15,18 +15,18 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   res.send(req.user);
 });
 
-//GET route for all users
-router.get('/register', (req, res) => {
-  pool
-    .query('SELECT * FROM "user";')
-    .then((result) => {
-      res.send(result.rows);
-    })
-    .catch((error) => {
-      console.log('Error on GET Users', error);
-      res.sendStatus(500);
-    });
-});
+// //GET route for all users
+// router.get('/register', (req, res) => {
+//   pool
+//     .query('SELECT * FROM "user";')
+//     .then((result) => {
+//       res.send(result.rows);
+//     })
+//     .catch((error) => {
+//       console.log('Error on GET Users', error);
+//       res.sendStatus(500);
+//     });
+// });
 
 //POST route for user registration
 router.post('/register', (req, res, next) => {
@@ -51,6 +51,7 @@ router.post('/register', (req, res, next) => {
 // this middleware will run our POST if successful
 // this middleware will send a 404 if not successful
 router.post('/login', userStrategy.authenticate('local'), (req, res) => {
+  console.log('Hit login post');
   res.sendStatus(200);
 });
 
@@ -61,19 +62,19 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
-//PUT route to update role
-router.put('/:id', (req, res) => {
-  pool
-    .query(`UPDATE "user" SET "role" = 'substitute' WHERE "id" = $1;`, [
-      req.params.id,
-    ])
-    .then((response) => {
-      res.sendStatus(200);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
-});
+// //PUT route to update role
+// router.put('/:id', (req, res) => {
+//   pool
+//     .query(`UPDATE "user" SET "role" = 'substitute' WHERE "id" = $1;`, [
+//       req.params.id,
+//     ])
+//     .then((response) => {
+//       res.sendStatus(200);
+//     })
+//     .catch((err) => {
+//       console.error(err);
+//       res.sendStatus(500);
+//     });
+// });
 
 module.exports = router;
