@@ -15,18 +15,18 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   res.send(req.user);
 });
 
-// //GET route for all users
-// router.get('/register', (req, res) => {
-//   pool
-//     .query('SELECT * FROM "user";')
-//     .then((result) => {
-//       res.send(result.rows);
-//     })
-//     .catch((error) => {
-//       console.log('Error on GET Users', error);
-//       res.sendStatus(500);
-//     });
-// });
+//GET route for all users
+router.get('/register', (req, res) => {
+  pool
+    .query('SELECT * FROM "user";')
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      console.log('Error on GET Users', error);
+      res.sendStatus(500);
+    });
+});
 
 //POST route for user registration
 router.post('/register', (req, res, next) => {
