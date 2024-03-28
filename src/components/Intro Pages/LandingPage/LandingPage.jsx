@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './LandingPage.css';
+import MainLayout from '../../Layouts/MainLayout/MainLayout';
 
 function LandingPage() {
   const [heading, setHeading] = useState('Welcome');
@@ -11,7 +12,7 @@ function LandingPage() {
   };
 
   return (
-    <>
+    <MainLayout>
       <div className="container"></div>
 
       <div className="title">
@@ -40,7 +41,7 @@ function LandingPage() {
           Contact
         </button>
       </div>
-    </>
+    </MainLayout>
   );
 }
 

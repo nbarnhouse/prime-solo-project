@@ -1,7 +1,14 @@
-const roleReducer = (state = {}, action) => {
+const initialState = {
+  type: '', // initial role state
+};
+
+const roleReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'SET_ROLE':
-      return action.payload; // Update the user's role with the selected role
+      return {
+        ...state,
+        type: action.payload.type, // Update the user's role with the selected role
+      };
     default:
       return state;
   }

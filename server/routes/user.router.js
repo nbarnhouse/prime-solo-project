@@ -62,19 +62,23 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
-// //PUT route to update role
-// router.put('/:id', (req, res) => {
-//   pool
-//     .query(`UPDATE "user" SET "role" = 'substitute' WHERE "id" = $1;`, [
-//       req.params.id,
-//     ])
-//     .then((response) => {
-//       res.sendStatus(200);
-//     })
-//     .catch((err) => {
-//       console.error(err);
-//       res.sendStatus(500);
-//     });
-// });
+//PUT route to update role
+router.put('/:id', (req, res) => {
+  const userId = req.params.id;
+  const newRole = req.body.role;
+
+  pool
+    .query(`UPDATE "user" SET "type" = '$1' WHERE "id" = $2;`, [
+      newRole,
+      userId,
+    ])
+    .then((response) => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+});
 
 module.exports = router;

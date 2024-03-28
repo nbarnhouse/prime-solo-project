@@ -13,6 +13,17 @@ import SideNavSub from '../Navigation/SideNavSub/SideNavSub.jsx';
 import SideNavTeacher from '../Navigation/SideNavTeacher/SideNavTeacher.jsx';
 import TopLoginNav from '../Navigation/TopLoginNav/TopLoginNav.jsx';
 
+<TopMainNav />;
+{
+  /* <SideNavTeacher /> */
+}
+{
+  /* <TopLoginNav /> */
+}
+{
+  /* <SideNavSub /> */
+}
+
 import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
@@ -51,11 +62,6 @@ function App() {
   return (
     <Router>
       <div>
-        <TopMainNav />
-        {/* <SideNavTeacher /> */}
-        {/* <TopLoginNav /> */}
-        {/* <SideNavSub /> */}
-
         <Switch>
           <Redirect
             exact
@@ -200,7 +206,6 @@ function App() {
             <h1>404</h1>
           </Route>
         </Switch>
-        {/* <Footer /> */}
       </div>
     </Router>
   );

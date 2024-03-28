@@ -21,16 +21,16 @@ export default function RegisterPageRole() {
     dispatch({
       type: 'SET_ROLE',
       payload: {
-        role: role,
+        type: role,
       },
     });
 
     // Navigate to the profile page depending on the selected role.
     switch (role) {
-      case 'Teacher':
+      case 'teacher':
         history.push('/profileteacher');
         break;
-      case 'Substitute':
+      case 'substitute':
         history.push('/profilesub');
         break;
       default:
@@ -43,14 +43,14 @@ export default function RegisterPageRole() {
     <div className="container roledisplay">
       <h2>What is your role?:</h2>
       <button
-        className={`btn ${selectedButton === 'Teacher' ? 'selected' : ''}`}
-        onClick={() => handleRoleSelection('Teacher')}
+        className={`btn ${selectedButton === 'teacher' ? 'selected' : ''}`}
+        onClick={() => handleRoleSelection('teacher')}
       >
         Teacher
       </button>
       <button
-        className={`btn ${selectedButton === 'Substitute' ? 'selected' : ''}`}
-        onClick={() => handleRoleSelection('Substitute')}
+        className={`btn ${selectedButton === 'substitute' ? 'selected' : ''}`}
+        onClick={() => handleRoleSelection('substitute')}
       >
         Substitute
       </button>

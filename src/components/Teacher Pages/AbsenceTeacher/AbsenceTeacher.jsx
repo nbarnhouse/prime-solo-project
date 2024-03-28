@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import TeacherLayout from '../../Layouts/TeacherLayout/TeacherLayout.jsx';
 
 export default function AbsenceTeacher() {
   const [date, setDate] = useState('');
@@ -24,7 +25,7 @@ export default function AbsenceTeacher() {
   }; // end registerUser
 
   return (
-    <>
+    <TeacherLayout>
       <h1>Create Absence</h1>
       <div className="container">
         <div>
@@ -48,6 +49,6 @@ export default function AbsenceTeacher() {
           <input className="btn" type="submit" name="submit" value="Submit" />
         </div>
       </div>
-    </>
+    </TeacherLayout>
   );
 }
