@@ -65,18 +65,21 @@ router.post('/logout', (req, res) => {
 //PUT route to update role
 router.put('/:id', (req, res) => {
   const userId = req.params.id;
-  const newRole = req.body.role;
+  const newRole = req.body.type;
 
+  // Validate newRole
+  if (!newRole) {
+    return res.status(400).json({ error: 'Missing role information' });
+  }
+
+  // Perform the update query
   pool
-    .query(`UPDATE "user" SET "type" = '$1' WHERE "id" = $2;`, [
-      newRole,
-      userId,
-    ])
-    .then((response) => {
+    .query('UPDATE "user" SET "type" = $1 WHERE "id" = $2', [newRole, userId])
+    .then(() => {
       res.sendStatus(200);
     })
     .catch((err) => {
-      console.error(err);
+      console.error('Error updating user role:', err);
       res.sendStatus(500);
     });
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import LogOutButton from '../Buttons/LogOutButton/LogOutButton';
+import LogOutButton from '../Widgets/LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 
 function UserPage() {

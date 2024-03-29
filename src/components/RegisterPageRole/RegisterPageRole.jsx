@@ -1,4 +1,4 @@
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import '../App/App.css';
@@ -9,16 +9,27 @@ export default function RegisterPageRole() {
   const history = useHistory();
   const [role, setRole] = useState('');
   const [selectedButton, setSelectedButton] = useState('');
+  const { id } = useParams();
 
   const handleRoleSelection = (selectedRole) => {
     setRole(selectedRole);
     setSelectedButton(selectedRole); // Set the selected button
+
+    console.log('Selected Role:', selectedRole);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // Dispatch and hold user role.
     dispatch({
+      type: 'SET_ROLE',
+      payload: {
+        type: role,
+      },
+    });
+
+    // Log the dispatched action to the console
+    console.log('Dispatched Action:', {
       type: 'SET_ROLE',
       payload: {
         type: role,

@@ -37,11 +37,28 @@ import './App.css';
 
 function App() {
   const dispatch = useDispatch();
-
   const user = useSelector((store) => store.user);
+  // const request = useSelector((store) => store.request);
+  // const availability = useSelector((store) => store.availability);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch({ type: 'FETCH_REQUESTS' });
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch({ type: 'FETCH_WEATHER' });
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch({ type: 'FETCH_ROLE' });
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch({ type: 'FETCH_AVAILABILITY' });
   }, [dispatch]);
 
   return (

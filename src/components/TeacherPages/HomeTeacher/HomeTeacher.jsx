@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import LogOutButton from '../../Buttons/LogOutButton/LogOutButton.jsx';
+import LogOutButton from '../../Widgets/LogOutButton/LogOutButton.jsx';
 import { useSelector } from 'react-redux';
 
 import TeacherLayout from '../../Layouts/TeacherLayout/TeacherLayout.jsx';

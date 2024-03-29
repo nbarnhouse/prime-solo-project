@@ -1,11 +1,12 @@
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 
 export default function ProfilePageTeacher() {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((store) => store.user);
+  const role = useSelector((store) => store.role);
 
   const [room, setRoom] = useState('');
   const [extension, setExtension] = useState('');

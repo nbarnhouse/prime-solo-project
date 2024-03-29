@@ -3,6 +3,7 @@ const initialState = {
 };
 
 const roleReducer = (state = initialState, action) => {
+  console.log('Role Reducer data', action.payload);
   switch (action.type) {
     case 'SET_ROLE':
       return {
