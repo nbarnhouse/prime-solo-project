@@ -1,0 +1,17 @@
+.nav2 {
+  background-color: white;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.navLink2 {
+  color: black;
+}
+
+.navLink2 svg {
+  height: 30px;
+  width: 30px;
+}

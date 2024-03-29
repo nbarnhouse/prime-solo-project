@@ -8,30 +8,12 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import TopMainNav from '../Navigation/TopMainNav/TopMainNav';
-import SideNavSub from '../Navigation/SideNavSub/SideNavSub.jsx';
-import SideNavTeacher from '../Navigation/SideNavTeacher/SideNavTeacher.jsx';
-import TopLoginNav from '../Navigation/TopLoginNav/TopLoginNav.jsx';
-
-<TopMainNav />;
-{
-  /* <SideNavTeacher /> */
-}
-{
-  /* <TopLoginNav /> */
-}
-{
-  /* <SideNavSub /> */
-}
-
-import Footer from '../Footer/Footer';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
-import AboutPage from '../AboutPage/AboutPage';
+import AboutPage from '../IntroPages/AboutPage/AboutPage.jsx';
 import UserPage from '../UserPage/UserPage';
-import ContactPage from '../ContactPage/ContactPage';
-import LandingPage from '../LandingPage/LandingPage';
+import ContactPage from '../IntroPages/ContactPage/ContactPage.jsx';
+import LandingPage from '../IntroPages/LandingPage/LandingPage.jsx';
 
 import LoginPage from '../LoginPage/LoginPage';
 
@@ -40,13 +22,16 @@ import RegisterPageRole from '../RegisterPageRole/RegisterPageRole.jsx';
 import ProfilePageSub from '../ProfilePageSub/ProfilePageSub.jsx';
 import ProfilePageTeacher from '../ProfilePageTeacher/ProfilePageTeacher.jsx';
 
-import HomeSub from '../HomeSub/HomeSub.jsx';
-import ScheduleSub from '../ScheduleSub/ScheduleSub.jsx';
-import AvailabilitySub from '../AvailabilitySub/AvailabilitySub.jsx';
+import HomeSub from '../SubPages/HomeSub/HomeSub.jsx';
+import ScheduleSub from '../SubPages/ScheduleSub/ScheduleSub.jsx';
+import ScheduleSubCal from '../SubPages/ScheudleSubCal/ScheduleSubCal.jsx';
+import AvailabilitySub from '../SubPages/AvailabilitySub/AvailabilitySub.jsx';
 
-import HomeTeacher from '../HomeTeacher/HomeTeacher.jsx';
-import ScheduleTeacher from '../ScheduleTeacher/ScheduleTeacher.jsx';
-import AbsenceTeacher from '../AbsenceTeacher/AbsenceTeacher.jsx';
+import HomeTeacher from '../TeacherPages/HomeTeacher/HomeTeacher.jsx';
+import ScheduleTeacher from '../TeacherPages/ScheduleTeacher/ScheduleTeacher.jsx';
+import AbsenceTeacher from '../TeacherPages/AbsenceTeacher/AbsenceTeacher.jsx';
+
+import DataTesting from '../DataTesting/DataTesting.jsx';
 
 import './App.css';
 
@@ -91,7 +76,7 @@ function App() {
             exact
             path="/user" //  shows User Page (logged in)
           >
-            <UserPage />
+            <DataTesting />
           </ProtectedRoute>
           <ProtectedRoute
             exact
@@ -134,6 +119,9 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute exact path="/role">
             <RegisterPageRole />
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/schedulesubcal">
+            <ScheduleSubCal />
           </ProtectedRoute>
           {/* -------------------------------------------------------------------------
           ------------------------------------------------------------------------- */}

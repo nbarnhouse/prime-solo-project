@@ -5,6 +5,8 @@ import { useState } from 'react';
 export default function ProfilePageTeacher() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const user = useSelector((store) => store.user);
+
   const [room, setRoom] = useState('');
   const [extension, setExtension] = useState('');
   const [grade, setGrade] = useState('');
@@ -25,9 +27,9 @@ export default function ProfilePageTeacher() {
     <div className="roledisplay">
       <h2>Let's create a profile, so you can get started:</h2>
       <div className="formGroup">
-        <input placeholder="FirstName" />
-        <input placeholder="LastName" />
-        <input placeholder="Email" />
+        <input value={user.first_name} />
+        <input value={user.last_name} />
+        <input value={user.username} />
         <input
           placeholder="Room"
           value={room}

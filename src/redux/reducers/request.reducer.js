@@ -1,4 +1,7 @@
+//Stores incoming requests from the server
+
 const requestReducer = (state = {}, action) => {
+  console.log('Request Reducer data', action.payload);
   switch (action.type) {
     case 'SET_REQUEST':
       return action.payload; // Update the user's requests

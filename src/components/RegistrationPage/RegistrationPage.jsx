@@ -2,6 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 import '../App/App.css';
 
@@ -52,6 +54,7 @@ function RegistrationPage() {
             />
           </label>
         </div>
+
         <div className="formGroup">
           <label htmlFor="lastname">
             <input
@@ -61,7 +64,7 @@ function RegistrationPage() {
               value={lastname}
               required
               onChange={(event) => setLastname(event.target.value)}
-            />
+            />{' '}
           </label>
         </div>
 
