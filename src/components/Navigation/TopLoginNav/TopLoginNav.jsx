@@ -13,7 +13,7 @@ function TopLoginNav() {
 
   return (
     <div className="nav2">
-      <Link className="navLink2" to="/homesub">
+      <Link to="/homesub" className="navLink2">
         {' '}
         {/* School Info */}
         <svg
@@ -52,7 +52,7 @@ function TopLoginNav() {
         {/* NB */}
       </Link>
 
-      <Link className="navLink2" onClick={handleLogout}>
+      <Link className="navLink2" to="#" onClick={handleLogout}>
         <svg
           data-slot="icon"
           fill="none"

@@ -2,123 +2,125 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-//GET route for all requests
-router.get('/', (req, res) => {
+const {
+  rejectUnauthenticated,
+  // eslint-disable-next-line no-undef
+} = require('../modules/authentication-middleware');
+
+// GET route for all requests
+router.get('/', rejectUnauthenticated, (req, res) => {
   pool
-    .query(`SELECT * from "requests";`)
+    .query(
+      `SELECT requests.id, requests.request_start_date, requests.request_end_date, EXTRACT(DOW FROM requests.request_start_date) AS day_of_week, requests.school, "user".first_name, "user".last_name, "teacher".grade FROM "requests"
+      JOIN "teacher" ON requests.teacher_id = "teacher".id
+      JOIN "user" ON "teacher".user_id = "user".id
+      WHERE "status" = 'Requested'
+      ORDER BY requests.request_start_date;`
+    )
     .then((result) => {
       res.send(result.rows);
     })
     .catch((error) => {
-      console.log('Error on GET Request Object', error);
+      console.error('Error on GET Request Object', error);
       res.sendStatus(500);
     });
 });
 
-//POST route
-router.post('/', (req, res) => {
-  console.log('POST req.body', req.body);
-  const newReq = req.body;
-  let queryText = `INSERT INTO "requests" ("request_start_date", "request_end_date", "reason", "admin_notes", "sub_notes") 
-  VALUES ($1, $2, $3, $4, $5);`;
+//GET route for specific substitute
+router.get('/accepted', rejectUnauthenticated, (req, res) => {
+  pool
+    .query(
+      `SELECT * FROM "requests" WHERE "status" = 'Accepted' AND "user_id" = $1;`,
+      [req.user.id]
+    )
+    .then((result) => {
+      res.json(result.rows);
+    })
+    .catch((error) => {
+      console.error('Error fetching accepted requests:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    });
+});
 
-  const queryArgs = [
-    newReq.request_start_date,
-    newReq.request_end_date,
-    newReq.reason,
-    newReq.admin_notes,
-    newReq.sub_notes,
+//GET route for specific teacher
+router.get('/submitted', rejectUnauthenticated, (req, res) => {
+  pool
+    .query(
+      `SELECT * FROM "requests" WHERE "status" = 'Requested' AND "teacher_id" = $1;`,
+      [req.user.id]
+    )
+    .then((result) => {
+      res.json(result.rows);
+    })
+    .catch((error) => {
+      console.error('Error fetching submitted requests:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    });
+});
+
+// POST route
+router.post('/', rejectUnauthenticated, (req, res) => {
+  const newReq = req.body;
+  const {
+    request_start_date,
+    request_end_date,
+    reason,
+    admin_notes,
+    sub_notes,
+  } = newReq;
+  const queryText = `
+    INSERT INTO "requests" ("request_start_date", "request_end_date", "reason", "admin_notes", "sub_notes")
+    VALUES ($1, $2, $3, $4, $5)
+  `;
+  const queryValues = [
+    request_start_date,
+    request_end_date,
+    reason,
+    admin_notes,
+    sub_notes,
   ];
 
   pool
-    .query(queryText, queryArgs)
-    .then((result) => {
+    .query(queryText, queryValues)
+    .then(() => {
       res.sendStatus(200);
     })
     .catch((error) => {
-      console.log('Error on POST Request Object', error);
+      console.error('Error on POST Request Object', error);
       res.sendStatus(500);
     });
 });
 
-//PUT route
-router.put('/:id', (req, res) => {
+// PUT route
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+  const requestId = req.params.id;
+  const { user_id } = req.body;
+
   pool
-    .query(`UPDATE "requests" SET "status" = 'accepted' WHERE "id" = $1;`, [
-      req.params.id,
-    ])
-    .then((response) => {
+    .query(
+      `UPDATE "requests" SET "status" = 'Accepted', "user_id" = $1 WHERE "id" = $2`,
+      [user_id, requestId]
+    )
+    .then(() => {
       res.sendStatus(200);
     })
-    .catch((err) => {
-      console.error(err);
+    .catch((error) => {
+      console.error('Error on PUT Request Object', error);
       res.sendStatus(500);
     });
 });
 
-//DELETE route
-router.delete('/:id', (req, res) => {
+// DELETE route
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
   pool
     .query('DELETE FROM "requests" WHERE id=$1', [req.params.id])
-    .then((result) => {
+    .then(() => {
       res.sendStatus(200);
     })
     .catch((error) => {
-      console.log('Error on DELETE Request Object', error);
+      console.error('Error on DELETE Request Object', error);
       res.sendStatus(500);
     });
 });
 
 module.exports = router;
-
-// router.post('/', rejectUnauthenticated, (req, res) => {
-//   const newReq = req.body;
-//   const userId = req.user.id; // Get the user ID from the authenticated user
-
-//   // Step 1: Retrieve Teacher ID from the logged-in user's information
-//   const queryText = `SELECT teacher_id FROM "teacher" WHERE user_id = $1`;
-//   const queryValues = [userId];
-
-//   pool
-//     .query(queryText, queryValues)
-//     .then((result) => {
-//       if (result.rows.length === 0) {
-//         throw new Error('Teacher ID not found for the user');
-//       }
-
-//       const teacherId = result.rows[0].teacher_id;
-
-//       // Validate the request body
-//       if (
-//         !newReq.request_start_date ||
-//         !newReq.request_end_date ||
-//         !newReq.reason
-//       ) {
-//         return res.status(400).json({ error: 'Missing required fields' });
-//       }
-
-//       const insertQueryText = `
-//         INSERT INTO "requests" ("request_start_date", "request_end_date", "reason", "admin_notes", "sub_notes", "teacher_id")
-//         VALUES ($1, $2, $3, $4, $5, $6);
-//       `;
-
-//       const insertQueryArgs = [
-//         newReq.request_start_date,
-//         newReq.request_end_date,
-//         newReq.reason,
-//         newReq.admin_notes || null,
-//         newReq.sub_notes || null,
-//         teacherId,
-//       ];
-
-//       // Step 2: Insert the request into the database with the retrieved teacher ID
-//       return pool.query(insertQueryText, insertQueryArgs);
-//     })
-//     .then(() => {
-//       res.status(201).json({ success: true });
-//     })
-//     .catch((error) => {
-//       console.error('Error on POST Request Object', error);
-//       res.status(500).json({ error: 'Internal server error' });
-//     });
-// });

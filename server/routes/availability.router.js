@@ -2,48 +2,45 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
+const {
+  rejectUnauthenticated,
+  // eslint-disable-next-line no-undef
+} = require('../modules/authentication-middleware');
+
 //GET route ALL
-router.get('/', (req, res) => {
+// router.get('/', rejectUnauthenticated, (req, res) => {
+//   pool
+//     .query(
+//       `SELECT *
+//     FROM "substitute_availability"
+//     ORDER BY "id";`
+//     )
+//     .then((result) => {
+//       res.send(result.rows);
+//     })
+//     .catch((error) => {
+//       console.log('Error on GET Availability Object', error);
+//       res.sendStatus(500);
+//     });
+// });
+
+//GET route for specific User
+router.get('/', rejectUnauthenticated, (req, res) => {
   pool
-    .query(
-      `SELECT *
-    FROM "substitute_availability";`
-    )
+    .query(`SELECT * FROM "substitute_availability" WHERE user_id = $1;`, [
+      req.user.id,
+    ])
     .then((result) => {
-      res.send(result.rows);
+      res.json(result.rows);
     })
     .catch((error) => {
-      console.log('Error on GET Availability Object', error);
-      res.sendStatus(500);
-    });
-});
-
-//GET route specific ID
-router.get('/:userId', (req, res) => {
-  const userId = req.params.userId;
-  const { month } = req.query;
-  let queryText = `SELECT * FROM "substitute_availability" WHERE user_id = $1`;
-
-  // If month parameter is provided, add filtering by month to the query
-  const queryArgs = [userId];
-  if (month) {
-    queryText += ` AND EXTRACT(MONTH FROM "date") = $2`;
-    queryArgs.push(month);
-  }
-
-  pool
-    .query(queryText, queryArgs)
-    .then((result) => {
-      res.send(result.rows);
-    })
-    .catch((error) => {
-      console.log('Error on GET Availability Object', error);
-      res.sendStatus(500);
+      console.error('Error fetching accepted requests:', error);
+      res.status(500).json({ message: 'Internal server error' });
     });
 });
 
 //POST route
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   console.log('POST req.body', req.body);
   const newAvb = req.body;
   let queryText = `INSERT INTO "substitute_availability" ("date", "day", "type", "comments", "user_id") 
@@ -58,7 +55,7 @@ router.post('/', (req, res) => {
   ];
 
   pool
-    .query(queryText, queryArgs)
+    .query(queryText, rejectUnauthenticated, queryArgs)
     .then((result) => {
       res.sendStatus(200);
     })
@@ -69,7 +66,7 @@ router.post('/', (req, res) => {
 });
 
 //Delete route
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
   pool
     .query('DELETE FROM "substitute_availability" WHERE id=$1', [req.params.id])
     .then((result) => {

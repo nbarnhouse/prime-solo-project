@@ -31,8 +31,6 @@ import HomeTeacher from '../TeacherPages/HomeTeacher/HomeTeacher.jsx';
 import ScheduleTeacher from '../TeacherPages/ScheduleTeacher/ScheduleTeacher.jsx';
 import AbsenceTeacher from '../TeacherPages/AbsenceTeacher/AbsenceTeacher.jsx';
 
-import DataTesting from '../DataTesting/DataTesting.jsx';
-
 import './App.css';
 
 function App() {
@@ -93,7 +91,7 @@ function App() {
             exact
             path="/user" //  shows User Page (logged in)
           >
-            <DataTesting />
+            <UserPage />
           </ProtectedRoute>
           <ProtectedRoute
             exact
@@ -108,13 +106,14 @@ function App() {
             <ScheduleSub />
           </ProtectedRoute>
 
+          <ProtectedRoute exact path="/availabilitysub">
+            <AvailabilitySub />
+          </ProtectedRoute>
+
           {/* -------------------------------------------------------------------------
           ------------------------------------------------------------------------- */}
           {/* Staging area for teacher/sub routes.  */}
 
-          <ProtectedRoute exact path="/availabilitysub">
-            <AvailabilitySub />
-          </ProtectedRoute>
           <ProtectedRoute exact path="/hometeacher">
             <HomeTeacher />
           </ProtectedRoute>

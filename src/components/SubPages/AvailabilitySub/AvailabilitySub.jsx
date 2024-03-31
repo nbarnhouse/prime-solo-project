@@ -9,6 +9,9 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
 import SubLayout from '../../Layouts/SubLayout/SubLayout';
+import AvailabilityData from '../../Widgets/AvailabilityData/AvailabilityData.jsx';
+//import BasicDatePicker from '../../Widgets/DatePicker/BasicDatePicker.jsx';
+import BasicTextInput from '../../Widgets/BasicTextInput/BasicTextInput.jsx';
 
 export default function AvailabilitySub() {
   const history = useHistory();
@@ -21,7 +24,7 @@ export default function AvailabilitySub() {
     color: theme.palette.text.secondary,
   }));
 
-  const top100Films = [
+  const calMonths = [
     { label: 'January', month: '1' },
     { label: 'February', month: '2' },
     { label: 'March', month: '3' },
@@ -45,12 +48,16 @@ export default function AvailabilitySub() {
             <Grid item xs={12}>
               <Item>
                 <h4>Recurring Availability</h4>
+                {/* <BasicDatePicker /> */}
                 <button className="btn-sm">Submit</button>
               </Item>
             </Grid>
             <Grid item xs={12}>
               <Item>
                 <h4>One-time event</h4>
+                <BasicTextInput />
+                {/* <BasicDatePicker /> */}
+                <BasicTextInput />
                 <button className="btn-sm">Submit</button>
               </Item>
             </Grid>
@@ -59,15 +66,16 @@ export default function AvailabilitySub() {
                 <Autocomplete
                   disablePortal
                   id="combo-box-demo"
-                  options={top100Films}
+                  options={calMonths}
                   sx={{ width: 300 }}
                   renderInput={(params) => (
                     <TextField {...params} label="Month" />
                   )}
                 />
 
-                <p>March 14 Reason Availability</p>
-                <p>Thursday Vacation Unavailable</p>
+                <div>
+                  <AvailabilityData />
+                </div>
               </Item>
             </Grid>
           </Grid>
