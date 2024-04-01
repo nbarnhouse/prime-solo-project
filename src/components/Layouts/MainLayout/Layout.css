@@ -13,3 +13,7 @@ body {
 .black {
   color: black;
 }
+
+.para-input input {
+  background-color: #f0f0f0;
+}

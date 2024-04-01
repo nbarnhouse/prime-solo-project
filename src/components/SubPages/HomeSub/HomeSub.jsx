@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+
+import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { DateTime } from 'luxon';
 
 import SubLayout from '../../Layouts/SubLayout/SubLayout.jsx';
@@ -84,6 +86,7 @@ export default function HomeSub() {
           <Grid item xs={4}>
             <Item>
               {/* <BasicDateCalendar assignments={acceptedRequests} /> */}
+              <DateCalendar />
             </Item>
           </Grid>
           <Grid item xs={12}>

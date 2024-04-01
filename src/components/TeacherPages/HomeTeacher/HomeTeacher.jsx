@@ -37,19 +37,26 @@ export default function HomeTeacher() {
   return (
     <TeacherLayout>
       <h2>Welcome, {user.first_name}!</h2>
+      <h2>HOME TEACHER!</h2>
 
       <div className="frame">
         <Grid container spacing={3}>
           <Grid item xs={4}>
             <Item>
-              <div>CALENDAR</div>
+              <div>
+                <DateCalendar />
+              </div>
             </Item>
           </Grid>
           <Grid item xs={4}>
-            <Item>CALENDAR</Item>
+            <Item>
+              <DateCalendar />
+            </Item>
           </Grid>
           <Grid item xs={4}>
-            <Item>CALENDAR</Item>
+            <Item>
+              <DateCalendar />
+            </Item>
           </Grid>
           <Grid item xs={12}>
             <Item>
