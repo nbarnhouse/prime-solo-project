@@ -10,7 +10,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 
 import SubLayout from '../../Layouts/SubLayout/SubLayout';
 import AvailabilityData from '../../Widgets/AvailabilityData/AvailabilityData.jsx';
-//import BasicDatePicker from '../../Widgets/DatePicker/BasicDatePicker.jsx';
+import BasicDatePicker from '../../DateWidgets/DatePicker/BasicDatePicker.jsx';
 import BasicTextInput from '../../Widgets/BasicTextInput/BasicTextInput.jsx';
 
 export default function AvailabilitySub() {
@@ -48,16 +48,16 @@ export default function AvailabilitySub() {
             <Grid item xs={12}>
               <Item>
                 <h4>Recurring Availability</h4>
-                {/* <BasicDatePicker /> */}
+                <BasicTextInput label="Unavability Day" />
                 <button className="btn-sm">Submit</button>
               </Item>
             </Grid>
             <Grid item xs={12}>
               <Item>
                 <h4>One-time event</h4>
-                <BasicTextInput />
-                {/* <BasicDatePicker /> */}
-                <BasicTextInput />
+                <BasicTextInput label="Type" />
+                <BasicDatePicker />
+                <BasicTextInput label="Reason" />
                 <button className="btn-sm">Submit</button>
               </Item>
             </Grid>

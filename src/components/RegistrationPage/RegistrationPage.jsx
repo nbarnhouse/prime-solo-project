@@ -1,20 +1,19 @@
-import React from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
 
+import BasicTextInput from '../Widgets/BasicTextInput/BasicTextInput';
+import BasicButton from '../Widgets/BasicButton/BasicButton';
 import '../App/App.css';
 
 function RegistrationPage() {
   const history = useHistory();
+  const dispatch = useDispatch();
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector((store) => store.errors);
-  const dispatch = useDispatch();
 
   const registerUser = (event) => {
     event.preventDefault();
@@ -29,7 +28,7 @@ function RegistrationPage() {
       },
     });
     history.push('/role');
-  }; // end registerUser
+  };
 
   return (
     <>
@@ -42,56 +41,42 @@ function RegistrationPage() {
             {errors.registrationMessage}
           </h3>
         )}
-        <div className="formGroup">
-          <label htmlFor="firstname">
-            <input
-              type="text"
-              name="firstname"
-              placeholder="First Name"
-              value={firstname}
-              required
-              onChange={(event) => setFirstname(event.target.value)}
-            />
-          </label>
+        <div>
+          <BasicTextInput
+            label="First Name"
+            type="input"
+            value={firstname}
+            onChange={(event) => setFirstname(event.target.value)}
+          />
         </div>
 
-        <div className="formGroup">
-          <label htmlFor="lastname">
-            <input
-              type="text"
-              name="lastname"
-              placeholder="Last Name"
-              value={lastname}
-              required
-              onChange={(event) => setLastname(event.target.value)}
-            />{' '}
-          </label>
+        <div>
+          <BasicTextInput
+            label="Last Name"
+            type="input"
+            value={lastname}
+            onChange={(event) => setLastname(event.target.value)}
+          />
         </div>
 
-        <div className="formGroup">
-          <label htmlFor="username">
-            <input
-              type="text"
-              name="username"
-              placeholder="Email"
-              value={username}
-              required
-              onChange={(event) => setUsername(event.target.value)}
-            />
-          </label>
+        <div>
+          <BasicTextInput
+            label="Email"
+            type="input"
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+          />
         </div>
-        <div className="formGroup">
-          <label htmlFor="password">
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={password}
-              required
-              onChange={(event) => setPassword(event.target.value)}
-            />
-          </label>
+
+        <div>
+          <BasicTextInput
+            label="Password"
+            type="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
         </div>
+
         <div className="center light">
           Already have an account?
           <button
@@ -105,7 +90,7 @@ function RegistrationPage() {
           </button>
         </div>
         <div>
-          <input className="btn" type="submit" name="submit" value="Register" />
+          <BasicButton buttonText="Register" value="register" type="submit" />
         </div>
       </form>
     </>

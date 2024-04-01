@@ -43,7 +43,7 @@ Button
 }
 
 .selected {
-  background-color: #008183;
+  background-color: #f2ab27;
 }
 
 .btn_sizeMin {
@@ -62,7 +62,7 @@ Button
 }
 
 .btn:hover {
-  background-color: #008183;
+  background-color: #f2ab27;
   text-decoration: none;
 }
 
@@ -114,7 +114,7 @@ Form Treatment
 }
 
 .dark {
-  background-color: black;
+  background-color: #132640;
 }
 
 .light {
@@ -146,13 +146,6 @@ Form Treatment
   padding: 0 15px;
   border: 1px solid #ddd;
   border-radius: 5px;
-}
-
-.form-group input:focus ~ label,
-.form-group input:valid ~ label {
-  top: 0;
-  background-color: red;
-  font-size: 12px;
 }
 
 /* input {

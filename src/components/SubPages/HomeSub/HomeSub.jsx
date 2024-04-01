@@ -45,6 +45,7 @@ export default function HomeSub() {
   return (
     <SubLayout>
       <h2>Welcome, {user.first_name}!</h2>
+      <h2>HOME SUB!</h2>
 
       <div className="frame">
         <Grid container spacing={3}>
@@ -92,7 +93,7 @@ export default function HomeSub() {
           <Grid item xs={12}>
             <Item>
               <h4>Available Assignments</h4>
-              <RequestData handleAccept={handleAccept} />
+              {/* <RequestData handleAccept={handleAccept} /> */}
             </Item>
           </Grid>
         </Grid>

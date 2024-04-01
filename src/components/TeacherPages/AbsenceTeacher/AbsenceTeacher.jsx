@@ -65,7 +65,14 @@ export default function AbsenceTeacher() {
             <Item>
               <h4>Notes to Administrator</h4>
               <p>(not viewable by substitute)</p>
-              <BasicTextInput className="para-input" label="Other" />
+              <BasicTextInput
+                label="Other"
+                type="input"
+                // value={username}
+                multiline
+                maxRows={8}
+                //Onchange
+              />
             </Item>
           </Grid>
           <Grid item xs={6}>
