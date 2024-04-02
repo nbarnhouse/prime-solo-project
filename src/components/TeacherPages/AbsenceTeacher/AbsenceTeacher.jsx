@@ -78,7 +78,7 @@ export default function AbsenceTeacher() {
           <Grid item xs={6}>
             <Item>
               <h4>Notes to Substitute</h4>
-              <BasicTextInput className="para-input" />
+              <BasicTextInput className="para-input" type="input" />
             </Item>
           </Grid>
         </Grid>

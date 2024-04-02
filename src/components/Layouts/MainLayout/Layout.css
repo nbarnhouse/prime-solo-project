@@ -8,6 +8,7 @@ body {
   /* display: flex;
   justify-content: flex-end; */
   padding-left: 100px;
+  background-color: red;
 }
 
 .black {
@@ -16,4 +17,14 @@ body {
 
 .para-input input {
   background-color: #f0f0f0;
+}
+
+.weather-data {
+  margin-left: 20px;
+  align-self: flex-start;
+  background-color: blue;
+}
+
+weather-layout {
+  background-color: green;
 }

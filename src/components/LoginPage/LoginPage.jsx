@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+import BasicTextInput from '../Widgets/BasicTextInput/BasicTextInput';
+import '../App/App.css';
+
 function LoginPage() {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const userType = useSelector((store) => store.user.userType);
   const errors = useSelector((store) => store.errors);
-  const dispatch = useDispatch();
-  const history = useHistory();
 
   const login = (event) => {
     event.preventDefault();
@@ -21,16 +23,6 @@ function LoginPage() {
           username: username,
           password: password,
         },
-        //   callback: () => {
-        //     // Redirect based on user type
-        //     if (userType === 'teacher') {
-        //       history.push('/hometeacher');
-        //     } else if (userType === 'substitute') {
-        //       history.push('/homesub');
-        //     } else {
-        //       history.push('/user'); // Default profile page
-        //     }
-        //   },
       });
 
       history.push('/homesub');
@@ -47,30 +39,23 @@ function LoginPage() {
             {errors.loginMessage}
           </h3>
         )}
-        <div className="formGroup">
-          <label htmlFor="username">
-            <input
-              type="text"
-              name="username"
-              required
-              placeholder="Username"
-              value={username}
-              onChange={(event) => setUsername(event.target.value)}
-            />
-          </label>
+        <div>
+          <BasicTextInput
+            label="Username"
+            type="input"
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+          />
         </div>
-        <div className="formGroup">
-          <label htmlFor="password">
-            <input
-              type="password"
-              name="password"
-              required
-              placeholder="Password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-            />
-          </label>
+        <div>
+          <BasicTextInput
+            label="Password"
+            type="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
         </div>
+
         <center className="light">
           Don't have an account?
           <button
@@ -83,9 +68,7 @@ function LoginPage() {
             <span className="boldText"> Register</span>
           </button>
         </center>
-        <div>
-          <input className="btn" type="submit" name="submit" value="Log In" />
-        </div>
+        <input className="btn" type="submit" name="submit" value="Log In" />
       </form>
     </>
   );

@@ -1,13 +1,17 @@
 const express = require('express');
 require('dotenv').config();
+const axios = require('axios');
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 const router = express.Router();
-
 const USER_AGENT = process.env.USER_AGENT;
 
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
   const endpointURL = `https://api.weather.gov/gridpoints/TSA/42,99/forecast`;
 
+  // GET request to the Weather.gov API
   axios
     .get(endpointURL, {
       headers: {
@@ -25,14 +29,15 @@ router.get('/', (req, res) => {
         };
       });
 
-      // Limit the number of entries to 10
+      // Limit the number of entries to 5
       const limitedResponse = searchResponse.slice(0, 5);
       res.send(limitedResponse);
     })
     .catch((err) => {
       console.log('ERROR in server /search/ GET route:', err);
-      // Send back a meaningful error response
-      res.status(500).json({ error: 'Internal Server Error' });
+      res.status(500).json({
+        error: 'Internal Server Error',
+      });
     });
 });
 

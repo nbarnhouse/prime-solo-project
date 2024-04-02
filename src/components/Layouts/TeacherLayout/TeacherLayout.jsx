@@ -1,3 +1,4 @@
+import React from 'react';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
@@ -9,10 +10,14 @@ import '../MainLayout/Layout.css';
 export default function TeacherLayout({ children }) {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      {/* <WeatherData /> */}
-      <TopLoginNav />
-      <SideNavTeacher />
-      <div>{children}</div>
+      <div className="layout-container">
+        <WeatherData className="weather-layout" />
+        <div className="content">
+          <TopLoginNav />
+          <SideNavTeacher />
+          <div className="main-content">{children}</div>
+        </div>
+      </div>
     </LocalizationProvider>
   );
 }

@@ -9,6 +9,7 @@ import '../App/App.css';
 function RegistrationPage() {
   const history = useHistory();
   const dispatch = useDispatch();
+
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
   const [username, setUsername] = useState('');

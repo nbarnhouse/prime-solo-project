@@ -1,5 +1,5 @@
 .nav2 {
-  background-color: white;
+  background-color: red;
   padding: 20px;
   position: fixed;
   top: 0;
@@ -9,6 +9,7 @@
 
 .navLink2 {
   color: black;
+  background-color: green;
 }
 
 .navLink2 svg {

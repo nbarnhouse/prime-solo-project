@@ -8,7 +8,7 @@ const {
 } = require('../modules/authentication-middleware');
 
 // GET route for all requests
-router.get('/', rejectUnauthenticated, (req, res) => {
+router.get('/all', rejectUnauthenticated, (req, res) => {
   pool
     .query(
       `SELECT requests.id, requests.request_start_date, requests.request_end_date, EXTRACT(DOW FROM requests.request_start_date) AS day_of_week, requests.school, "user".first_name, "user".last_name, "teacher".grade FROM "requests"
@@ -30,7 +30,11 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 router.get('/accepted', rejectUnauthenticated, (req, res) => {
   pool
     .query(
-      `SELECT * FROM "requests" WHERE "status" = 'Accepted' AND "user_id" = $1;`,
+      `SELECT requests.id, requests.request_start_date, requests.request_end_date, EXTRACT(DOW FROM requests.request_start_date) AS day_of_week, requests.school, "user".first_name, "user".last_name, "teacher".grade FROM "requests"
+      JOIN "teacher" ON requests.teacher_id = "teacher".id
+      JOIN "user" ON "teacher".user_id = "user".id
+      WHERE "status" = 'Accepted' AND "requests".user_id = $1
+      ORDER BY requests.request_start_date;`,
       [req.user.id]
     )
     .then((result) => {
@@ -46,7 +50,11 @@ router.get('/accepted', rejectUnauthenticated, (req, res) => {
 router.get('/submitted', rejectUnauthenticated, (req, res) => {
   pool
     .query(
-      `SELECT * FROM "requests" WHERE "status" = 'Requested' AND "teacher_id" = $1;`,
+      `SELECT requests.*, "user".first_name, "user".last_name, "teacher".grade FROM "requests"
+      JOIN "teacher" ON requests.teacher_id = "teacher".id
+      JOIN "user" ON "teacher".user_id = "user".id
+      WHERE "status" = 'Requested' AND "requests".teacher_id = $1
+      ORDER BY requests.request_start_date;`,
       [req.user.id]
     )
     .then((result) => {

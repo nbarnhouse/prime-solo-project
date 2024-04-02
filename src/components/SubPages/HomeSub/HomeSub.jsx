@@ -46,27 +46,21 @@ export default function HomeSub() {
     <SubLayout>
       <h2>Welcome, {user.first_name}!</h2>
       <h2>HOME SUB!</h2>
-
       <div className="frame">
         <Grid container spacing={3}>
           <Grid item xs={8}>
             <Item>
               <div>
                 <h4>Upcoming Assignments</h4>
-
                 <div>
                   {acceptedRequests.length > 0 ? (
-                    acceptedRequests.map((request) => (
+                    acceptedRequests.slice(0, 1).map((request) => (
                       <div key={request.id}>
-                        {/* Add debugging statements */}
                         {console.log('Request:', request)}
-
-                        {/* Render each accepted request content here */}
                         <p>
-                          {' '}
                           {DateTime.fromISO(
                             request.request_start_date
-                          ).toFormat('EEEE')}
+                          ).toFormat('EEEE')}{' '}
                           {DateTime.fromISO(
                             request.request_start_date
                           ).toFormat('MMMM dd')}
@@ -93,7 +87,7 @@ export default function HomeSub() {
           <Grid item xs={12}>
             <Item>
               <h4>Available Assignments</h4>
-              {/* <RequestData handleAccept={handleAccept} /> */}
+              <RequestData handleAccept={handleAccept} />
             </Item>
           </Grid>
         </Grid>

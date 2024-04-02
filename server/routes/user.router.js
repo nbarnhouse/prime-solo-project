@@ -16,7 +16,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 //GET route for all users
-router.get('/register', (req, res) => {
+router.get('/register', rejectUnauthenticated, (req, res) => {
   pool
     .query('SELECT * FROM "user";')
     .then((result) => {
@@ -46,10 +46,6 @@ router.post('/register', (req, res, next) => {
     });
 });
 
-// Handles login form authenticate/login POST
-// userStrategy.authenticate('local') is middleware that we run on this route
-// this middleware will run our POST if successful
-// this middleware will send a 404 if not successful
 router.post('/login', userStrategy.authenticate('local'), (req, res) => {
   console.log('Hit login post');
   res.sendStatus(200);
@@ -63,10 +59,12 @@ router.post('/logout', (req, res) => {
 });
 
 //PUT route to update role
-router.put('/:id', (req, res) => {
-  const userId = req.params.id;
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+  console.log('post route:', req.body);
   const newRole = req.body.type;
+  const user_id = req.params.id;
 
+  console.log(user_id);
   // Validate newRole
   if (!newRole) {
     return res.status(400).json({ error: 'Missing role information' });
@@ -74,7 +72,7 @@ router.put('/:id', (req, res) => {
 
   // Perform the update query
   pool
-    .query('UPDATE "user" SET "type" = $1 WHERE "id" = $2', [newRole, userId])
+    .query('UPDATE "user" SET "type" = $1 WHERE "id" = $2', [newRole, user_id])
     .then(() => {
       res.sendStatus(200);
     })

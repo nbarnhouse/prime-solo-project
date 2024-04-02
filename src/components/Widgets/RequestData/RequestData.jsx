@@ -29,30 +29,31 @@ export default function RequestData({ handleAccept }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {request.map((request) => (
-              <TableRow key={request.id}>
-                <TableCell>{request.id}</TableCell>
-                <TableCell>
-                  {DateTime.fromISO(request.request_start_date).toFormat(
-                    'MMMM dd'
-                  )}
-                  <div>
+            {request &&
+              request.map((request) => (
+                <TableRow key={request.id}>
+                  <TableCell>{request.id}</TableCell>
+                  <TableCell>
                     {DateTime.fromISO(request.request_start_date).toFormat(
-                      'EEEE'
+                      'MMMM dd'
                     )}
-                  </div>
-                </TableCell>
-                <TableCell>{request.school}</TableCell>
-                <TableCell>
-                  {request.first_name} {request.last_name}
-                </TableCell>
-                <TableCell>
-                  <button onClick={() => handleAccept(request.id)}>
-                    Accept
-                  </button>
-                </TableCell>
-              </TableRow>
-            ))}
+                    <div>
+                      {DateTime.fromISO(request.request_start_date).toFormat(
+                        'EEEE'
+                      )}
+                    </div>
+                  </TableCell>
+                  <TableCell>{request.school}</TableCell>
+                  <TableCell>
+                    {request.first_name} {request.last_name}
+                  </TableCell>
+                  <TableCell>
+                    <button onClick={() => handleAccept(request.id)}>
+                      Accept
+                    </button>
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>

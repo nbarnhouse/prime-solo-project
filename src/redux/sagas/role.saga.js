@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
+import axios from 'axios';
 
 // Worker Saga: handles updating the user's role in the database
 function* updateRole() {
@@ -9,10 +9,11 @@ function* updateRole() {
       withCredentials: true,
     };
 
-    //console.log('Action Payload:', action.payload);
+    const { type, userId } = action.payload;
+    console.log('Action Payload:', action.payload);
 
     // Make API call to update the user's role in the database
-    const response = yield axios.put(`/api/user/${id}`, config);
+    const response = yield axios.put(`/api/user/${userId}`, { type }, config);
 
     yield put({ type: 'SET_ROLE', payload: response.data });
   } catch (error) {

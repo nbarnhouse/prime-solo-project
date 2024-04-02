@@ -9,7 +9,7 @@ import WeatherData from '../../Widgets/WeatherData/WeatherData.jsx';
 export default function SubLayout({ children }) {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      {/* <WeatherData /> */}
+      <WeatherData className="weather-layout" />
       <TopLoginNav />
 
       <SideNavSub />

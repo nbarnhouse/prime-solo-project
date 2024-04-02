@@ -1,0 +1,14 @@
+.schedule-nav {
+  background-color: yellow;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.nav-item {
+  background-color: red;
+}
+.schedule-nav svg {
+  height: 30px;
+  width: 30px;
+}

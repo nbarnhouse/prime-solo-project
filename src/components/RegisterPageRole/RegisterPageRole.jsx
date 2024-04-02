@@ -1,25 +1,26 @@
-import { useHistory, useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
+
 import '../App/App.css';
-import './RegisterPageRole.css';
 
 export default function RegisterPageRole() {
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const user = useSelector((store) => store.user);
   const [role, setRole] = useState('');
   const [selectedButton, setSelectedButton] = useState('');
-  const { id } = useParams();
 
   const handleRoleSelection = (selectedRole) => {
-    setRole(selectedRole);
-    setSelectedButton(selectedRole); // Set the selected button
-
     console.log('Selected Role:', selectedRole);
+    setRole(selectedRole.toLowerCase()); // Convert to lowercase for consistency
+    setSelectedButton(selectedRole); // Set the selected button
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = () => {
+    console.log(`User ID:${user.id} set role to:${role}`);
+
     // Dispatch and hold user role.
     dispatch({
       type: 'SET_ROLE',
@@ -28,44 +29,40 @@ export default function RegisterPageRole() {
       },
     });
 
-    // Log the dispatched action to the console
-    console.log('Dispatched Action:', {
-      type: 'SET_ROLE',
-      payload: {
-        type: role,
-      },
-    });
-
     // Navigate to the profile page depending on the selected role.
-    switch (role) {
-      case 'teacher':
-        history.push('/profileteacher');
-        break;
-      case 'substitute':
-        history.push('/profilesub');
-        break;
-      default:
-        history.push('/user'); // Default to a generic profile page
-        break;
-    }
+    // switch (role) {
+    //   case 'teacher':
+    //     history.push('/profileteacher');
+    //     break;
+    //   case 'substitute':
+    //     history.push('/profilesub');
+    //     break;
+    //   default:
+    //     history.push('/user'); // Default to a generic profile page
+    //     break;
+    // }
   };
 
   return (
     <div className="container roledisplay">
       <h2>What is your role?:</h2>
       <button
-        className={`btn ${selectedButton === 'teacher' ? 'selected' : ''}`}
-        onClick={() => handleRoleSelection('teacher')}
+        className={`btn ${selectedButton === 'Teacher' ? 'selected' : ''}`}
+        type="button"
+        onClick={() => handleRoleSelection('Teacher')}
+        aria-pressed={selectedButton === 'Teacher'}
       >
         Teacher
       </button>
       <button
-        className={`btn ${selectedButton === 'substitute' ? 'selected' : ''}`}
-        onClick={() => handleRoleSelection('substitute')}
+        className={`btn ${selectedButton === 'Substitute' ? 'selected' : ''}`}
+        type="button"
+        onClick={() => handleRoleSelection('Substitute')}
+        aria-pressed={selectedButton === 'Substitute'}
       >
         Substitute
       </button>
-      <button className="btn small" onClick={handleSubmit}>
+      <button className="btn" onClick={handleSubmit}>
         Submit
       </button>
     </div>
