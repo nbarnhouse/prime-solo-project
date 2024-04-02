@@ -27,14 +27,14 @@ export default function AvailabilitySub() {
       `Submit New Avaibility: User ID:${user.id} set Type:${type}, Date:${type}`
     );
 
-    // dispatch({
-    //   type: 'ADD_AVAILABILITY',
-    //   payload: {
-    //     type: type,
-    //     date: date,
-    //     comments: comments,
-    //   },
-    // });
+    dispatch({
+      type: 'ADD_AVAILABILITY',
+      payload: {
+        type: type,
+        date: date,
+        comments: comments,
+      },
+    });
 
     setType('');
     setDate('');
@@ -95,12 +95,12 @@ export default function AvailabilitySub() {
                         onChange={(event) => setDate(event.target.value)}
                       />
                     </div>
-                    {/* <div className="nav-item">
-                    <BasicTextInput
-                      label="Comments"
-                      onChange={(event) => setComments(event.target.value)}
-                    />
-                  </div> */}
+                    <div className="nav-item">
+                      <BasicTextInput
+                        label="Comments"
+                        onChange={(event) => setComments(event.target.value)}
+                      />
+                    </div>
                     <div className="nav-item">
                       <BasicButton
                         buttonText="Submit"
