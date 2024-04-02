@@ -1,14 +1,17 @@
+/* .frame {
+  text-align: left;
+}
+
 .schedule-nav {
   background-color: yellow;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
 }
 
 .nav-item {
-  background-color: red;
+  background-color: teal;
 }
 .schedule-nav svg {
   height: 30px;
   width: 30px;
-}
+} */

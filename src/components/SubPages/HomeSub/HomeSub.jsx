@@ -9,27 +9,20 @@ import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { DateTime } from 'luxon';
 
 import SubLayout from '../../Layouts/SubLayout/SubLayout.jsx';
-import RequestData from '../../Widgets/RequestData/RequestData.jsx';
+import RequestData from '../../DataComponents/RequestData/RequestData.jsx';
+import '../../SubPages/SubCss.css';
 //import BasicDateCalendar from '../../DateWidgets/DateCalendar/BasicDateCalendar.jsx';
 
 export default function HomeSub() {
   const user = useSelector((store) => store.user);
   const acceptedRequests = useSelector((store) => store.acceptedRequest);
+  const request = useSelector((store) => store.request);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_REQUESTS' });
     dispatch({ type: 'FETCH_ACCEPTED_REQUESTS' });
   }, []);
-
-  const handleAccept = (requestId) => {
-    console.log(`Request ID:${requestId} accepted by User ID:${user.id}`);
-    dispatch({
-      type: 'ACCEPT_REQUEST',
-      payload: { requestId, userId: user.id },
-    });
-  };
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -80,14 +73,13 @@ export default function HomeSub() {
           </Grid>
           <Grid item xs={4}>
             <Item>
-              {/* <BasicDateCalendar assignments={acceptedRequests} /> */}
               <DateCalendar />
             </Item>
           </Grid>
           <Grid item xs={12}>
             <Item>
               <h4>Available Assignments</h4>
-              <RequestData handleAccept={handleAccept} />
+              {/* <RequestData /> */}
             </Item>
           </Grid>
         </Grid>

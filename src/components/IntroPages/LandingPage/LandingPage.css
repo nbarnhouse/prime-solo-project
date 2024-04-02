@@ -1,4 +1,5 @@
 body {
+  margin: 0; /* Reset default margin */
 }
 
 h1 {
@@ -15,24 +16,19 @@ h3 {
 
 .title {
   background-color: #f2f2f2;
-  margin: 200px 0px 200px 0px;
-  padding: 0.5px 0px 0.1px 0px;
+  margin: 100px 0;
+  padding: 1px 0; /* Adjusted padding */
 }
 
-.info {
-  background-color: lightblue;
-  padding: 300px 0px 300px 0px;
-  margin: 200px 0px 200px 0px;
-}
-
+.info,
 .infotwo {
   background-color: lightblue;
-  padding: 300px 0px 300px 0px;
-  margin: 200px 0px 200px 0px;
+  padding: 100px 0; /* Adjusted padding */
+  margin: 100px 0;
 }
 
 .questions {
-  padding: 1px 0px 100px 0px;
+  padding: 1px 0 100px; /* Adjusted padding */
 }
 
 .questions button {

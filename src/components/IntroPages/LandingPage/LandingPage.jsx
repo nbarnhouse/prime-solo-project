@@ -20,15 +20,15 @@ function LandingPage() {
         <h3>Made Easy</h3>
       </div>
 
-      <div className="info">
+      {/* <div className="info">
         <p>Paragraph description</p>
       </div>
 
       <div className="infotwo">
         <p>Paragraph two description</p>
-      </div>
+      </div> */}
 
-      <div className="questions">
+      {/* <div className="questions">
         <h2>
           Questions? <br></br>We're here to help?
         </h2>
@@ -40,7 +40,7 @@ function LandingPage() {
         >
           Contact
         </button>
-      </div>
+      </div> */}
     </MainLayout>
   );
 }

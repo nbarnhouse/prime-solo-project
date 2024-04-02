@@ -10,9 +10,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
-import AboutPage from '../IntroPages/AboutPage/AboutPage.jsx';
+// import AboutPage from '../IntroPages/AboutPage/AboutPage.jsx';
 import UserPage from '../UserPage/UserPage';
-import ContactPage from '../IntroPages/ContactPage/ContactPage.jsx';
+// import ContactPage from '../IntroPages/ContactPage/ContactPage.jsx';
 import LandingPage from '../IntroPages/LandingPage/LandingPage.jsx';
 
 import LoginPage from '../LoginPage/LoginPage';
@@ -44,19 +44,11 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_REQUESTS' });
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch({ type: 'FETCH_WEATHER' });
   }, [dispatch]);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_ROLE' });
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch({ type: 'FETCH_AVAILABILITY' });
   }, [dispatch]);
 
   return (
@@ -68,18 +60,18 @@ function App() {
             from="/"
             to="/home" //Will redirect from / to /home
           />
-          <Route
+          {/* <Route
             exact
             path="/about" // shows About Page (logged in or not)
           >
             <AboutPage />
-          </Route>
-          <Route
+          </Route> */}
+          {/* <Route
             exact
             path="/contact" // shows Contact Page at all times (logged in or not)
           >
             <ContactPage />
-          </Route>
+          </Route> */}
 
           <Route
             exact

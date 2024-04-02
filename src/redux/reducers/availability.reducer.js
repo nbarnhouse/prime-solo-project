@@ -1,6 +1,9 @@
 const availabilityReducer = (state = [], action) => {
   switch (action.type) {
-    case 'SET_AVAILABILITY':
+    case 'CREATE_AVAILABILITY':
+      return action.payload;
+
+    case 'GET_AVAILABILITY':
       return action.payload;
 
     case 'DELETE_AVAILABILITY_ITEM':

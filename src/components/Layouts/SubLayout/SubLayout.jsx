@@ -4,12 +4,12 @@ import SideNavSub from '../../Navigation/SideNavSub/SideNavSub';
 
 import '../MainLayout/Layout.css';
 import TopLoginNav from '../../Navigation/TopLoginNav/TopLoginNav';
-import WeatherData from '../../Widgets/WeatherData/WeatherData.jsx';
+import WeatherData from '../../DataComponents/WeatherData/WeatherData.jsx';
 
 export default function SubLayout({ children }) {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <WeatherData className="weather-layout" />
+      {/* <WeatherData className="weather-layout" /> */}
       <TopLoginNav />
 
       <SideNavSub />

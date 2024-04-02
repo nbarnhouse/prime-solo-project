@@ -34,7 +34,7 @@ function RegistrationPage() {
   return (
     <>
       <div className="center">
-        <h1>sign up</h1>
+        <h7>sign up</h7>
       </div>
       <form className="formPanel dark" onSubmit={registerUser}>
         {errors.registrationMessage && (

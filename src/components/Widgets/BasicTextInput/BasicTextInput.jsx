@@ -18,6 +18,9 @@ export default function BasicTextInput({ label, value, type, onChange }) {
           margin: '10px',
           borderRadius: '5px',
           border: '1px solid',
+          '& .MuiInputLabel-root': {
+            marginTop: '8px', // Adjust the top margin of the label
+          },
         }}
       />
     </div>

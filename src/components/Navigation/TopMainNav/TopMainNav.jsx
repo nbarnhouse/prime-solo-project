@@ -8,7 +8,7 @@ function TopMainNav() {
 
   return (
     <div className="nav">
-      <Link className="nav-title" to="/home">
+      {/* <Link className="nav-title" to="/home">
         Home
       </Link>
       <Link className="nav-title" to="/about">
@@ -16,9 +16,9 @@ function TopMainNav() {
       </Link>
       <Link className="nav-title" to="/contact">
         Contact
-      </Link>
+      </Link> */}
 
-      <Link className="nav-title right" to="/login">
+      <Link className="nav-title" to="/login">
         <svg
           data-slot="icon"
           fill="none"

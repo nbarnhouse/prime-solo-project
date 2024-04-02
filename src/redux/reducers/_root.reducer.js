@@ -7,6 +7,7 @@ import request from './request.reducer';
 import weather from './weather.reducer';
 import acceptedRequest from './acceptedRequest.reducer';
 import submittedRequest from './submittedRequest.reducer';
+import pastAcceptedRequest from './pastAcceptedRequest.reducer';
 
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   weather, //weather api data
   acceptedRequest, //sub user will accept request
   submittedRequest,
+  pastAcceptedRequest,
 });
 
 export default rootReducer;

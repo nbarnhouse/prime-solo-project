@@ -11,6 +11,8 @@ import {
 } from '@mui/material';
 import { DateTime } from 'luxon';
 
+import MonthFilter from '../../Widgets/MonthFilter/MonthFilter';
+
 export default function AvailabilityData() {
   const availability = useSelector((store) => store.availability);
   const dispatch = useDispatch();
@@ -27,7 +29,8 @@ export default function AvailabilityData() {
   return (
     <>
       <div className="availability-container">
-        <p>Availability Data: </p>
+        <h4>Availability Data</h4>
+        <MonthFilter />
 
         <div className="availability-container">
           <TableContainer component={Paper} className="availability-table">

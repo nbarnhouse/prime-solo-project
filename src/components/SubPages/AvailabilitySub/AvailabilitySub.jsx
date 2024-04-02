@@ -1,20 +1,45 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
 
 import SubLayout from '../../Layouts/SubLayout/SubLayout';
-import AvailabilityData from '../../Widgets/AvailabilityData/AvailabilityData.jsx';
+import AvailabilityData from '../../DataComponents/AvailabilityData/AvailabilityData.jsx';
 import BasicDatePicker from '../../DateWidgets/DatePicker/BasicDatePicker.jsx';
 import BasicTextInput from '../../Widgets/BasicTextInput/BasicTextInput.jsx';
+import BasicDropDown from '../../Widgets/BasicDropDown/BasicDropDown.jsx';
+import BasicButton from '../../Widgets/BasicButton/BasicButton.jsx';
 
 export default function AvailabilitySub() {
-  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const [type, setType] = useState('');
+  const [date, setDate] = useState('');
+  const [comments, setComments] = useState('');
+
+  const createSingleAvailability = (event) => {
+    event.preventDefault();
+
+    console.log(
+      `Submit New Avaibility: User ID:${user.id} set Type:${type}, Date:${type}`
+    );
+
+    // dispatch({
+    //   type: 'ADD_AVAILABILITY',
+    //   payload: {
+    //     type: type,
+    //     date: date,
+    //     comments: comments,
+    //   },
+    // });
+
+    setType('');
+    setDate('');
+    setComments('');
+  };
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -23,21 +48,6 @@ export default function AvailabilitySub() {
     textAlign: 'center',
     color: theme.palette.text.secondary,
   }));
-
-  const calMonths = [
-    { label: 'January', month: '1' },
-    { label: 'February', month: '2' },
-    { label: 'March', month: '3' },
-    { label: 'April', month: '4' },
-    { label: 'May', month: '5' },
-    { label: 'June', month: '6' },
-    { label: 'July', month: '7' },
-    { label: 'August', month: '8' },
-    { label: 'September', month: '9' },
-    { label: 'October', month: '10' },
-    { label: 'November', month: '11' },
-    { label: 'December', month: '12' },
-  ];
 
   return (
     <SubLayout>
@@ -48,31 +58,58 @@ export default function AvailabilitySub() {
             <Grid item xs={12}>
               <Item>
                 <h4>Recurring Availability</h4>
-                <BasicTextInput label="Unavability Day" />
-                <button className="btn-sm">Submit</button>
+                <div className="schedule-nav">
+                  <div className="nav-item">
+                    <BasicTextInput
+                      label="Unavability Day"
+                      onChange={(event) => setComments(event.target.value)}
+                    />
+                  </div>
+                  <div className="nav-item">
+                    <BasicButton
+                      buttonText="Submit"
+                      value="register"
+                      type="submit"
+                    />
+                  </div>
+                </div>
               </Item>
             </Grid>
             <Grid item xs={12}>
               <Item>
                 <h4>One-time event</h4>
-                <BasicTextInput label="Type" />
-                <BasicDatePicker />
-                <BasicTextInput label="Reason" />
-                <button className="btn-sm">Submit</button>
+                <div className="schedule-nav">
+                  <form onSubmit={createSingleAvailability}>
+                    <div className="nav-item">
+                      <BasicDropDown
+                        label="Type"
+                        onChange={(event) => setType(event.target.value)}
+                      />
+                    </div>
+                    <div className="nav-item">
+                      <BasicDatePicker
+                        onChange={(event) => setDate(event.target.value)}
+                      />
+                    </div>
+                    {/* <div className="nav-item">
+                    <BasicTextInput
+                      label="Comments"
+                      onChange={(event) => setComments(event.target.value)}
+                    />
+                  </div> */}
+                    <div className="nav-item">
+                      <BasicButton
+                        buttonText="Submit"
+                        value="register"
+                        type="submit"
+                      />
+                    </div>
+                  </form>
+                </div>
               </Item>
             </Grid>
             <Grid item xs={12}>
               <Item>
-                <Autocomplete
-                  disablePortal
-                  id="combo-box-demo"
-                  options={calMonths}
-                  sx={{ width: 300 }}
-                  renderInput={(params) => (
-                    <TextField {...params} label="Month" />
-                  )}
-                />
-
                 <div>
                   <AvailabilityData />
                 </div>

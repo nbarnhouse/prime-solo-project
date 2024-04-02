@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
+import { DateTime } from 'luxon'; // Import DateTime from luxon
 
 // Saga for getting all requests
 function* fetchRequests() {
@@ -9,7 +10,7 @@ function* fetchRequests() {
       withCredentials: true,
     };
 
-    const response = yield axios.get('/api/request', config);
+    const response = yield axios.get('/api/request/all', config);
 
     yield put({ type: 'SET_REQUESTS', payload: response.data });
   } catch (error) {
@@ -48,6 +49,15 @@ function* fetchAcceptedRequests() {
   }
 }
 
+function* fetchPastAcceptedRequests(action) {
+  try {
+    const response = yield axios.get(`/api/request/accepted/past`);
+    yield put({ type: 'SET_PAST_ACCEPTED_REQUESTS', payload: response.data });
+  } catch (error) {
+    console.error('Error fetching accepted requests:', error);
+  }
+}
+
 function* fetchSubmittedRequests() {
   try {
     const response = yield axios.get(`/api/request/submitted`);
@@ -61,6 +71,7 @@ function* requestsSaga() {
   yield takeLatest('FETCH_REQUESTS', fetchRequests);
   yield takeLatest('ACCEPT_REQUEST', acceptRequest);
   yield takeLatest('FETCH_ACCEPTED_REQUESTS', fetchAcceptedRequests);
+  yield takeLatest('FETCH_PAST_ACCEPTED_REQUESTS', fetchPastAcceptedRequests);
   yield takeLatest('FETCH_SUBMITTED_REQUESTS', fetchSubmittedRequests);
 }
 

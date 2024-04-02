@@ -7,7 +7,7 @@ const {
   // eslint-disable-next-line no-undef
 } = require('../modules/authentication-middleware');
 
-//GET route ALL
+// //GET route ALL (FOR ADMIN USE) DO NOT UNCOMMENT => MOVING TO NEW FILE
 // router.get('/', rejectUnauthenticated, (req, res) => {
 //   pool
 //     .query(
@@ -27,9 +27,10 @@ const {
 //GET route for specific User
 router.get('/', rejectUnauthenticated, (req, res) => {
   pool
-    .query(`SELECT * FROM "substitute_availability" WHERE user_id = $1;`, [
-      req.user.id,
-    ])
+    .query(
+      `SELECT * FROM "substitute_availability" WHERE user_id = $1 ORDER BY "substitute_availability".date;`,
+      [req.user.id]
+    )
     .then((result) => {
       res.json(result.rows);
     })
@@ -39,23 +40,20 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     });
 });
 
-//POST route
+// POST route
 router.post('/', rejectUnauthenticated, (req, res) => {
   console.log('POST req.body', req.body);
-  const newAvb = req.body;
-  let queryText = `INSERT INTO "substitute_availability" ("date", "day", "type", "comments", "user_id") 
-  VALUES ($1, $2, $3, $4, $5);`;
 
-  const queryArgs = [
-    newAvb.date,
-    newAvb.day,
-    newAvb.type,
-    newAvb.comments,
-    newAvb.user_id,
-  ];
+  const newAvb = req.body;
+  const user_id = req.user.id;
+
+  const queryText = `INSERT INTO "substitute_availability" ("date", "type", "comments", "user_id") 
+    VALUES ($1, $2, $3, $4);`;
+
+  const queryValues = [newAvb.date, newAvb.type, newAvb.comments, user_id]; // Use extracted user ID
 
   pool
-    .query(queryText, rejectUnauthenticated, queryArgs)
+    .query(queryText, queryValues)
     .then((result) => {
       res.sendStatus(200);
     })

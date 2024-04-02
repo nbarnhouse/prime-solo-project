@@ -1,10 +1,11 @@
 .weather-container {
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
 }
 
 .weather-item {
-  margin-right: 20px;
+  margin-right: 40px;
   font-size: 14px;
 }
 
