@@ -23,8 +23,9 @@ export default function RegisterPageRole() {
 
     // Dispatch and hold user role.
     dispatch({
-      type: 'SET_ROLE',
+      type: 'UPDATE_ROLE',
       payload: {
+        userId: user.id,
         type: role,
       },
     });

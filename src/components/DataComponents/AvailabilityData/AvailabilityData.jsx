@@ -30,7 +30,7 @@ export default function AvailabilityData() {
     <>
       <div className="availability-container">
         <h4>Availability Data</h4>
-        <MonthFilter />
+        {/* <MonthFilter /> */}
 
         <div className="availability-container">
           <TableContainer component={Paper} className="availability-table">

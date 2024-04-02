@@ -47,10 +47,10 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   const newAvb = req.body;
   const user_id = req.user.id;
 
-  const queryText = `INSERT INTO "substitute_availability" ("date", "type", "comments", "user_id") 
+  const queryText = `INSERT INTO "substitute_availability" ("date", "type", "comments") 
     VALUES ($1, $2, $3, $4);`;
 
-  const queryValues = [newAvb.date, newAvb.type, newAvb.comments, user_id]; // Use extracted user ID
+  const queryValues = [newAvb.date, newAvb.type, newAvb.comments]; // Use extracted user ID
 
   pool
     .query(queryText, queryValues)

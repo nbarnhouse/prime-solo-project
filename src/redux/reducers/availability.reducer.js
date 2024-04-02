@@ -1,5 +1,5 @@
 const availabilityReducer = (state = [], action) => {
-  if (action.type === 'CREATE_AVAILABILITY') {
+  if (action.type === 'GET_AVAILABILITY') {
     return action.payload;
   }
   return state;

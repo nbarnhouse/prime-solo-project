@@ -8,10 +8,10 @@ import Grid from '@mui/material/Grid';
 
 import SubLayout from '../../Layouts/SubLayout/SubLayout';
 import AvailabilityData from '../../DataComponents/AvailabilityData/AvailabilityData.jsx';
-import BasicDatePicker from '../../DateWidgets/DatePicker/BasicDatePicker.jsx';
-import BasicTextInput from '../../Widgets/BasicTextInput/BasicTextInput.jsx';
-import BasicDropDown from '../../Widgets/BasicDropDown/BasicDropDown.jsx';
-import BasicButton from '../../Widgets/BasicButton/BasicButton.jsx';
+// import BasicDatePicker from '../../DateWidgets/DatePicker/BasicDatePicker.jsx';
+// import BasicTextInput from '../../Widgets/BasicTextInput/BasicTextInput.jsx';
+// import BasicDropDown from '../../Widgets/BasicDropDown/BasicDropDown.jsx';
+// import BasicButton from '../../Widgets/BasicButton/BasicButton.jsx';
 
 export default function AvailabilitySub() {
   const dispatch = useDispatch();
@@ -23,9 +23,9 @@ export default function AvailabilitySub() {
   const createSingleAvailability = (event) => {
     event.preventDefault();
 
-    console.log(
-      `Submit New Avaibility: User ID:${user.id} set Type:${type}, Date:${type}`
-    );
+    // console.log(
+    //   `Submit New Avaibility: User ID:${user.id} set Type:${type}, Date:${type}`
+    // );
 
     dispatch({
       type: 'ADD_AVAILABILITY',
@@ -64,17 +64,17 @@ export default function AvailabilitySub() {
                 <h4>Recurring Availability</h4>
                 <div className="schedule-nav">
                   <div className="nav-item">
-                    <BasicTextInput
-                      label="Unavability Day"
-                      onChange={(event) => setComments(event.target.value)}
-                    />
+                    <input
+                      type="text"
+                      id="myInputField"
+                      name="inputField"
+                      placeholder="Unavailability Day"
+                    ></input>
                   </div>
                   <div className="nav-item">
-                    <BasicButton
-                      buttonText="Submit"
-                      value="register"
-                      type="submit"
-                    />
+                    <button type="submit" className="standard-button">
+                      Submit
+                    </button>
                   </div>
                 </div>
               </Item>
@@ -82,34 +82,47 @@ export default function AvailabilitySub() {
             <Grid item xs={12}>
               <Item>
                 <h4>One-time event</h4>
-                <div className="schedule-nav">
-                  <form onSubmit={createSingleAvailability}>
-                    <div className="nav-item">
-                      <BasicDropDown
-                        label="Type"
-                        onChange={(event) => setType(event.target.value)}
-                      />
-                    </div>
-                    <div className="nav-item">
-                      <BasicDatePicker
-                        onChange={(event) => setDate(event.target.value)}
-                      />
-                    </div>
-                    <div className="nav-item">
-                      <BasicTextInput
-                        label="Comments"
-                        onChange={(event) => setComments(event.target.value)}
-                      />
-                    </div>
-                    <div className="nav-item">
-                      <BasicButton
-                        buttonText="Submit"
-                        value="register"
-                        type="submit"
-                      />
-                    </div>
-                  </form>
-                </div>
+
+                <form
+                  onSubmit={createSingleAvailability}
+                  className="schedule-nav"
+                >
+                  <div className="nav-item">
+                    <select
+                      id="myDropdown"
+                      name="dropdown"
+                      value={type}
+                      onChange={(event) => setType(event.target.value)}
+                    >
+                      <option value="Available">Available</option>
+                      <option value="Unavailable">Unavailable</option>
+                    </select>
+                  </div>
+                  <div className="nav-item">
+                    <input
+                      type="date"
+                      id="myDateField"
+                      name="dateField"
+                      value={date}
+                      onChange={(event) => setDate(event.target.value)}
+                    ></input>
+                  </div>
+                  <div className="nav-item">
+                    <input
+                      type="text"
+                      id="myInputField"
+                      name="inputField"
+                      placeholder="Comments"
+                      value={comments}
+                      onChange={(event) => setComments(event.target.value)}
+                    ></input>
+                  </div>
+                  <div className="nav-item">
+                    <button type="submit" className="standard-button">
+                      Submit
+                    </button>
+                  </div>
+                </form>
               </Item>
             </Grid>
             <Grid item xs={12}>

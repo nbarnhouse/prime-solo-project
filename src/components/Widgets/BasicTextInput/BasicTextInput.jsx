@@ -9,7 +9,7 @@ export default function BasicTextInput({ label, value, type, onChange }) {
         id="outlined-input"
         label={label}
         type={type}
-        required
+        //required
         value={value}
         onChange={onChange}
         sx={{

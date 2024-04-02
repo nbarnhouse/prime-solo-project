@@ -33,7 +33,6 @@ export default function AvailabilityData() {
   return (
     <>
       <div className="availability-container">
-        <h4>Availability Data</h4>
         {/* <MonthFilter /> */}
 
         <div className="availability-container">
@@ -60,8 +59,7 @@ export default function AvailabilityData() {
                       </TableCell>
                       <TableCell>{item.school}</TableCell>
                       <TableCell>
-                        {item.first_name}
-                        {item.last_name}
+                        {item.first_name} {item.last_name}
                       </TableCell>
                       <TableCell>
                         <button onClick={() => handleAccept(item.id, user.id)}>

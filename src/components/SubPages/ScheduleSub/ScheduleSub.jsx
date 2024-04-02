@@ -65,7 +65,7 @@ export default function ScheduleSub() {
               <Item>
                 <div className="schedule-nav">
                   <div className="nav-item">
-                    <button className="btn" onClick={handleAvailability}>
+                    <button onClick={handleAvailability}>
                       Manage Availability
                     </button>
                   </div>

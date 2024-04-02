@@ -6,11 +6,15 @@
 .schedule-nav {
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .nav-item {
+  align-items: center;
 }
 .schedule-nav svg {
   height: 30px;
   width: 30px;
+  margin-top: 20px;
 }

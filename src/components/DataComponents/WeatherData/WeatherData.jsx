@@ -3,7 +3,7 @@ import './WeatherData.css';
 
 export default function WeatherData() {
   const weather = useSelector((store) => store.weather);
-  console.log('weather data', weather);
+  //console.log('weather data', weather);
 
   return (
     <div className="weather-container">
@@ -24,6 +24,3 @@ export default function WeatherData() {
     </div>
   );
 }
-
-//Error is at line 10
-//TypeError: undefined is not a function (near '...weather.map...')

@@ -3,20 +3,14 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 function* createAvailability(action) {
   try {
-    const config = {
-      headers: { 'Content-Type': 'application/json' },
-      withCredentials: true,
-    };
+    // const config = {
+    //   headers: { 'Content-Type': 'application/json' },
+    //   withCredentials: true,
+    // };
 
-    const { type, date, comments } = action.payload;
+    yield axios.post('/api/availability', action.payload);
 
-    const response = yield axios.post(
-      '/api/availability',
-      { type, date, comments },
-      config
-    );
-
-    yield put({ type: 'CREATE_AVAILABILITY', payload: response.data });
+    yield put({ type: 'CREATE_AVAILABILITY' });
   } catch (error) {
     console.log('Secrets get request failed', error);
   }
@@ -31,6 +25,8 @@ function* fetchAvailability() {
     };
 
     const response = yield axios.get('/api/availability', config);
+
+    //console.log('Availability data from database:', response.data);
 
     yield put({ type: 'GET_AVAILABILITY', payload: response.data });
   } catch (error) {

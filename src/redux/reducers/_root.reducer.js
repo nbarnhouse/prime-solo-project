@@ -3,6 +3,7 @@ import errors from './errors.reducer';
 import user from './user.reducer';
 import role from './role.reducer';
 import availability from './availability.reducer';
+import createAvailability from './createAvailability.reducer';
 import request from './request.reducer';
 import weather from './weather.reducer';
 import acceptedRequest from './acceptedRequest.reducer';
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   role, //user will set their role
   availability, //sub user will set availability
+  createAvailability,
   request, //teacher user will set requests
   weather, //weather api data
   acceptedRequest, //sub user will accept request

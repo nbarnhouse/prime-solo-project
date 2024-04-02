@@ -1,14 +1,12 @@
-import React from 'react';
 import { useHistory } from 'react-router-dom';
 import SubLayout from '../../Layouts/SubLayout/SubLayout.jsx';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
-import { Button, Link } from '@mui/material';
 
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+
+import CalendarView from '../../DateWidgets/CalendarView/CalendarView.jsx';
 
 export default function ScheduleSub() {
   const history = useHistory();
@@ -17,6 +15,28 @@ export default function ScheduleSub() {
     // Navigate to Role when button is clicked
     history.push('/availabilitysub');
   };
+
+  // Get today's date
+  const today = new Date();
+
+  // Initialize an array to store the dates
+  const dates = [];
+
+  // Loop through the next 12 months
+  for (let i = 0; i < 12; i++) {
+    // Create a new Date object by adding i months to today's date
+    const date = new Date(
+      today.getFullYear(),
+      today.getMonth() + i,
+      today.getDate()
+    );
+
+    // Push the date into the dates array
+    dates.push(date);
+  }
+
+  // Console log the array
+  console.log(dates);
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -60,60 +80,14 @@ export default function ScheduleSub() {
                 </button>
               </Item>
             </Grid>
-            <Grid item xs={4}>
-              <Item>
-                {' '}
-                <DateCalendar />
-              </Item>
-            </Grid>
-            <Grid item xs={4}>
-              <Item>
-                {' '}
-                <DateCalendar />
-              </Item>
-            </Grid>
-            <Grid item xs={4}>
-              <Item>
-                {' '}
-                <DateCalendar />
-              </Item>
-            </Grid>
-            <Grid item xs={4}>
-              <Item>
-                {' '}
-                <DateCalendar />
-              </Item>
-            </Grid>
-            <Grid item xs={4}>
-              <Item>
-                {' '}
-                <DateCalendar />
-              </Item>
-            </Grid>
-            <Grid item xs={4}>
-              <Item>
-                {' '}
-                <DateCalendar />
-              </Item>
-            </Grid>
-            <Grid item xs={4}>
-              <Item>
-                {' '}
-                <DateCalendar />
-              </Item>
-            </Grid>
-            <Grid item xs={4}>
-              <Item>
-                {' '}
-                <DateCalendar />
-              </Item>
-            </Grid>
-            <Grid item xs={4}>
-              <Item>
-                {' '}
-                <DateCalendar />
-              </Item>
-            </Grid>
+
+            {dates.map((date, index) => (
+              <Grid item xs={4} key={index}>
+                <Item>
+                  <CalendarView referenceDates={dates} date={date} />
+                </Item>
+              </Grid>
+            ))}
           </Grid>
         </Box>
       </div>

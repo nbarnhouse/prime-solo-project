@@ -75,7 +75,9 @@ export default function HomeSub() {
             </Item>
           </Grid>
           <Grid item xs={4}>
-            <Item>{/* <CalendarView /> */}</Item>
+            <Item>
+              <CalendarView />
+            </Item>
           </Grid>
           <Grid item xs={12}>
             <Item>

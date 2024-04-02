@@ -60,11 +60,12 @@ router.post('/logout', (req, res) => {
 
 //PUT route to update role
 router.put('/:id', rejectUnauthenticated, (req, res) => {
-  console.log('post route:', req.body);
+  console.log('PUT route USER ROLE:', req.body);
   const newRole = req.body.type;
   const user_id = req.params.id;
 
-  console.log(user_id);
+  console.log('User ID:', user_id);
+  console.log('User New Role:', newRole);
   // Validate newRole
   if (!newRole) {
     return res.status(400).json({ error: 'Missing role information' });

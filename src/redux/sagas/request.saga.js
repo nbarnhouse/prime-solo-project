@@ -19,7 +19,7 @@ function* fetchRequests() {
 }
 
 // Saga for accepting a request
-function* acceptRequest() {
+function* acceptRequest(action) {
   try {
     const { requestId, userId } = action.payload;
 
