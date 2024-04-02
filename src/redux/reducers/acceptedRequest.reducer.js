@@ -1,10 +1,8 @@
-const acceptedRequestReducer = (state = {}, action) => {
-  switch (action.type) {
-    case 'SET_ACCEPTED_REQUESTS':
-      return action.payload;
-    default:
-      return state;
+const acceptedRequestReducer = (state = [], action) => {
+  if (action.type === 'SET_ACCEPTED_REQUESTS') {
+    return action.payload;
   }
+  return state;
 };
 
 export default acceptedRequestReducer;

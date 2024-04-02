@@ -49,7 +49,7 @@ function* fetchAcceptedRequests() {
   }
 }
 
-function* fetchPastAcceptedRequests(action) {
+function* fetchPastAcceptedRequests() {
   try {
     const response = yield axios.get(`/api/request/accepted/past`);
     yield put({ type: 'SET_PAST_ACCEPTED_REQUESTS', payload: response.data });

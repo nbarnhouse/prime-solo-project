@@ -11,29 +11,30 @@ import {
 } from '@mui/material';
 import { DateTime } from 'luxon';
 
-import MonthFilter from '../../Widgets/MonthFilter/MonthFilter';
+//import MonthFilter from '../../Widgets/MonthFilter/MonthFilter';
 
 export default function AvailabilityData() {
-  const availability = useSelector((store) => store.AvailabilityData);
+  const request = useSelector((store) => store.request);
+  const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch({ type: 'FETCH_REQUESTS' });
   }, [dispatch]);
 
-  // const handleAccept = (requestId) => {
-  //   console.log(`Request ID:${requestId} accepted by User ID:${user.id}`);
-  //   // dispatch({
-  //   //   type: 'ACCEPT_REQUEST',
-  //   //   payload: { requestId, userId: user.id },
-  //   // });
-  // };
+  const handleAccept = (requestId) => {
+    console.log(`Request ID:${requestId} accepted by User ID:${user.id}`);
+    dispatch({
+      type: 'ACCEPT_REQUEST',
+      payload: { requestId, userId: user.id },
+    });
+  };
 
   return (
     <>
       <div className="availability-container">
         <h4>Availability Data</h4>
-        <MonthFilter />
+        {/* <MonthFilter /> */}
 
         <div className="availability-container">
           <TableContainer component={Paper} className="availability-table">
@@ -48,24 +49,27 @@ export default function AvailabilityData() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {availability.map((item) => (
-                  <TableRow key={item.id} className="availability-item">
-                    <TableCell>{item.id}</TableCell>
-                    <TableCell>
-                      {DateTime.fromISO(item.request_start_date).toLocaleString(
-                        DateTime.DATE_SHORT
-                      )}
-                    </TableCell>
-                    <TableCell>{item.school}</TableCell>
-                    <TableCell>
-                      {item.first_name}
-                      {item.last_name}
-                    </TableCell>
-                    <TableCell>
-                      <button>Accept</button>
-                    </TableCell>
-                  </TableRow>
-                ))}
+                {request &&
+                  request.map((item) => (
+                    <TableRow key={item.id} className="availability-item">
+                      <TableCell>{item.id}</TableCell>
+                      <TableCell>
+                        {DateTime.fromISO(
+                          item.request_start_date
+                        ).toLocaleString(DateTime.DATE_SHORT)}
+                      </TableCell>
+                      <TableCell>{item.school}</TableCell>
+                      <TableCell>
+                        {item.first_name}
+                        {item.last_name}
+                      </TableCell>
+                      <TableCell>
+                        <button onClick={() => handleAccept(item.id, user.id)}>
+                          Accept
+                        </button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
               </TableBody>
             </Table>
           </TableContainer>

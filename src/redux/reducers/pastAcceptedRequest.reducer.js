@@ -1,4 +1,4 @@
-const pastAcceptedRequest = (state = {}, action) => {
+const pastAcceptedRequest = (state = [], action) => {
   switch (action.type) {
     case 'SET_PAST_ACCEPTED_REQUESTS':
       return action.payload;

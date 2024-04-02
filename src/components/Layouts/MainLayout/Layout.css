@@ -1,14 +1,11 @@
 body {
   background-color: lightgray;
-  margin: 150px 150px;
+  margin: 90px 150px;
 }
 
 .frame {
   width: 90%;
-  /* display: flex;
-  justify-content: flex-end; */
   padding-left: 100px;
-  background-color: red;
 }
 
 .black {

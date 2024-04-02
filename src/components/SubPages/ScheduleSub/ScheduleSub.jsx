@@ -43,21 +43,6 @@ export default function ScheduleSub() {
     history.push('/availabilitysub');
   };
 
-  // const calMonths = [
-  //   { label: 'January', month: '1' },
-  //   { label: 'February', month: '2' },
-  //   { label: 'March', month: '3' },
-  //   { label: 'April', month: '4' },
-  //   { label: 'May', month: '5' },
-  //   { label: 'June', month: '6' },
-  //   { label: 'July', month: '7' },
-  //   { label: 'August', month: '8' },
-  //   { label: 'September', month: '9' },
-  //   { label: 'October', month: '10' },
-  //   { label: 'November', month: '11' },
-  //   { label: 'December', month: '12' },
-  // ];
-
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
@@ -69,27 +54,22 @@ export default function ScheduleSub() {
   return (
     <SubLayout>
       <div className="frame">
+        <br></br>
+        <br></br>
         <h2>Schedule</h2>
+        <br></br>
+        <br></br>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <Item>
-                {/* <Autocomplete
-                  disablePortal
-                  id="combo-box-demo"
-                  options={calMonths}
-                  sx={{ width: 300 }}
-                  renderInput={(params) => (
-                    <TextField {...params} label="Month" />
-                  )}
-                /> */}
                 <div className="schedule-nav">
                   <div className="nav-item">
                     <button className="btn" onClick={handleAvailability}>
                       Manage Availability
                     </button>
                   </div>
-                  {/* <div className="nav-item">
+                  <div className="nav-item">
                     <svg
                       data-slot="icon"
                       fill="none"
@@ -140,7 +120,7 @@ export default function ScheduleSub() {
                     >
                       List View
                     </button>
-                  </div> */}
+                  </div>
                 </div>
               </Item>
             </Grid>

@@ -9,11 +9,10 @@ import WeatherData from '../../DataComponents/WeatherData/WeatherData.jsx';
 export default function SubLayout({ children }) {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      {/* <WeatherData className="weather-layout" /> */}
       <TopLoginNav />
-
       <SideNavSub />
-      <div>{children}</div>
+      <WeatherData className="weather-layout" />
+      {children}
     </LocalizationProvider>
   );
 }

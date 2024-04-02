@@ -1,4 +1,4 @@
-const requestReducer = (state = {}, action) => {
+const requestReducer = (state = [], action) => {
   switch (action.type) {
     case 'ACCEPT_REQUEST_SUCCESS':
       // Update the state to reflect the accepted request

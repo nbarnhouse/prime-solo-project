@@ -4,19 +4,18 @@ import { useSelector, useDispatch } from 'react-redux';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-
-import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { DateTime } from 'luxon';
 
 import SubLayout from '../../Layouts/SubLayout/SubLayout.jsx';
 import RequestData from '../../DataComponents/RequestData/RequestData.jsx';
+import CalendarView from '../../DateWidgets/CalendarView/CalendarView.jsx';
+
 import '../../SubPages/SubCss.css';
-//import BasicDateCalendar from '../../DateWidgets/DateCalendar/BasicDateCalendar.jsx';
 
 export default function HomeSub() {
   const user = useSelector((store) => store.user);
   const acceptedRequests = useSelector((store) => store.acceptedRequest);
-  const request = useSelector((store) => store.request);
+  //const request = useSelector((store) => store.request);
 
   const dispatch = useDispatch();
 
@@ -37,9 +36,13 @@ export default function HomeSub() {
 
   return (
     <SubLayout>
-      <h2>Welcome, {user.first_name}!</h2>
-      <h2>HOME SUB!</h2>
       <div className="frame">
+        <br></br>
+        <br></br>
+        <h2>Welcome, {user.first_name}!</h2>
+        <br></br>
+        <br></br>
+
         <Grid container spacing={3}>
           <Grid item xs={8}>
             <Item>
@@ -73,13 +76,13 @@ export default function HomeSub() {
           </Grid>
           <Grid item xs={4}>
             <Item>
-              <DateCalendar />
+              <CalendarView />
             </Item>
           </Grid>
           <Grid item xs={12}>
             <Item>
               <h4>Available Assignments</h4>
-              {/* <RequestData /> */}
+              <RequestData />
             </Item>
           </Grid>
         </Grid>
