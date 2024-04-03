@@ -11,7 +11,7 @@ const {
 router.get('/all', rejectUnauthenticated, (req, res) => {
   pool
     .query(
-      `SELECT requests.id, requests.request_start_date, requests.school, "user".first_name, "user".last_name, "teacher".grade FROM "requests"
+      `SELECT requests.*, "user".first_name, "user".last_name, "teacher".grade, "teacher".room_number FROM "requests"
       JOIN "teacher" ON requests.teacher_id = "teacher".id
       JOIN "user" ON "teacher".user_id = "user".id
       WHERE "status" = 'Requested'
@@ -30,7 +30,7 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
 router.get('/accepted', rejectUnauthenticated, (req, res) => {
   pool
     .query(
-      `SELECT requests.id, requests.request_start_date, requests.school, "user".first_name, "user".last_name, "teacher".grade, requests.sub_notes FROM "requests"
+      `SELECT requests.id, requests.request_start_date, requests.school, "user".first_name, "user".last_name, "teacher".grade, "teacher".room_number, requests.sub_notes FROM "requests"
       JOIN "teacher" ON requests.teacher_id = "teacher".id
       JOIN "user" ON "teacher".user_id = "user".id
       WHERE "status" = 'Accepted' AND "request_start_date" > CURRENT_DATE AND "requests".user_id = $1
