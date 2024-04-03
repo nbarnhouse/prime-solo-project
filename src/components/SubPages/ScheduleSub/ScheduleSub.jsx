@@ -33,10 +33,11 @@ export default function ScheduleSub() {
   }, []);
 
   const handleCancel = (requestId) => {
-    console.log(`Request ID:${requestId} accepted by User ID:${user.id}`);
+    console.log(`Request ID:${requestId} canceled by User ID:${user.id}`);
     dispatch({
       type: 'CANCEL_REQUEST',
-      payload: { requestId, userId: user.id },
+      payload: requestId,
+      userId: user.id,
     });
   };
 
@@ -166,7 +167,7 @@ export default function ScheduleSub() {
                               <TableCell>
                                 <button
                                   className="btn-sm"
-                                  onClick={handleCancel}
+                                  onClick={() => handleCancel(request.id)}
                                 >
                                   Cancel
                                 </button>

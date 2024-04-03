@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import { DateTime } from 'luxon';
 
-import MonthFilter from '../../Widgets/MonthFilter/MonthFilter';
+//import MonthFilter from '../../Widgets/MonthFilter/MonthFilter';
 
 export default function AvailabilityData() {
   const availability = useSelector((store) => store.availability);
