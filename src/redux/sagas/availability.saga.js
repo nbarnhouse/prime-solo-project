@@ -10,7 +10,7 @@ function* createAvailability(action) {
 
     yield axios.post('/api/availability', action.payload);
 
-    yield put({ type: 'CREATE_AVAILABILITY' });
+    yield put({ type: 'FETCH_AVAILABILITY' }); // Refetch availability after Deletion
   } catch (error) {
     console.log('Secrets get request failed', error);
   }
