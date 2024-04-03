@@ -8,17 +8,15 @@ import Grid from '@mui/material/Grid';
 
 import SubLayout from '../../Layouts/SubLayout/SubLayout';
 import AvailabilityData from '../../DataComponents/AvailabilityData/AvailabilityData.jsx';
-// import BasicDatePicker from '../../DateWidgets/DatePicker/BasicDatePicker.jsx';
-// import BasicTextInput from '../../Widgets/BasicTextInput/BasicTextInput.jsx';
-// import BasicDropDown from '../../Widgets/BasicDropDown/BasicDropDown.jsx';
-// import BasicButton from '../../Widgets/BasicButton/BasicButton.jsx';
 
 export default function AvailabilitySub() {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
 
   const [type, setType] = useState('');
+  //const [type2, setType2] = useState('');
   const [date, setDate] = useState('');
+  //const [day, setDay] = useState('');
   const [comments, setComments] = useState('');
 
   const createSingleAvailability = (event) => {
@@ -43,6 +41,25 @@ export default function AvailabilitySub() {
     setComments('');
   };
 
+  // const createMultipleAvailability = (event) => {
+  //   event.preventDefault();
+
+  //   console.log(
+  //     `Submit Reoccuring Avaibility: User ID:${user.id} set Day:${day}`
+  //   );
+
+  //   dispatch({
+  //     type: 'ADD_REC_AVAILABILITY',
+  //     payload: {
+  //       userId: user.id,
+  //       type: type,
+  //       day: day,
+  //     },
+  //   });
+
+  //   setDay('');
+  // };
+
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
@@ -61,26 +78,50 @@ export default function AvailabilitySub() {
         <br></br>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={3}>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
               <Item>
                 <h4>Recurring Availability</h4>
-                <div className="schedule-nav">
+                <form
+                  className="schedule-nav"
+                  onSubmit={createMultipleAvailability}
+                >
                   <div className="nav-item">
-                    <input
-                      type="text"
-                      id="myInputField"
-                      name="inputField"
-                      placeholder="Unavailability Day"
-                    ></input>
+                    <select
+                      id="myDropdown"
+                      name="dropdown"
+                      value={type}
+                      onChange={(event) => setType(event.target.value)}
+                    >
+                      <option value="Default">SELECT A TYPE</option>
+                      <option value="Available">Available</option>
+                      <option value="Unavailable">Unavailable</option>
+                    </select>
                   </div>
+
+                  <div className="nav-item">
+                    <select
+                      id="myDayDropdown"
+                      name="daydropdown"
+                      value={day}
+                      onChange={(event) => setDay(event.target.value)}
+                    >
+                      <option value="Default">SELECT A DAY</option>
+                      <option value="1">Monday</option>
+                      <option value="2">Tuesday</option>
+                      <option value="2">Wedsday</option>
+                      <option value="2">Thursday</option>
+                      <option value="2">Friday</option>
+                    </select>
+                  </div>
+
                   <div className="nav-item">
                     <button type="submit" className="standard-button">
                       Submit
                     </button>
                   </div>
-                </div>
+                </form>
               </Item>
-            </Grid>
+            </Grid> */}
             <Grid item xs={12}>
               <Item>
                 <h4>One-time event</h4>
@@ -91,11 +132,12 @@ export default function AvailabilitySub() {
                 >
                   <div className="nav-item">
                     <select
-                      id="myDropdown"
-                      name="dropdown"
+                      id="myTypeDropdown"
+                      name="typedropdown"
                       value={type}
                       onChange={(event) => setType(event.target.value)}
                     >
+                      <option value="Default">SELECT A TYPE</option>
                       <option value="Available">Available</option>
                       <option value="Unavailable">Unavailable</option>
                     </select>
@@ -109,13 +151,15 @@ export default function AvailabilitySub() {
                       onChange={(event) => setDate(event.target.value)}
                     ></input>
                   </div>
+
                   <div className="nav-item">
                     <input
                       type="text"
-                      id="myInputField"
-                      name="inputField"
+                      id="commentsField"
+                      name="commentsField"
                       placeholder="Comments"
                       value={comments}
+                      style={{ width: '200px' }}
                       onChange={(event) => setComments(event.target.value)}
                     ></input>
                   </div>

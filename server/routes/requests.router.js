@@ -86,7 +86,7 @@ router.get('/submitted', rejectUnauthenticated, (req, res) => {
     });
 });
 
-// POST route
+// POST route to ADD REQUEST
 router.post('/', rejectUnauthenticated, (req, res) => {
   console.log('POST Request req.body', req.body);
 
@@ -115,7 +115,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     });
 });
 
-// PUT route
+// PUT route to update SUB ACCEPTANCE OF Request
 router.put('/:id', rejectUnauthenticated, (req, res) => {
   const requestId = req.body;
   const user_id = req.params.id;

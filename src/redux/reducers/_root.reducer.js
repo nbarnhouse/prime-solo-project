@@ -9,6 +9,8 @@ import weather from './weather.reducer';
 import acceptedRequest from './acceptedRequest.reducer';
 import submittedRequest from './submittedRequest.reducer';
 import pastAcceptedRequest from './pastAcceptedRequest.reducer';
+import profTeaReducer from './profTea.reducer';
+import profSubReducer from './profSub.reducer';
 
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
@@ -21,6 +23,8 @@ const rootReducer = combineReducers({
   acceptedRequest, //sub user will accept request
   submittedRequest,
   pastAcceptedRequest,
+  profTeaReducer,
+  profSubReducer,
 });
 
 export default rootReducer;

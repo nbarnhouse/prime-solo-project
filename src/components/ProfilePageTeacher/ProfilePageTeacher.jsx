@@ -6,7 +6,6 @@ export default function ProfilePageTeacher() {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((store) => store.user);
-  const role = useSelector((store) => store.role);
 
   const [room, setRoom] = useState('');
   const [extension, setExtension] = useState('');
@@ -17,27 +16,32 @@ export default function ProfilePageTeacher() {
     history.push('/role');
   };
 
-  const handleSubmit = () => {
-    console.log(`User ID:${user.id} set role to:${role}`);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(
+      `TEACHER User ID:${user.id} set room to:${room}, extension to ${extension}, and grade to ${grade}`
+    );
 
     // Dispatch and hold user role.
     dispatch({
-      type: 'UPDATE_PROFILE',
+      type: 'UPDATE_PROFILE_TEACHER',
       payload: {
         userId: user.id,
-        type: role,
+        room: room,
+        extension: extension,
+        grade: grade,
       },
     });
-    history.push('/hometeacher');
+    //history.push('/hometeacher');
   };
 
   return (
-    <div className="roledisplay">
+    <div className="formPanel">
       <h2>Let's create a profile, so you can get started:</h2>
       <div className="formGroup">
-        <input value={user.first_name} />
-        <input value={user.last_name} />
-        <input value={user.username} />
+        <input value={user.first_name} onChange={() => {}} />
+        <input value={user.last_name} onChange={() => {}} />
+        <input value={user.username} onChange={() => {}} />
 
         <input
           type="text"
@@ -51,12 +55,12 @@ export default function ProfilePageTeacher() {
         <input
           placeholder="Extension"
           value={extension}
-          onChange={(e) => setExtension(event.target.value)}
+          onChange={(event) => setExtension(event.target.value)}
         />
         <input
           placeholder="Grade"
           value={grade}
-          onChange={(e) => setGrade(event.target.value)}
+          onChange={(event) => setGrade(event.target.value)}
         />
       </div>
       <div>

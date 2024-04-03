@@ -6,6 +6,7 @@ import roleSaga from './role.saga';
 import availabilitySaga from './availability.saga';
 import requestsSaga from './request.saga';
 import weatherSaga from './weather.saga';
+import profileSaga from './profile.saga';
 
 export default function* rootSaga() {
   yield all([
@@ -16,5 +17,6 @@ export default function* rootSaga() {
     availabilitySaga(),
     requestsSaga(),
     weatherSaga(),
+    profileSaga(),
   ]);
 }

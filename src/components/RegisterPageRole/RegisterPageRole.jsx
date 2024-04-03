@@ -45,10 +45,11 @@ export default function RegisterPageRole() {
   };
 
   return (
-    <div className="container roledisplay">
+    <div className="roledisplay">
       <h2>What is your role?:</h2>
       <button
         className={`btn ${selectedButton === 'Teacher' ? 'selected' : ''}`}
+        id="btnReg"
         type="button"
         onClick={() => handleRoleSelection('Teacher')}
         aria-pressed={selectedButton === 'Teacher'}
@@ -57,6 +58,7 @@ export default function RegisterPageRole() {
       </button>
       <button
         className={`btn ${selectedButton === 'Substitute' ? 'selected' : ''}`}
+        id="btnReg2"
         type="button"
         onClick={() => handleRoleSelection('Substitute')}
         aria-pressed={selectedButton === 'Substitute'}

@@ -63,12 +63,12 @@ router.post('/logout', (req, res) => {
 
 //PUT route to update role
 router.put('/:id', rejectUnauthenticated, (req, res) => {
-  console.log('PUT route USER ROLE:', req.body);
+  //console.log('PUT route USER ROLE:', req.body);
   const newRole = req.body.type;
   const user_id = req.params.id;
 
-  console.log('User ID:', user_id);
-  console.log('User New Role:', newRole);
+  //console.log('User ID:', user_id);
+  //console.log('User New Role:', newRole);
   // Validate newRole
   if (!newRole) {
     return res.status(400).json({ error: 'Missing role information' });
@@ -77,6 +77,66 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
   // Perform the update query
   pool
     .query('UPDATE "user" SET "type" = $1 WHERE "id" = $2', [newRole, user_id])
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.error('Error updating user role:', err);
+      res.sendStatus(500);
+    });
+});
+
+//PUT route to update SUB PROFILE
+router.put('/sub/:id', rejectUnauthenticated, (req, res) => {
+  //console.log('PUT route SUB PROFILE:', req.body);
+
+  const phone = req.body.phone;
+  const user_id = req.params.id;
+
+  //console.log('User ID:', user_id);
+  //console.log('Phone:', phone);
+  // Validate newRole
+
+  // Perform the update query
+  pool
+    .query('UPDATE "user" SET "phone" = $1 WHERE "id" = $2', [
+      req.body.phone,
+      req.params.id,
+    ])
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.error('Error updating user role:', err);
+      res.sendStatus(500);
+    });
+});
+
+//PUT route to update TEACHER PROFILE
+router.post('/tea', rejectUnauthenticated, (req, res) => {
+  console.log('POST route TEACHER PROFILE:', req.body);
+
+  const user_id = req.body.id;
+  const teaProf = req.body;
+
+  const queryText = `
+  INSERT INTO "teacher" ("grade", "room_number", "extension", "user_id")
+  VALUES ($1, $2, $3, $4)
+`;
+
+  const queryValues = [
+    teaProf.grade,
+    teaProf.room_number,
+    teaProf.extension,
+    user_id,
+  ];
+
+  console.log('TEACHER PROFILE User ID:', user_id);
+  console.log('TEACHER PROFILE Info:', req.body);
+
+  // Perform the update query
+  pool
+    .query(queryText, queryValues)
     .then(() => {
       res.sendStatus(200);
     })

@@ -10,9 +10,12 @@ import '../MainLayout/Layout.css';
 export default function TeacherLayout({ children }) {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <div>
+        <WeatherData className="weather-layout" />
+      </div>
       <TopLoginNav />
       <SideNavTeacher />
-      <WeatherData className="weather-layout" />
+
       <div>{children}</div>
     </LocalizationProvider>
   );

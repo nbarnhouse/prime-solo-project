@@ -11,34 +11,36 @@ export default function ProfilePageSub() {
 
   const [number, setNumber] = useState('');
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    dispatch({
-      type: 'PROFILE_SUB',
-      payload: {
-        phone: number,
-      },
-    });
-    history.push('/homesub');
-  }; // end register Flow
-
   const handleBack = () => {
     // Navigate to Role when button is clicked
     history.push('/role');
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(`SUB User ID:${user.id} set number to:${number}`);
+
+    dispatch({
+      type: 'UPDATE_PROFILE_SUB',
+      payload: {
+        userId: user.id,
+        phone: number,
+      },
+    });
+    // history.push('/homesub');
+  };
+
   return (
-    <div className="roledisplay">
+    <div className="formPanel">
       <h2>Let's create a profile, so you can get started:</h2>
       <div className="formGroup">
-        <input value={user.first_name} />
-        <input value={user.last_name} />
-        <input value={user.username} />
+        <input value={user.first_name} onChange={() => {}} />
+        <input value={user.last_name} onChange={() => {}} />
+        <input value={user.username} onChange={() => {}} />
         <input
           placeholder="Phone"
           value={number}
-          onChange={(e) => setNumber(e.target.value)}
+          onChange={(event) => setNumber(event.target.value)}
         />
       </div>
       <div>

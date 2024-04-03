@@ -1,7 +1,5 @@
 .nav2 {
-  display: flex;
-  justify-content: flex-end;
-  padding: 20px;
+  padding: 30px;
   position: fixed;
   top: 0;
   left: 0;
