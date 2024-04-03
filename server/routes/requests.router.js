@@ -85,6 +85,25 @@ router.get('/submitted', rejectUnauthenticated, (req, res) => {
     });
 });
 
+//GET route for specific teacher
+router.get('/submitted/past', rejectUnauthenticated, (req, res) => {
+  pool
+    .query(
+      `SELECT requests.*, "user".first_name, "user".last_name, "teacher".grade, "teacher".room_number FROM "requests"
+      JOIN "teacher" ON requests.teacher_id = "teacher".id
+      JOIN "user" ON "teacher".user_id = "user".id
+      WHERE "request_start_date" < CURRENT_DATE
+      ORDER BY requests.request_start_date;`
+    )
+    .then((result) => {
+      res.json(result.rows);
+    })
+    .catch((error) => {
+      console.error('Error fetching submitted requests:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    });
+});
+
 // POST route to ADD REQUEST
 router.post('/', rejectUnauthenticated, (req, res) => {
   console.log('POST Request req.body', req.body);

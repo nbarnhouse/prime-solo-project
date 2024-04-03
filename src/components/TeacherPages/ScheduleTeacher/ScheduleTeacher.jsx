@@ -154,8 +154,8 @@ export default function ScheduleTeacher() {
                               </div>
                             </TableCell>
                             <TableCell>{request.school}</TableCell>
-                            <TableCell>{request.subnotes}</TableCell>
-                            <TableCell>{request.adminnotes}</TableCell>
+                            <TableCell>{request.sub_notes}</TableCell>
+                            <TableCell>{request.admin_notes}</TableCell>
                             <TableCell>{request.status}</TableCell>
                             <TableCell>
                               <button
@@ -209,8 +209,8 @@ export default function ScheduleTeacher() {
                               </div>
                             </TableCell>
                             <TableCell>{request.school}</TableCell>
-                            <TableCell>{request.subnotes}</TableCell>
-                            <TableCell>{request.adminnotes}</TableCell>
+                            <TableCell>{request.sub_notes}</TableCell>
+                            <TableCell>{request.admin_notes}</TableCell>
                           </TableRow>
                         ))
                       ) : (
