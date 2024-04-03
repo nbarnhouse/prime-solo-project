@@ -99,7 +99,10 @@ router.put('/sub/:id', rejectUnauthenticated, (req, res) => {
 
   // Perform the update query
   pool
-    .query('UPDATE "user" SET "phone" = $1 WHERE "id" = $2', [phone, user_id])
+    .query('UPDATE "user" SET "phone" = $1 WHERE "id" = $2', [
+      req.body.phone,
+      req.params.id,
+    ])
     .then(() => {
       res.sendStatus(200);
     })
@@ -113,31 +116,28 @@ router.put('/sub/:id', rejectUnauthenticated, (req, res) => {
 router.post('/tea', rejectUnauthenticated, (req, res) => {
   console.log('POST route TEACHER PROFILE:', req.body);
 
+  const user_id = req.body.id;
   const teaProf = req.body;
-  const user_id = req.body.user_id;
 
   const queryText = `
   INSERT INTO "teacher" ("grade", "room_number", "extension", "user_id")
-  VALUES ($1, $2, $3, $4) RETURNING "teacher".id AS teacher_id;
+  VALUES ($1, $2, $3, $4)
 `;
 
   const queryValues = [
     teaProf.grade,
     teaProf.room_number,
     teaProf.extension,
-    teaProf.userId,
+    user_id,
   ];
 
-  console.log('TEACHER User ID:', user_id);
-  console.log('TEACHER ID:', req.body.teacher_id);
+  console.log('TEACHER PROFILE User ID:', user_id);
   console.log('TEACHER PROFILE Info:', req.body);
 
   // Perform the update query
   pool
     .query(queryText, queryValues)
-    .then((result) => {
-      const teacherId = result.rows[0].teacher_id; // Accessing the teacher ID from the result
-      console.log('Inserted Teacher ID:', teacherId); // Log the teacher ID
+    .then(() => {
       res.sendStatus(200);
     })
     .catch((err) => {

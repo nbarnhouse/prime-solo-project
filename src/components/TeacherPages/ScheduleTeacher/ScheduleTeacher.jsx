@@ -134,6 +134,7 @@ export default function ScheduleTeacher() {
                         <TableCell>School</TableCell>
                         <TableCell>Sub Notes</TableCell>
                         <TableCell>Admin Notes</TableCell>
+                        <TableCell>Status</TableCell>
                         <TableCell>Action</TableCell>
                       </TableRow>
                     </TableHead>
@@ -155,6 +156,7 @@ export default function ScheduleTeacher() {
                             <TableCell>{request.school}</TableCell>
                             <TableCell>{request.subnotes}</TableCell>
                             <TableCell>{request.adminnotes}</TableCell>
+                            <TableCell>{request.status}</TableCell>
                             <TableCell>
                               <button
                                 className="btn-sm"

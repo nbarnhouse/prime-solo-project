@@ -76,6 +76,28 @@ function* fetchPastSubmittedRequests() {
   }
 }
 
+// Saga for accepting a request
+function* cancelAcceptedRequest(action) {
+  try {
+    const { requestId, userId } = action.payload;
+
+    console.log('Request Saga Process - Request ID:', requestId);
+    console.log('Request Saga Process - User ID:', userId);
+
+    const config = {
+      headers: { 'Content-Type': 'application/json' },
+      withCredentials: true,
+    };
+
+    // Send PUT request with userId in the request body
+    yield (axios.put, `/api/request/${requestId}`, { user_id: userId }, config);
+
+    yield put({ type: 'ACCEPT_REQUEST_SUCCESS', payload: requestId });
+  } catch (error) {
+    yield put({ type: 'ACCEPT_REQUEST_FAILURE', error: error.message });
+  }
+}
+
 function* deleteRequest(action) {
   try {
     const config = {
@@ -100,6 +122,7 @@ function* requestsSaga() {
   yield takeLatest('FETCH_PAST_ACCEPTED_REQUESTS', fetchPastAcceptedRequests);
   yield takeLatest('FETCH_SUBMITTED_REQUESTS', fetchSubmittedRequests);
   yield takeLatest('FETCH_PAST_SUBMITTED_REQUESTS', fetchPastSubmittedRequests);
+  yield takeLatest('CANCEL_REQUEST', cancelAcceptedRequest);
   yield takeLatest('DELETE_REQUEST_ITEM', deleteRequest);
 }
 

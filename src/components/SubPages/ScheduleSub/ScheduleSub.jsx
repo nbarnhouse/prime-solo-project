@@ -23,6 +23,7 @@ import '../../SubPages/SubCss.css';
 export default function ScheduleSub() {
   const history = useHistory();
   const dispatch = useDispatch();
+  const user = useSelector((store) => store.user);
   const acceptedRequests = useSelector((store) => store.acceptedRequest);
   const pastAcceptedRequest = useSelector((store) => store.pastAcceptedRequest);
 
