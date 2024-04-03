@@ -1,12 +1,14 @@
 import { useHistory } from 'react-router-dom';
-import SubLayout from '../../Layouts/SubLayout/SubLayout.jsx';
+import dayjs from 'dayjs';
 
 import { styled } from '@mui/material/styles';
+import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
 import CalendarView from '../../DateWidgets/CalendarView/CalendarView.jsx';
+import SubLayout from '../../Layouts/SubLayout/SubLayout.jsx';
 
 export default function ScheduleSub() {
   const history = useHistory();
@@ -80,14 +82,99 @@ export default function ScheduleSub() {
                 </button>
               </Item>
             </Grid>
-
-            {dates.map((date, index) => (
-              <Grid item xs={4} key={index}>
-                <Item>
-                  <CalendarView referenceDates={dates} date={date} />
-                </Item>
-              </Grid>
-            ))}
+            <Grid item xs={4}>
+              <Item>
+                <DateCalendar />
+              </Item>
+            </Grid>
+            <Grid item xs={4}>
+              <Item>
+                <DateCalendar
+                  referenceDate={dayjs('2024-05-1')}
+                  views={['year', 'month', 'day']}
+                />
+              </Item>
+            </Grid>
+            <Grid item xs={4}>
+              <Item>
+                <DateCalendar
+                  referenceDate={dayjs('2024-06-1')}
+                  views={['year', 'month', 'day']}
+                />
+              </Item>
+            </Grid>
+            <Grid item xs={4}>
+              <Item>
+                <DateCalendar
+                  referenceDate={dayjs('2024-07-1')}
+                  views={['year', 'month', 'day']}
+                />
+              </Item>
+            </Grid>
+            <Grid item xs={4}>
+              <Item>
+                <DateCalendar
+                  referenceDate={dayjs('2024-08-1')}
+                  views={['year', 'month', 'day']}
+                />
+              </Item>
+            </Grid>
+            <Grid item xs={4}>
+              <Item>
+                <DateCalendar
+                  referenceDate={dayjs('2024-09-1')}
+                  views={['year', 'month', 'day']}
+                />
+              </Item>
+            </Grid>
+            <Grid item xs={4}>
+              <Item>
+                <DateCalendar
+                  referenceDate={dayjs('2024-10-1')}
+                  views={['year', 'month', 'day']}
+                />
+              </Item>
+            </Grid>
+            <Grid item xs={4}>
+              <Item>
+                <DateCalendar
+                  referenceDate={dayjs('2024-11-1')}
+                  views={['year', 'month', 'day']}
+                />
+              </Item>
+            </Grid>
+            <Grid item xs={4}>
+              <Item>
+                <DateCalendar
+                  referenceDate={dayjs('2024-12-1')}
+                  views={['year', 'month', 'day']}
+                />
+              </Item>
+            </Grid>
+            <Grid item xs={4}>
+              <Item>
+                <DateCalendar
+                  referenceDate={dayjs('2025-01-1')}
+                  views={['year', 'month', 'day']}
+                />
+              </Item>
+            </Grid>
+            <Grid item xs={4}>
+              <Item>
+                <DateCalendar
+                  referenceDate={dayjs('2025-02-1')}
+                  views={['year', 'month', 'day']}
+                />
+              </Item>
+            </Grid>
+            <Grid item xs={4}>
+              <Item>
+                <DateCalendar
+                  referenceDate={dayjs('2025-03-1')}
+                  views={['year', 'month', 'day']}
+                />
+              </Item>
+            </Grid>
           </Grid>
         </Box>
       </div>

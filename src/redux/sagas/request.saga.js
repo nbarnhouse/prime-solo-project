@@ -67,12 +67,40 @@ function* fetchSubmittedRequests() {
   }
 }
 
+function* fetchPastSubmittedRequests() {
+  try {
+    const response = yield axios.get(`/api/request/submitted/past`);
+    yield put({ type: 'SET_PAST_SUBMITTED_REQUESTS', payload: response.data });
+  } catch (error) {
+    console.error('Error fetching accepted requests:', error);
+  }
+}
+
+function* deleteRequest(action) {
+  try {
+    const config = {
+      headers: { 'Content-Type': 'application/json' },
+      withCredentials: true,
+    };
+
+    const itemId = action.payload;
+
+    yield axios.delete(`/api/request/${itemId}`, config);
+
+    yield put({ type: 'FETCH_SUBMITTED_REQUESTS' }); // Refetch request after Deletion
+  } catch (error) {
+    console.log('Availability delete request failed', error);
+  }
+}
+
 function* requestsSaga() {
   yield takeLatest('FETCH_REQUESTS', fetchRequests);
   yield takeLatest('ACCEPT_REQUEST', acceptRequest);
   yield takeLatest('FETCH_ACCEPTED_REQUESTS', fetchAcceptedRequests);
   yield takeLatest('FETCH_PAST_ACCEPTED_REQUESTS', fetchPastAcceptedRequests);
   yield takeLatest('FETCH_SUBMITTED_REQUESTS', fetchSubmittedRequests);
+  yield takeLatest('FETCH_PAST_SUBMITTED_REQUESTS', fetchPastSubmittedRequests);
+  yield takeLatest('DELETE_REQUEST_ITEM', deleteRequest);
 }
 
 export default requestsSaga;

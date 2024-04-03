@@ -27,7 +27,7 @@ export default function ProfilePageSub() {
         phone: number,
       },
     });
-    // history.push('/homesub');
+    history.push('/homesub');
   };
 
   return (

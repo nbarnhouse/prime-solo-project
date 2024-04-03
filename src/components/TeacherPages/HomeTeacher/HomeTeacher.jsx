@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import dayjs from 'dayjs';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
@@ -29,6 +30,11 @@ export default function HomeTeacher() {
     dispatch({ type: 'FETCH_SUBMITTED_REQUESTS' });
   }, []);
 
+  const deleteRequestItem = (requestId) => {
+    console.log('Deleting request with ID:', requestId); // Log the item ID before deletion
+    dispatch({ type: 'DELETE_REQUEST_ITEM', payload: requestId });
+  };
+
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
@@ -42,8 +48,12 @@ export default function HomeTeacher() {
 
   return (
     <TeacherLayout>
-      <h2>Welcome, {user.first_name}!</h2>
       <div className="frame">
+        <br></br>
+        <br></br>
+        <h2>Welcome, {user.first_name}!</h2>
+        <br></br>
+        <br></br>
         <Grid container spacing={3}>
           <Grid item xs={4}>
             <Item>
@@ -54,12 +64,18 @@ export default function HomeTeacher() {
           </Grid>
           <Grid item xs={4}>
             <Item>
-              <DateCalendar />
+              <DateCalendar
+                referenceDate={dayjs('2024-05-1')}
+                views={['year', 'month', 'day']}
+              />
             </Item>
           </Grid>
           <Grid item xs={4}>
             <Item>
-              <DateCalendar />
+              <DateCalendar
+                referenceDate={dayjs('2024-06-1')}
+                views={['year', 'month', 'day']}
+              />
             </Item>
           </Grid>
           <Grid item xs={12}>
@@ -73,7 +89,8 @@ export default function HomeTeacher() {
                         <TableCell>Request ID</TableCell>
                         <TableCell>Date</TableCell>
                         <TableCell>School</TableCell>
-                        <TableCell>Teacher</TableCell>
+                        <TableCell>Reason</TableCell>
+                        <TableCell>Status</TableCell>
                         <TableCell>Action</TableCell>
                       </TableRow>
                     </TableHead>
@@ -93,13 +110,13 @@ export default function HomeTeacher() {
                               </div>
                             </TableCell>
                             <TableCell>{request.school}</TableCell>
-                            <TableCell>
-                              {request.first_name} {request.last_name}
-                            </TableCell>
+                            <TableCell>{request.reason}</TableCell>
+                            <TableCell>{request.status}</TableCell>
+
                             <TableCell>
                               <button
                                 className="btn-sm"
-                                onClick={handleAvailability}
+                                onClick={() => deleteRequestItem(request.id)}
                               >
                                 Cancel
                               </button>

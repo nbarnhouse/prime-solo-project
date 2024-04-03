@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { styled } from '@mui/material/styles';
+import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
+import dayjs from 'dayjs';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { DateTime } from 'luxon';
@@ -43,13 +45,12 @@ export default function HomeSub() {
         <h2>Welcome, {user.first_name}!</h2>
         <br></br>
         <br></br>
-
         <Grid container spacing={3}>
-          <Grid item xs={8}>
+          <Grid item xs={4}>
             <Item>
               <div>
-                <h4>Upcoming Assignments</h4>
-                <div>
+                <div className="frame">
+                  <h4>Upcoming Assignments</h4>
                   {acceptedRequests.length > 0 ? (
                     acceptedRequests.slice(0, 1).map((request) => (
                       <div key={request.id}>
@@ -64,8 +65,9 @@ export default function HomeSub() {
                         </p>
                         <p>{request.school}</p>
                         <p>
-                          Sub for {request.first_name} {request.last_name}
+                          Sub for: {request.first_name} {request.last_name}
                         </p>
+                        <p>Room: {request.room_number}</p>
                       </div>
                     ))
                   ) : (
@@ -78,6 +80,14 @@ export default function HomeSub() {
           <Grid item xs={4}>
             <Item>
               <CalendarView />
+            </Item>
+          </Grid>
+          <Grid item xs={4}>
+            <Item>
+              <DateCalendar
+                referenceDate={dayjs('2024-05-1')}
+                views={['year', 'month', 'day']}
+              />
             </Item>
           </Grid>
           <Grid item xs={12}>

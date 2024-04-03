@@ -143,6 +143,8 @@ export default function AvailabilitySub() {
                     </select>
                   </div>
                   <div className="nav-item">
+                    <label htmlFor="comments">Date:</label>
+                    &nbsp;&nbsp;&nbsp;
                     <input
                       type="date"
                       id="myDateField"
@@ -153,16 +155,19 @@ export default function AvailabilitySub() {
                   </div>
 
                   <div className="nav-item">
+                    <label htmlFor="comments">Comments:</label>
+                    &nbsp;&nbsp;&nbsp;
                     <input
                       type="text"
-                      id="commentsField"
-                      name="commentsField"
+                      id="comments"
+                      name="comments"
                       placeholder="Comments"
                       value={comments}
                       style={{ width: '200px' }}
                       onChange={(event) => setComments(event.target.value)}
-                    ></input>
+                    />
                   </div>
+
                   <div className="nav-item">
                     <button type="submit" className="standard-button">
                       Submit

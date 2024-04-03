@@ -22,9 +22,9 @@ import '../../SubPages/SubCss.css';
 
 export default function ScheduleSub() {
   const history = useHistory();
+  const dispatch = useDispatch();
   const acceptedRequests = useSelector((store) => store.acceptedRequest);
   const pastAcceptedRequest = useSelector((store) => store.pastAcceptedRequest);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch({ type: 'FETCH_ACCEPTED_REQUESTS' });
@@ -136,6 +136,8 @@ export default function ScheduleSub() {
                           <TableCell>Date</TableCell>
                           <TableCell>School</TableCell>
                           <TableCell>Teacher</TableCell>
+                          <TableCell>Grade</TableCell>
+                          <TableCell>Notes</TableCell>
                           <TableCell>Action</TableCell>
                         </TableRow>
                       </TableHead>
@@ -158,6 +160,8 @@ export default function ScheduleSub() {
                               <TableCell>
                                 {request.first_name} {request.last_name}
                               </TableCell>
+                              <TableCell>{request.grade}</TableCell>
+                              <TableCell>{request.sub_notes}</TableCell>
                               <TableCell>
                                 <button
                                   className="btn-sm"
@@ -194,6 +198,8 @@ export default function ScheduleSub() {
                           <TableCell>School</TableCell>
                           <TableCell>Teacher</TableCell>
                           <TableCell>Grade</TableCell>
+                          <TableCell>Notes</TableCell>
+                          <TableCell>Status</TableCell>
                         </TableRow>
                       </TableHead>
                       <TableBody>
@@ -215,7 +221,9 @@ export default function ScheduleSub() {
                               <TableCell>
                                 {request.first_name} {request.last_name}
                               </TableCell>
-                              <TableCell>Grade: {request.grade}</TableCell>
+                              <TableCell>{request.grade}</TableCell>
+                              <TableCell>{request.sub_notes}</TableCell>
+                              <TableCell>Complete</TableCell>
                             </TableRow>
                           ))
                         ) : (

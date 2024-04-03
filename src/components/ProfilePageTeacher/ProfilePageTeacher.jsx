@@ -32,7 +32,7 @@ export default function ProfilePageTeacher() {
         grade: grade,
       },
     });
-    //history.push('/hometeacher');
+    history.push('/hometeacher');
   };
 
   return (

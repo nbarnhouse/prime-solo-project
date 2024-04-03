@@ -30,7 +30,7 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
 router.get('/accepted', rejectUnauthenticated, (req, res) => {
   pool
     .query(
-      `SELECT requests.id, requests.request_start_date, requests.school, "user".first_name, "user".last_name, "teacher".grade FROM "requests"
+      `SELECT requests.*, "user".*, teacher.* FROM "requests"
       JOIN "teacher" ON requests.teacher_id = "teacher".id
       JOIN "user" ON "teacher".user_id = "user".id
       WHERE "status" = 'Accepted' AND "request_start_date" > CURRENT_DATE AND "requests".user_id = $1
@@ -68,14 +68,32 @@ router.get('/accepted/past', rejectUnauthenticated, (req, res) => {
 
 //GET route for specific teacher
 router.get('/submitted', rejectUnauthenticated, (req, res) => {
+  console.log('SUBMITTED Teacher USER ID:', req.user.id);
+  console.log('SUBMITTED Teacher TEACHER ID:', req.body.teacher_id);
+
   pool
     .query(
-      `SELECT requests.*, "user".first_name, "user".last_name, "teacher".grade FROM "requests"
-      JOIN "teacher" ON requests.teacher_id = "teacher".id
-      JOIN "user" ON "teacher".user_id = "user".id
-      WHERE "status" = 'Requested' AND "requests".teacher_id = $1
-      ORDER BY requests.request_start_date;`,
-      [req.user.id]
+      `SELECT * FROM "requests" WHERE "request_start_date" >= CURRENT_DATE AND "teacher_id" = $;`,
+      [req.user.teacher_id]
+    )
+    .then((result) => {
+      res.json(result.rows);
+    })
+    .catch((error) => {
+      console.error('Error fetching submitted requests:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    });
+});
+
+//GET route for specific teacher (PAST)
+router.get('/submitted/past', rejectUnauthenticated, (req, res) => {
+  console.log('SUBMITTED Teacher USER ID:', req.user.id);
+  console.log('SUBMITTED Teacher TEACHER ID:', req.body.teacher_id);
+
+  pool
+    .query(
+      `SELECT * FROM "requests" WHERE "request_start_date" < CURRENT_DATE AND "teacher_id" = $;`,
+      [req.user.teacher_id]
     )
     .then((result) => {
       res.json(result.rows);

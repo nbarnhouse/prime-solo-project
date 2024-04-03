@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+//import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { styled } from '@mui/material/styles';
@@ -16,22 +16,30 @@ import {
   Grid,
 } from '@mui/material';
 
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
+// import TextField from '@mui/material/TextField';
+// import Autocomplete from '@mui/material/Autocomplete';
 
 // import CalendarView from '../Dates/CalendarView/CalendarView.jsx';
 // import DatePicker from '../Dates/DatePicker/DatePicker.jsx';
 import TeacherLayout from '../../Layouts/TeacherLayout/TeacherLayout.jsx';
 
 export default function ScheduleTeacher() {
-  const history = useHistory();
+  //const history = useHistory();
   const dispatch = useDispatch();
   const submittedRequests = useSelector((store) => store.submittedRequest);
+  const pastSubmittedRequests = useSelector(
+    (store) => store.pastSubmittedRequest
+  );
 
   useEffect(() => {
     dispatch({ type: 'FETCH_SUBMITTED_REQUESTS' });
-    dispatch({ type: 'FETCH_PAST_REQUESTS' });
+    dispatch({ type: 'FETCH_PAST_SUBMITTED_REQUESTS' });
   }, []);
+
+  const deleteRequestItem = (requestId) => {
+    console.log('Deleting request with ID:', requestId); // Log the item ID before deletion
+    dispatch({ type: 'DELETE_REQUEST_ITEM', payload: requestId });
+  };
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -46,15 +54,18 @@ export default function ScheduleTeacher() {
 
   return (
     <TeacherLayout>
-      <h1>Schedule</h1>
-      <div className="container">Schedule For Teachers</div>
       <div className="frame">
+        <br></br>
+        <br></br>
+        <h2>Schedule</h2>
+        <br></br>
+        <br></br>
         <Grid container spacing={3}>
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <Item>
               <div className="schedule-nav">
-                {/* <div className="nav-item"></div> */}
-                {/* 
+                <div className="nav-item"></div>
+                
                 <div className="nav-item">
                   <svg
                     data-slot="icon"
@@ -106,10 +117,10 @@ export default function ScheduleTeacher() {
                   >
                     List View
                   </button>
-                </div> */}
+                </div>
               </div>
             </Item>
-          </Grid>
+          </Grid> */}
           <Grid item xs={12}>
             <Item>
               <h4>Current & Upcoming Requests</h4>
@@ -121,7 +132,8 @@ export default function ScheduleTeacher() {
                         <TableCell>Request ID</TableCell>
                         <TableCell>Date</TableCell>
                         <TableCell>School</TableCell>
-                        <TableCell>Teacher</TableCell>
+                        <TableCell>Sub Notes</TableCell>
+                        <TableCell>Admin Notes</TableCell>
                         <TableCell>Action</TableCell>
                       </TableRow>
                     </TableHead>
@@ -141,11 +153,15 @@ export default function ScheduleTeacher() {
                               </div>
                             </TableCell>
                             <TableCell>{request.school}</TableCell>
+                            <TableCell>{request.subnotes}</TableCell>
+                            <TableCell>{request.adminnotes}</TableCell>
                             <TableCell>
-                              {request.first_name} {request.last_name}
-                            </TableCell>
-                            <TableCell>
-                              <button className="btn-sm">Cancel</button>
+                              <button
+                                className="btn-sm"
+                                onClick={() => deleteRequestItem(request.id)}
+                              >
+                                Cancel
+                              </button>
                             </TableCell>
                           </TableRow>
                         ))
@@ -171,13 +187,13 @@ export default function ScheduleTeacher() {
                         <TableCell>Request ID</TableCell>
                         <TableCell>Date</TableCell>
                         <TableCell>School</TableCell>
-                        <TableCell>Teacher</TableCell>
-                        <TableCell>Action</TableCell>
+                        <TableCell>Sub Notes</TableCell>
+                        <TableCell>Admin Notes</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {submittedRequests.length > 0 ? (
-                        submittedRequests.map((request) => (
+                      {pastSubmittedRequests.length > 0 ? (
+                        pastSubmittedRequests.map((request) => (
                           <TableRow key={request.id}>
                             <TableCell>{request.id}</TableCell>
                             <TableCell>
@@ -191,17 +207,8 @@ export default function ScheduleTeacher() {
                               </div>
                             </TableCell>
                             <TableCell>{request.school}</TableCell>
-                            <TableCell>
-                              {request.first_name} {request.last_name}
-                            </TableCell>
-                            <TableCell>
-                              <button
-                                className="btn-sm"
-                                onClick={handleAvailability}
-                              >
-                                Cancel
-                              </button>
-                            </TableCell>
+                            <TableCell>{request.subnotes}</TableCell>
+                            <TableCell>{request.adminnotes}</TableCell>
                           </TableRow>
                         ))
                       ) : (
