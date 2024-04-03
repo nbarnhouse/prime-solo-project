@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -15,6 +15,7 @@ import AvailabilityData from '../../DataComponents/AvailabilityData/Availability
 
 export default function AvailabilitySub() {
   const dispatch = useDispatch();
+  const user = useSelector((store) => store.user);
 
   const [type, setType] = useState('');
   const [date, setDate] = useState('');
@@ -23,13 +24,14 @@ export default function AvailabilitySub() {
   const createSingleAvailability = (event) => {
     event.preventDefault();
 
-    // console.log(
-    //   `Submit New Avaibility: User ID:${user.id} set Type:${type}, Date:${type}`
-    // );
+    console.log(
+      `Submit New Avaibility: User ID:${user.id} set Type:${type}, setDate: ${date}, setComments: ${comments}`
+    );
 
     dispatch({
       type: 'ADD_AVAILABILITY',
       payload: {
+        userId: user.id,
         type: type,
         date: date,
         comments: comments,

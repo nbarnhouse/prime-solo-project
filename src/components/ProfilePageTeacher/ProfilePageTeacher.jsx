@@ -12,16 +12,23 @@ export default function ProfilePageTeacher() {
   const [extension, setExtension] = useState('');
   const [grade, setGrade] = useState('');
 
-  const handleSubmit = () => {
-    // Dispatch an action to submit the profile information
-    //dispatch(submitProfile({ room, extension, grade }));
-    // Navigate to the profile page
-    history.push('/hometeacher');
-  };
-
   const handleBack = () => {
     // Navigate to Role when button is clicked
     history.push('/role');
+  };
+
+  const handleSubmit = () => {
+    console.log(`User ID:${user.id} set role to:${role}`);
+
+    // Dispatch and hold user role.
+    dispatch({
+      type: 'UPDATE_PROFILE',
+      payload: {
+        userId: user.id,
+        type: role,
+      },
+    });
+    history.push('/hometeacher');
   };
 
   return (
@@ -31,20 +38,25 @@ export default function ProfilePageTeacher() {
         <input value={user.first_name} />
         <input value={user.last_name} />
         <input value={user.username} />
+
         <input
-          placeholder="Room"
+          type="text"
+          id="roomField"
+          name="roomField"
+          placeholder="Room Number"
           value={room}
-          onChange={(e) => setRoom(e.target.value)}
-        />
+          onChange={(event) => setRoom(event.target.value)}
+        ></input>
+
         <input
           placeholder="Extension"
           value={extension}
-          onChange={(e) => setExtension(e.target.value)}
+          onChange={(e) => setExtension(event.target.value)}
         />
         <input
           placeholder="Grade"
           value={grade}
-          onChange={(e) => setGrade(e.target.value)}
+          onChange={(e) => setGrade(event.target.value)}
         />
       </div>
       <div>

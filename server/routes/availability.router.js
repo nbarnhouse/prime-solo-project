@@ -8,21 +8,21 @@ const {
 } = require('../modules/authentication-middleware');
 
 // //GET route ALL (FOR ADMIN USE) DO NOT UNCOMMENT => MOVING TO NEW FILE
-// router.get('/', rejectUnauthenticated, (req, res) => {
-//   pool
-//     .query(
-//       `SELECT *
-//     FROM "substitute_availability"
-//     ORDER BY "id";`
-//     )
-//     .then((result) => {
-//       res.send(result.rows);
-//     })
-//     .catch((error) => {
-//       console.log('Error on GET Availability Object', error);
-//       res.sendStatus(500);
-//     });
-// });
+router.get('/', rejectUnauthenticated, (req, res) => {
+  pool
+    .query(
+      `SELECT *
+    FROM "substitute_availability"
+    ORDER BY "id";`
+    )
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      console.log('Error on GET Availability Object', error);
+      res.sendStatus(500);
+    });
+});
 
 //GET route for specific User
 router.get('/', rejectUnauthenticated, (req, res) => {
@@ -42,15 +42,20 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 // POST route
 router.post('/', rejectUnauthenticated, (req, res) => {
-  console.log('POST req.body', req.body);
+  console.log('POST Availability req.body', req.body);
 
   const newAvb = req.body;
-  const user_id = req.user.id;
+  //const user_id = req.user.id;
 
-  const queryText = `INSERT INTO "substitute_availability" ("date", "type", "comments") 
+  const queryText = `INSERT INTO "substitute_availability" ("date", "type", "comments", "user_id")
     VALUES ($1, $2, $3, $4);`;
 
-  const queryValues = [newAvb.date, newAvb.type, newAvb.comments]; // Use extracted user ID
+  const queryValues = [
+    newAvb.date,
+    newAvb.type,
+    newAvb.comments,
+    newAvb.userId,
+  ]; // Use extracted user ID
 
   pool
     .query(queryText, queryValues)

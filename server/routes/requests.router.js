@@ -88,26 +88,20 @@ router.get('/submitted', rejectUnauthenticated, (req, res) => {
 
 // POST route
 router.post('/', rejectUnauthenticated, (req, res) => {
-  const user_id = req.user.id;
+  console.log('POST Request req.body', req.body);
+
   const newReq = req.body;
-  const {
-    request_start_date,
-    request_end_date,
-    reason,
-    admin_notes,
-    sub_notes,
-  } = newReq;
+
   const queryText = `
-    INSERT INTO "requests" ("request_start_date", "request_end_date", "reason", "admin_notes", "sub_notes", "user_id")
-    VALUES ($1, $2, $3, $4, $5, $6)
+    INSERT INTO "requests" ("request_start_date", "reason", "admin_notes", "sub_notes", "user_id")
+    VALUES ($1, $2, $3, $4, $5)
   `;
   const queryValues = [
-    request_start_date,
-    request_end_date,
-    reason,
-    admin_notes,
-    sub_notes,
-    user_id,
+    newReq.date,
+    newReq.reason,
+    newReq.adminnote,
+    newReq.subnote,
+    newReq.userId,
   ];
 
   pool

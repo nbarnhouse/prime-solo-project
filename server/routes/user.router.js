@@ -18,7 +18,10 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 //GET route for all users
 router.get('/register', rejectUnauthenticated, (req, res) => {
   pool
-    .query('SELECT * FROM "user";')
+    .query(
+      `SELECT "user".*, "teacher".* FROM "user"
+    JOIN "teacher" ON "user".id = "teacher".id;`
+    )
     .then((result) => {
       res.send(result.rows);
     })

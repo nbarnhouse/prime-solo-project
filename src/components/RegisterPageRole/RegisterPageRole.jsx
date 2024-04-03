@@ -30,18 +30,18 @@ export default function RegisterPageRole() {
       },
     });
 
-    // Navigate to the profile page depending on the selected role.
-    // switch (role) {
-    //   case 'teacher':
-    //     history.push('/profileteacher');
-    //     break;
-    //   case 'substitute':
-    //     history.push('/profilesub');
-    //     break;
-    //   default:
-    //     history.push('/user'); // Default to a generic profile page
-    //     break;
-    // }
+    //Navigate to the profile page depending on the selected role.
+    switch (role) {
+      case 'teacher':
+        history.push('/profileteacher');
+        break;
+      case 'substitute':
+        history.push('/profilesub');
+        break;
+      default:
+        history.push('/user'); // Default to a generic profile page
+        break;
+    }
   };
 
   return (
