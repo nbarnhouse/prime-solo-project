@@ -33,6 +33,7 @@ function* acceptRequest(action) {
 
     // Send PUT request with userId in the request body
     yield (axios.put, `/api/request/${requestId}`, { user_id: userId }, config);
+    yield put({ type: 'FETCH_ACCEPTED_REQUESTS' }); // Refetch request after Deletion
 
     yield put({ type: 'ACCEPT_REQUEST_SUCCESS', payload: requestId });
   } catch (error) {
@@ -90,7 +91,10 @@ function* cancelAcceptedRequest(action) {
     };
 
     // Send PUT request with userId in the request body
-    yield (axios.put, `/api/request/${requestId}`, { user_id: userId }, config);
+    yield (axios.put,
+    `/api/request/cancel/${requestId}`,
+    { user_id: userId },
+    config);
 
     yield put({ type: 'ACCEPT_REQUEST_SUCCESS', payload: requestId });
   } catch (error) {

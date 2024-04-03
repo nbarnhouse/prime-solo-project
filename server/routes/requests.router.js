@@ -133,6 +133,25 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
+// PUT route to update SUB CANCELLATION OF Request
+router.put('/cancel/:id', rejectUnauthenticated, (req, res) => {
+  const requestId = req.body;
+  const user_id = req.params.id;
+
+  pool
+    .query(`UPDATE "requests" SET "status" = 'Requested' WHERE "id" = $1`, [
+      user_id,
+      requestId,
+    ])
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.error('Error on PUT Request Object', error);
+      res.sendStatus(500);
+    });
+});
+
 // DELETE route
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
   pool
