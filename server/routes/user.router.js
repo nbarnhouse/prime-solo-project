@@ -112,11 +112,11 @@ router.put('/sub/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
-//PUT route to update TEACHER PROFILE
+//POST route to update TEACHER PROFILE
 router.post('/tea', rejectUnauthenticated, (req, res) => {
   console.log('POST route TEACHER PROFILE:', req.body);
 
-  const user_id = req.body.id;
+  const user_id = req.body.user_id;
   const teaProf = req.body;
 
   const queryText = `

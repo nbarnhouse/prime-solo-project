@@ -59,6 +59,11 @@ export default function AbsenceTeacher() {
     setSubnote('');
   };
 
+  const deleteRequestItem = (requestId) => {
+    console.log('Deleting request with ID:', requestId); // Log the item ID before deletion
+    dispatch({ type: 'DELETE_REQUEST_ITEM', payload: requestId });
+  };
+
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
@@ -184,14 +189,14 @@ export default function AbsenceTeacher() {
                               </div>
                             </TableCell>
                             <TableCell>{request.school}</TableCell>
-                            <TableCell>{request.subnotes}</TableCell>
-                            <TableCell>{request.adminnotes}</TableCell>
+                            <TableCell>{request.sub_notes}</TableCell>
+                            <TableCell>{request.admin_notes}</TableCell>
                             <TableCell>
                               <button
                                 className="btn-sm"
                                 onClick={() => deleteRequestItem(request.id)}
                               >
-                                Cancel
+                                Edit/Cancel
                               </button>
                             </TableCell>
                           </TableRow>

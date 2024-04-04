@@ -42,7 +42,7 @@ export default function HomeSub() {
       <div className="frame">
         <br></br>
         <br></br>
-        <h2>Welcome, {user.first_name}!</h2>
+        <h2>Welcome, Nicole!</h2>
         <br></br>
         <br></br>
         <Grid container spacing={3}>

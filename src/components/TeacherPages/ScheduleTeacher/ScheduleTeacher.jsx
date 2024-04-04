@@ -162,7 +162,7 @@ export default function ScheduleTeacher() {
                                 className="btn-sm"
                                 onClick={() => deleteRequestItem(request.id)}
                               >
-                                Cancel
+                                Edit
                               </button>
                             </TableCell>
                           </TableRow>
