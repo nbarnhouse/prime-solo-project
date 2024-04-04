@@ -135,7 +135,6 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 // PUT route to update SUB ACCEPTANCE OF Request
 router.put('/:id', rejectUnauthenticated, (req, res) => {
-  const requestId = req.body.id;
   const updateReq = req.body;
 
   const queryValues = [updateReq.status, updateReq.user_id];
@@ -143,8 +142,9 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
   pool
     .query(
       `UPDATE "requests" SET "status" = 'Accepted' AND user_id = $1 WHERE "requests".id = $2`,
-      [queryValues, requestId]
+      [queryValues, req.params.id]
     )
+
     .then(() => {
       res.sendStatus(200);
     })
