@@ -135,13 +135,15 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 // PUT route to update SUB ACCEPTANCE OF Request
 router.put('/:id', rejectUnauthenticated, (req, res) => {
-  const requestId = req.body;
-  const user_id = req.params.id;
+  const requestId = req.body.id;
+  const updateReq = req.body;
+
+  const queryValues = [updateReq.status, updateReq.user_id];
 
   pool
     .query(
-      `UPDATE "requests" SET "status" = 'Accepted', "user_id" = $1 WHERE "id" = $2`,
-      [user_id, requestId]
+      `UPDATE "requests" SET "status" = 'Accepted' AND user_id = $1 WHERE "requests".id = $2`,
+      [queryValues, requestId]
     )
     .then(() => {
       res.sendStatus(200);
@@ -154,7 +156,7 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
 
 // PUT route to update SUB CANCELLATION OF Request
 router.put('/cancel/:id', rejectUnauthenticated, (req, res) => {
-  const requestId = req.body;
+  const requestId = req.body.status;
   const user_id = req.params.id;
 
   pool

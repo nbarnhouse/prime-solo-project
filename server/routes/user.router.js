@@ -99,10 +99,7 @@ router.put('/sub/:id', rejectUnauthenticated, (req, res) => {
 
   // Perform the update query
   pool
-    .query('UPDATE "user" SET "phone" = $1 WHERE "id" = $2', [
-      req.body.phone,
-      req.params.id,
-    ])
+    .query('UPDATE "user" SET "phone" = $1 WHERE "id" = $2', [phone, user_id])
     .then(() => {
       res.sendStatus(200);
     })
