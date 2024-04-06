@@ -160,23 +160,8 @@ function App() {
           </Route>
 
           <Route exact path="/login">
-            {user.id ? (
-              // If the user is already logged in,
-              // redirect them based on their role
-              (() => {
-                switch (user.type) {
-                  case 'teacher':
-                    return <Redirect to="/profileteacher" />;
-                  case 'substitute':
-                    return <Redirect to="/profilesub" />;
-                  default:
-                    return <Redirect to="/user" />; // Default to a generic profile page
-                }
-              })()
-            ) : (
-              // Otherwise, show the login page
-              <LoginPage />
-            )}
+            {/* Render the login page */}
+            <LoginPage />
           </Route>
 
           <Route exact path="/home">
@@ -186,9 +171,9 @@ function App() {
               (() => {
                 switch (user.type) {
                   case 'teacher':
-                    return <Redirect to="/profileteacher" />;
+                    return <Redirect to="/hometeacher" />;
                   case 'substitute':
-                    return <Redirect to="/profilesub" />;
+                    return <Redirect to="/homesub" />;
                   default:
                     return <Redirect to="/user" />; // Default to a generic profile page
                 }

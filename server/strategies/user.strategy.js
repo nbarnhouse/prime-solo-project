@@ -38,7 +38,7 @@ passport.deserializeUser((id, done) => {
 passport.use(
   'local',
   new LocalStrategy((username, password, done) => {
-    console.log('User entered username & password:', username, password);
+    //console.log('User entered username & password:', username, password);
     pool
       .query('SELECT * FROM "user" WHERE username = $1', [username])
       .then((result) => {

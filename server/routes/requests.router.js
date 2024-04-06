@@ -26,14 +26,14 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
     });
 });
 
-//GET route for specific substitute
+//GET route for specific substitute (ACCEPTED REQUESTS)
 router.get('/accepted', rejectUnauthenticated, (req, res) => {
   pool
     .query(
       `SELECT requests.id, requests.request_start_date, requests.school, "user".first_name, "user".last_name, "teacher".grade, "teacher".room_number, requests.sub_notes FROM "requests"
       JOIN "teacher" ON requests.teacher_id = "teacher".id
       JOIN "user" ON "teacher".user_id = "user".id
-      WHERE "status" = 'Accepted' AND "request_start_date" > CURRENT_DATE AND "requests".user_id = $1
+      WHERE "status" = 'Accepted' AND "request_start_date" >= CURRENT_DATE AND "requests".user_id = $1
       ORDER BY requests.request_start_date;`,
       [req.user.id]
     )
@@ -46,7 +46,7 @@ router.get('/accepted', rejectUnauthenticated, (req, res) => {
     });
 });
 
-//GET route for specific substitute (PAST)
+//GET route for specific substitute (PAST ACCEPTED REQUESTS)
 router.get('/accepted/past', rejectUnauthenticated, (req, res) => {
   pool
     .query(
@@ -66,7 +66,7 @@ router.get('/accepted/past', rejectUnauthenticated, (req, res) => {
     });
 });
 
-//GET route for specific teacher
+//GET route for specific teacher (SUBMITTED REQUESTS)
 router.get('/submitted', rejectUnauthenticated, (req, res) => {
   pool
     .query(
@@ -85,7 +85,7 @@ router.get('/submitted', rejectUnauthenticated, (req, res) => {
     });
 });
 
-//GET route for specific teacher
+//GET route for specific teacher (PAST SUBMITTED REQUESTS)
 router.get('/submitted/past', rejectUnauthenticated, (req, res) => {
   pool
     .query(
@@ -135,14 +135,15 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 // PUT route to update SUB ACCEPTANCE OF Request
 router.put('/:id', rejectUnauthenticated, (req, res) => {
-  const updateReq = req.body;
+  const acceptReq = req.body;
+  const requestId = req.params.id;
 
-  const queryValues = [updateReq.status, updateReq.user_id];
+  const queryValues = [acceptReq.user_id, requestId];
 
   pool
     .query(
-      `UPDATE "requests" SET "status" = 'Accepted' AND user_id = $1 WHERE "requests".id = $2`,
-      [queryValues, req.params.id]
+      `UPDATE "requests" SET "status" = 'Accepted', user_id = $1 WHERE "requests".id = $2`,
+      queryValues
     )
 
     .then(() => {
@@ -156,14 +157,13 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
 
 // PUT route to update SUB CANCELLATION OF Request
 router.put('/cancel/:id', rejectUnauthenticated, (req, res) => {
-  const requestId = req.body.status;
-  const user_id = req.params.id;
+  const requestId = req.params.id;
 
   pool
-    .query(`UPDATE "requests" SET "status" = 'Requested' WHERE "id" = $1`, [
-      user_id,
-      requestId,
-    ])
+    .query(
+      `UPDATE "requests" SET "status" = 'Requested', "user_id" = NULL WHERE "id" = $1`,
+      [requestId]
+    )
     .then(() => {
       res.sendStatus(200);
     })

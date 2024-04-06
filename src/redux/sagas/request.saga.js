@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { put, takeLatest } from 'redux-saga/effects';
-import { DateTime } from 'luxon'; // Import DateTime from luxon
+import { put, call, takeLatest } from 'redux-saga/effects';
+//import { DateTime } from 'luxon'; // Import DateTime from luxon
 
 // Saga for getting all requests
 function* fetchRequests() {
@@ -22,9 +22,8 @@ function* fetchRequests() {
 function* acceptRequest(action) {
   try {
     const { requestId, userId } = action.payload;
-
-    console.log('Request Saga Process - Request ID:', requestId);
-    console.log('Request Saga Process - User ID:', userId);
+    console.log('Request ACCEPT Saga Process - Request ID:', requestId);
+    console.log('Request ACCEPT Saga Process - User ID:', userId);
 
     const config = {
       headers: { 'Content-Type': 'application/json' },
@@ -32,12 +31,16 @@ function* acceptRequest(action) {
     };
 
     // Send PUT request with userId in the request body
-    yield (axios.put, `/api/request/${requestId}`, { user_id: userId }, config);
-    yield put({ type: 'FETCH_ACCEPTED_REQUESTS' }); // Refetch request after Deletion
+    yield call(
+      axios.put,
+      `/api/request/${requestId}`,
+      { user_id: userId },
+      config
+    );
 
-    yield put({ type: 'ACCEPT_REQUEST_SUCCESS', payload: requestId });
+    yield put({ type: 'FETCH_SUBMITTED_REQUESTS' }); // Refetch request after Accept
   } catch (error) {
-    yield put({ type: 'ACCEPT_REQUEST_FAILURE', error: error.message });
+    console.error('Error accepting request:', error);
   }
 }
 
@@ -82,8 +85,8 @@ function* cancelAcceptedRequest(action) {
   try {
     const { requestId, userId } = action.payload;
 
-    console.log('Request Saga Process - Request ID:', requestId);
-    console.log('Request Saga Process - User ID:', userId);
+    console.log('Request CANCEL Saga Process - Request ID:', requestId);
+    console.log('Request CANCEL Saga Process - User ID:', userId);
 
     const config = {
       headers: { 'Content-Type': 'application/json' },
@@ -91,14 +94,14 @@ function* cancelAcceptedRequest(action) {
     };
 
     // Send PUT request with userId in the request body
-    yield (axios.put,
-    `/api/request/cancel/${requestId}`,
-    { user_id: userId },
-    config);
-
-    yield put({ type: 'ACCEPT_REQUEST_SUCCESS', payload: requestId });
+    yield call(
+      axios.put,
+      `/api/request/cancel/${requestId}`,
+      { user_id: userId },
+      config
+    );
   } catch (error) {
-    yield put({ type: 'ACCEPT_REQUEST_FAILURE', error: error.message });
+    console.error('Error canceling request:', error);
   }
 }
 
@@ -122,11 +125,12 @@ function* deleteRequest(action) {
 function* requestsSaga() {
   yield takeLatest('FETCH_REQUESTS', fetchRequests);
   yield takeLatest('ACCEPT_REQUEST', acceptRequest);
+  yield takeLatest('CANCEL_REQUEST', cancelAcceptedRequest);
   yield takeLatest('FETCH_ACCEPTED_REQUESTS', fetchAcceptedRequests);
   yield takeLatest('FETCH_PAST_ACCEPTED_REQUESTS', fetchPastAcceptedRequests);
   yield takeLatest('FETCH_SUBMITTED_REQUESTS', fetchSubmittedRequests);
   yield takeLatest('FETCH_PAST_SUBMITTED_REQUESTS', fetchPastSubmittedRequests);
-  yield takeLatest('CANCEL_REQUEST', cancelAcceptedRequest);
+
   yield takeLatest('DELETE_REQUEST_ITEM', deleteRequest);
 }
 

@@ -62,7 +62,7 @@ export default function AvailabilityData() {
                         {item.first_name} {item.last_name}
                       </TableCell>
                       <TableCell>
-                        <button onClick={() => handleAccept(item.id, user.id)}>
+                        <button onClick={() => handleAccept(item.id)}>
                           Accept
                         </button>
                       </TableCell>

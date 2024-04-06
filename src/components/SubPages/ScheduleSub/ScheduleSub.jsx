@@ -36,8 +36,7 @@ export default function ScheduleSub() {
     console.log(`Request ID:${requestId} canceled by User ID:${user.id}`);
     dispatch({
       type: 'CANCEL_REQUEST',
-      payload: requestId,
-      userId: user.id,
+      payload: { requestId, userId: user.id },
     });
   };
 
