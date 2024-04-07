@@ -38,7 +38,12 @@ function* acceptRequest(action) {
       config
     );
 
-    yield put({ type: 'FETCH_SUBMITTED_REQUESTS' }); // Refetch request after Accept
+    yield put({
+      type: 'SHOW_ALERT',
+      payload: { message: 'Request Accepted!', type: 'success' },
+    });
+
+    yield put({ type: 'FETCH_REQUESTS' }); // Refetch available requests after Accept
   } catch (error) {
     console.error('Error accepting request:', error);
   }
@@ -100,6 +105,8 @@ function* cancelAcceptedRequest(action) {
       { user_id: userId },
       config
     );
+
+    yield put({ type: 'FETCH_ACCEPTED_REQUESTS' }); // Refetch available requests after Accept
   } catch (error) {
     console.error('Error canceling request:', error);
   }
