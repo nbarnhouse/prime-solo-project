@@ -14,7 +14,7 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
       `SELECT requests.*, "user".first_name, "user".last_name, "teacher".grade, "teacher".room_number FROM "requests"
       JOIN "teacher" ON requests.teacher_id = "teacher".id
       JOIN "user" ON "teacher".user_id = "user".id
-      WHERE "status" = 'Requested'
+      WHERE "status" = 'Requested' AND "request_start_date" >= CURRENT_DATE
       ORDER BY requests.request_start_date;`
     )
     .then((result) => {
