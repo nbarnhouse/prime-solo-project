@@ -4,7 +4,6 @@ import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import SubLayout from '../../Layouts/SubLayout/SubLayout.jsx';
-
 import '../../SubPages/SubCss.css';
 
 function SchoolInfoPage() {

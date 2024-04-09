@@ -27,9 +27,8 @@ function TopLoginNav() {
     setAnchorEl(null);
   };
 
-  const handleMenuClick = () => {
-    // history.push('/homesub');
-    history.push('/schoolinfo');
+  const handleMenuClick = (path) => {
+    history.push(path);
   };
 
   const isTeacher = user && user.type === 'teacher';
@@ -72,9 +71,9 @@ function TopLoginNav() {
             'aria-labelledby': 'basic-button',
           }}
         >
-          <MenuItem onClick={handleMenuClick}>Home</MenuItem>
+          <MenuItem onClick={() => handleMenuClick('/homesub')}>Home</MenuItem>
           {isTeacher ? null : (
-            <MenuItem onClick={() => handleMenuClick('/school-info')}>
+            <MenuItem onClick={() => handleMenuClick('/schoolinfo')}>
               School Info
             </MenuItem>
           )}
