@@ -1,19 +1,17 @@
 .weather-container {
+  padding-top: 10px;
+  background-color: white;
   display: flex;
   flex-direction: row;
-  position: fixed;
-  right: 0px;
-  top: 0;
-  z-index: 9999;
+  justify-content: center;
 }
 
 .weather-item {
-  margin-right: 40px;
-  margin-top: 10px;
   font-size: 10px;
+  padding-right: 20px;
 }
 
-.weather-icon {
+.weather-item img {
   width: 35px;
   height: 35px;
   border-radius: 10px;

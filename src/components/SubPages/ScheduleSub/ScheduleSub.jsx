@@ -18,6 +18,7 @@ import {
 } from '@mui/material';
 
 import SubLayout from '../../Layouts/SubLayout/SubLayout.jsx';
+
 import '../../SubPages/SubCss.css';
 
 export default function ScheduleSub() {
@@ -51,6 +52,8 @@ export default function ScheduleSub() {
     textAlign: 'center',
     color: theme.palette.text.secondary,
   }));
+
+  const gridHeight = acceptedRequests.length * 120;
 
   return (
     <SubLayout>
@@ -186,7 +189,7 @@ export default function ScheduleSub() {
                 </div>
               </Item>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} style={{ height: `${gridHeight}px` }}>
               <Item>
                 <h4>Past Assignments</h4>
                 <div className="request-container">

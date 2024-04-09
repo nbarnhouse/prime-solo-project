@@ -20,6 +20,7 @@ import LoginPage from '../LoginPage/LoginPage';
 
 import RegistrationPage from '../RegistrationPage/RegistrationPage.jsx';
 import RegisterPageRole from '../RegisterPageRole/RegisterPageRole.jsx';
+import SchoolInfo from '../SubPages/SchoolInfo/SchoolInfo.jsx';
 import ProfilePageSub from '../ProfilePageSub/ProfilePageSub.jsx';
 import ProfilePageTeacher from '../ProfilePageTeacher/ProfilePageTeacher.jsx';
 
@@ -31,17 +32,20 @@ import AvailabilitySub from '../SubPages/AvailabilitySub/AvailabilitySub.jsx';
 import HomeTeacher from '../TeacherPages/HomeTeacher/HomeTeacher.jsx';
 import ScheduleTeacher from '../TeacherPages/ScheduleTeacher/ScheduleTeacher.jsx';
 import AbsenceTeacher from '../TeacherPages/AbsenceTeacher/AbsenceTeacher.jsx';
+import EditAbsenceTeacher from '../TeacherPages/EditAbsenceTeacher/EditAbsenceTeacher.jsx';
 
 import './App.css';
 
 function App() {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
-  // const request = useSelector((store) => store.request);
-  // const availability = useSelector((store) => store.availability);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch({ type: 'FETCH_USER_DETAILS' });
   }, [dispatch]);
 
   useEffect(() => {
@@ -115,6 +119,13 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute exact path="/absenceteacher">
             <AbsenceTeacher />
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/editabsenceteacher">
+            <EditAbsenceTeacher />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/schoolinfo">
+            <SchoolInfo />
           </ProtectedRoute>
           {/* -------------------------------------------------------------------------
           ------------------------------------------------------------------------- */}

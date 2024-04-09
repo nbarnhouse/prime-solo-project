@@ -15,12 +15,12 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   res.send(req.user);
 });
 
-//GET route for all users
-router.get('/register', rejectUnauthenticated, (req, res) => {
+//GET route for all user data
+router.get('/all', rejectUnauthenticated, (req, res) => {
   pool
     .query(
-      `SELECT "user".*, "teacher".* FROM "user"
-    JOIN "teacher" ON "user".id = "teacher".id;`
+      `SELECT "user".*, "teacher".*, "teacher".id AS "teacher_id" FROM "teacher"
+      JOIN "user" ON  "teacher".user_id = "user".id;`
     )
     .then((result) => {
       res.send(result.rows);
@@ -118,7 +118,7 @@ router.post('/tea', rejectUnauthenticated, (req, res) => {
 
   const queryText = `
   INSERT INTO "teacher" ("grade", "room_number", "extension", "user_id")
-  VALUES ($1, $2, $3, $4)
+  VALUES ($1, $2, $3, $4) RETURNING id AS teacher_id
 `;
 
   const queryValues = [
@@ -128,14 +128,16 @@ router.post('/tea', rejectUnauthenticated, (req, res) => {
     user_id,
   ];
 
-  console.log('TEACHER PROFILE User ID:', user_id);
-  console.log('TEACHER PROFILE Info:', req.body);
-
   // Perform the update query
   pool
     .query(queryText, queryValues)
-    .then(() => {
-      res.sendStatus(200);
+    .then((result) => {
+      const teacherId = result.rows[0].teacher_id;
+
+      console.log('TEACHER User ID:', user_id);
+      console.log('TEACHER PROFILE Info:', req.body);
+      console.log('TEACHER teacher_id:', teacherId);
+      res.status(200).json({ teacherId });
     })
     .catch((err) => {
       console.error('Error updating user role:', err);

@@ -13,8 +13,6 @@ function LandingPage() {
 
   return (
     <MainLayout>
-      <div className="container"></div>
-
       <div className="title">
         <h1>Sub Scheduling</h1>
         <h3>Made Easy</h3>

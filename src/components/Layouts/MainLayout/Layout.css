@@ -1,6 +1,6 @@
 body {
   background-color: lightgray;
-  margin: 90px 150px;
+  margin: 0px 0px 0px 150px;
 }
 
 .frame {
@@ -14,14 +14,4 @@ body {
 
 .para-input input {
   background-color: #f0f0f0;
-}
-
-.weather-data {
-  margin-left: 20px;
-  align-self: flex-start;
-  background-color: blue;
-}
-
-weather-layout {
-  background-color: green;
 }

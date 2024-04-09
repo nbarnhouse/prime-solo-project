@@ -12,11 +12,7 @@ export default function WeatherData() {
           <div key={forecast.id} className="weather-item">
             <div>{forecast.name}</div>
             <div>
-              <img
-                className="weather-icon"
-                src={forecast.icon}
-                alt={forecast.name}
-              />
+              <img src={forecast.icon} alt={forecast.name} />
             </div>
             <div className="forecast-temp">{forecast.temp}°F</div>
           </div>

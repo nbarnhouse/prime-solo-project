@@ -12,6 +12,7 @@ import pastAcceptedRequest from './pastAcceptedRequest.reducer';
 import profTeaReducer from './profTea.reducer';
 import profSubReducer from './profSub.reducer';
 import pastSubmittedRequest from './pastSubmittedRequest.reducer';
+import userDetails from './userDetails.reducer';
 
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   profTeaReducer,
   profSubReducer,
   pastSubmittedRequest,
+  userDetails,
 });
 
 export default rootReducer;

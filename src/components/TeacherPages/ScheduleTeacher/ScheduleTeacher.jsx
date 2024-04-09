@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-//import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { styled } from '@mui/material/styles';
@@ -24,7 +24,7 @@ import {
 import TeacherLayout from '../../Layouts/TeacherLayout/TeacherLayout.jsx';
 
 export default function ScheduleTeacher() {
-  //const history = useHistory();
+  const history = useHistory();
   const dispatch = useDispatch();
   const submittedRequests = useSelector((store) => store.submittedRequest);
   const pastSubmittedRequests = useSelector(
@@ -36,9 +36,11 @@ export default function ScheduleTeacher() {
     dispatch({ type: 'FETCH_PAST_SUBMITTED_REQUESTS' });
   }, []);
 
-  const deleteRequestItem = (requestId) => {
-    console.log('Deleting request with ID:', requestId); // Log the item ID before deletion
-    dispatch({ type: 'DELETE_REQUEST_ITEM', payload: requestId });
+  const deleteRequestItem = () => {
+    //removed requestId from input parameter to function
+    //console.log('Deleting request with ID:', requestId); // Log the item ID before deletion
+    //dispatch({ type: 'DELETE_REQUEST_ITEM', payload: requestId });
+    history.push('/editabsenceteacher');
   };
 
   const Item = styled(Paper)(({ theme }) => ({
@@ -162,7 +164,7 @@ export default function ScheduleTeacher() {
                                 className="btn-sm"
                                 onClick={() => deleteRequestItem(request.id)}
                               >
-                                Edit
+                                Cancel
                               </button>
                             </TableCell>
                           </TableRow>

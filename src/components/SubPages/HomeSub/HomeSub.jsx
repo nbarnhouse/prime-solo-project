@@ -2,12 +2,10 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { styled } from '@mui/material/styles';
-import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
-import dayjs from 'dayjs';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { DateTime } from 'luxon';
-
+import dayjs from 'dayjs';
 import SubLayout from '../../Layouts/SubLayout/SubLayout.jsx';
 import RequestData from '../../DataComponents/RequestData/RequestData.jsx';
 import CalendarView from '../../DateWidgets/CalendarView/CalendarView.jsx';
@@ -18,6 +16,7 @@ export default function HomeSub() {
   const user = useSelector((store) => store.user);
   const acceptedRequests = useSelector((store) => store.acceptedRequest);
   //const request = useSelector((store) => store.request);
+  const currentDate = dayjs();
 
   const dispatch = useDispatch();
 
@@ -34,8 +33,10 @@ export default function HomeSub() {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    height: '300px',
+    minHeight: '340px',
   }));
+
+  const gridHeight = acceptedRequests.length * 120;
 
   return (
     <SubLayout>
@@ -84,13 +85,10 @@ export default function HomeSub() {
           </Grid>
           <Grid item xs={4}>
             <Item>
-              <DateCalendar
-                referenceDate={dayjs('2024-05-1')}
-                views={['year', 'month', 'day']}
-              />
+              <CalendarView referenceDate={dayjs().add(1, 'month')} />
             </Item>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} style={{ height: `${gridHeight}px` }}>
             <Item>
               <h4>Available Assignments</h4>
               <RequestData />

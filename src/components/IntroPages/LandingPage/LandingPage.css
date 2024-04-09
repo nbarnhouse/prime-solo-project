@@ -1,5 +1,7 @@
 body {
-  margin: 0; /* Reset default margin */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 h1 {
@@ -15,10 +17,12 @@ h3 {
 }
 
 .title {
-  background-color: #f2f2f2;
-  margin: 100px 0;
+  background-color: green;
+  margin: 100px 0px;
   padding: 1px 0; /* Adjusted padding */
 }
+
+/* background-color: #f2f2f2; */
 
 .info,
 .infotwo {

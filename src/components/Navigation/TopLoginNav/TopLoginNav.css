@@ -1,18 +1,16 @@
-.nav2 {
-  padding: 30px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: hsl(0, 0%, 100%);
+.nav-container {
+  background-color: white;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -40px;
+  padding-right: 20px;
+  padding-bottom: 20px;
 }
 
-.navLink2 {
+.nav-item {
   color: black;
-  margin-right: 30px;
 }
-
-.navLink2 svg {
+.nav-item svg {
   height: 30px;
   width: 30px;
 }
