@@ -57,11 +57,7 @@ export default function ScheduleTeacher() {
   return (
     <TeacherLayout>
       <div className="frame">
-        <br></br>
-        <br></br>
         <h2>Schedule</h2>
-        <br></br>
-        <br></br>
         <Grid container spacing={3}>
           {/* <Grid item xs={12}>
             <Item>

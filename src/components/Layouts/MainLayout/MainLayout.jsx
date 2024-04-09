@@ -1,6 +1,6 @@
 import Footer from '../../Footer/Footer';
 import TopMainNav from '../../Navigation/TopMainNav/TopMainNav';
-import './MainLayout.css';
+import '../../App/App.css';
 
 export default function MainLayout({ children }) {
   return (

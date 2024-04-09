@@ -71,11 +71,7 @@ export default function AvailabilitySub() {
   return (
     <SubLayout>
       <div className="frame">
-        <br></br>
-        <br></br>
         <h2>Availability</h2>
-        <br></br>
-        <br></br>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={3}>
             {/* <Grid item xs={12}>

@@ -5,7 +5,7 @@ import { styled } from '@mui/material/styles';
 import { Paper, Grid } from '@mui/material';
 
 import TeacherLayout from '../../Layouts/TeacherLayout/TeacherLayout.jsx';
-import '../../Layouts/MainLayout/Layout.css';
+import '../../App/App.css';
 
 export default function EditAbsenceTeacher() {
   const user = useSelector((store) => store.user);

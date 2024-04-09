@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import './WeatherData.css';
+import '../../App/App.css';
 
 export default function WeatherData() {
   const weather = useSelector((store) => store.weather);

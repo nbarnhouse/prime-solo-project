@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import '../SideNav.css';
+import '../../App/App.css';
 
 function SideNavSub() {
   return (

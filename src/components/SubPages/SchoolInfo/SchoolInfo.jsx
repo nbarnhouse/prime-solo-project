@@ -1,16 +1,17 @@
-import React from 'react';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import SubLayout from '../../Layouts/SubLayout/SubLayout.jsx';
+
+import '../../App/App.css';
 
 import { styled } from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import SubLayout from '../../Layouts/SubLayout/SubLayout.jsx';
-import '../../SubPages/SubCss.css';
 
-function SchoolInfoPage() {
+export default function SchoolInfo() {
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
     padding: theme.spacing(1),
+    textAlign: 'center',
     color: theme.palette.text.secondary,
     display: 'flex',
     flexDirection: 'column',
@@ -20,10 +21,11 @@ function SchoolInfoPage() {
 
   return (
     <SubLayout>
-      <div className="frame">
-        <Grid container spacing={3}>
-          <Grid item xs={8}>
-            <Item>
+      <h2>School Info</h2>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <Item>
+            <div className="textLeft">
               <h2>Location</h2>
               <p>9815 S. Sheridan, Tulsa, OK 74133</p>
               <h2>Contact Information</h2>
@@ -37,12 +39,10 @@ function SchoolInfoPage() {
                 a tuition-free, classical liberal arts education in the Tulsa
                 area for grades K-8.
               </p>
-            </Item>
-          </Grid>
+            </div>
+          </Item>
         </Grid>
-      </div>
+      </Grid>
     </SubLayout>
   );
 }
-
-export default SchoolInfoPage;

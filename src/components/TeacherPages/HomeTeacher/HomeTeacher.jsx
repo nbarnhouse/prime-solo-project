@@ -49,11 +49,7 @@ export default function HomeTeacher() {
   return (
     <TeacherLayout>
       <div className="frame">
-        <br></br>
-        <br></br>
         <h2>Welcome, {user.first_name}!</h2>
-        <br></br>
-        <br></br>
         <Grid container spacing={3}>
           <Grid item xs={4}>
             <Item>

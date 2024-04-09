@@ -10,7 +10,7 @@ import SubLayout from '../../Layouts/SubLayout/SubLayout.jsx';
 import RequestData from '../../DataComponents/RequestData/RequestData.jsx';
 import CalendarView from '../../DateWidgets/CalendarView/CalendarView.jsx';
 
-import '../../SubPages/SubCss.css';
+import '../../App/App.css';
 
 export default function HomeSub() {
   const user = useSelector((store) => store.user);
@@ -41,40 +41,34 @@ export default function HomeSub() {
   return (
     <SubLayout>
       <div className="frame">
-        <br></br>
-        <br></br>
         <h2>Welcome, {user.first_name}!</h2>
-        <br></br>
-        <br></br>
         <Grid container spacing={3}>
           <Grid item xs={4}>
             <Item>
-              <div>
-                <div className="frame">
-                  <h4>Upcoming Assignments</h4>
-                  {acceptedRequests.length > 0 ? (
-                    acceptedRequests.slice(0, 1).map((request) => (
-                      <div key={request.id}>
-                        {console.log('Request:', request)}
-                        <p>
-                          {DateTime.fromISO(
-                            request.request_start_date
-                          ).toFormat('EEEE')}{' '}
-                          {DateTime.fromISO(
-                            request.request_start_date
-                          ).toFormat('MMMM dd')}
-                        </p>
-                        <p>{request.school}</p>
-                        <p>
-                          Sub for: {request.first_name} {request.last_name}
-                        </p>
-                        <p>Room: {request.room_number}</p>
-                      </div>
-                    ))
-                  ) : (
-                    <p>No Current Assignments</p>
-                  )}
-                </div>
+              <div className="textLeft">
+                <h4>Upcoming Assignments</h4>
+                {acceptedRequests.length > 0 ? (
+                  acceptedRequests.slice(0, 1).map((request) => (
+                    <div key={request.id}>
+                      {console.log('Request:', request)}
+                      <p>
+                        {DateTime.fromISO(request.request_start_date).toFormat(
+                          'EEEE'
+                        )}{' '}
+                        {DateTime.fromISO(request.request_start_date).toFormat(
+                          'MMMM dd'
+                        )}
+                      </p>
+                      <p>{request.school}</p>
+                      <p>
+                        Sub for: {request.first_name} {request.last_name}
+                      </p>
+                      <p>Room: {request.room_number}</p>
+                    </div>
+                  ))
+                ) : (
+                  <p>No Current Assignments</p>
+                )}
               </div>
             </Item>
           </Grid>

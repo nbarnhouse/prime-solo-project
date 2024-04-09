@@ -1,12 +1,13 @@
 html,
 body,
 #react-root {
-  height: 100%;
+  width: 95%;
+  margin-left: 70px;
 }
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0px;
+  background-color: lightgray;
 }
 
 img {
@@ -25,6 +26,23 @@ Container
 }
 
 /* --------------------------------------------------------------------------------
+Layout.css
+-------------------------------------------------------------------------------- */
+
+.textLeft {
+  text-align: left;
+  padding-left: 20px;
+}
+
+.black {
+  color: #132640;
+}
+
+.para-input input {
+  background-color: #f0f0f0;
+}
+
+/* --------------------------------------------------------------------------------
 Button
 -------------------------------------------------------------------------------- */
 
@@ -33,10 +51,10 @@ Button
   margin-top: 40px;
   margin-right: 20px;
   padding: 10px 20px;
-  border-color: black;
+  border-color: #132640;
   border-radius: 4px;
   background-color: white;
-  color: black;
+  color: #132640;
   font-size: 1.1rem;
   cursor: pointer;
   border-radius: 10px;
@@ -83,7 +101,7 @@ Button
   border-radius: 0;
   background: none;
   font: inherit;
-  color: white;
+  color: #132640;
 }
 
 .btn_asLink:hover {
@@ -176,4 +194,179 @@ Form Treatment
 h7 {
   font-size: 60px;
   margin-bottom: -40px;
+}
+
+/* --------------------------------------------------------------------------------
+Top Main Navigation
+-------------------------------------------------------------------------------- */
+
+.nav {
+  background-color: #132640;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.nav-title {
+  color: #f2f2f2;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 0px 10px;
+  vertical-align: middle;
+  padding: 0px 50px 0px 10px;
+}
+
+.nav-title svg {
+  height: 40px;
+  width: 40px;
+}
+
+/* --------------------------------------------------------------------------------
+Side Navigation
+-------------------------------------------------------------------------------- */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100%;
+  background-color: #132640;
+}
+
+.navbar a {
+  display: block;
+  color: #fff;
+  text-align: left;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  background-color: #ddd; /* Background color on hover */
+  color: #333; /* Text color on hover */
+}
+
+.schedule-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.nav-item {
+  align-items: center;
+}
+.schedule-nav svg {
+  height: 30px;
+  width: 30px;
+  margin-top: 20px;
+}
+
+/* --------------------------------------------------------------------------------
+Footer
+-------------------------------------------------------------------------------- */
+
+footer {
+  background-color: #132640;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+footer img {
+  height: 35px;
+  width: 35px;
+}
+
+/* --------------------------------------------------------------------------------
+Landing Page
+-------------------------------------------------------------------------------- */
+
+h1 {
+  font-size: 94px;
+}
+
+h3 {
+  font-size: 60px;
+  color: gray;
+  text-align: right;
+  margin-top: -70px;
+  margin-right: 400px;
+}
+
+.title {
+  background-color: green;
+  margin: 100px 0px;
+  padding: 1px 0; /* Adjusted padding */
+}
+
+/* background-color: #f2f2f2; */
+
+.info,
+.infotwo {
+  background-color: #f2f2f2;
+  padding: 100px 0; /* Adjusted padding */
+  margin: 100px 0;
+}
+
+.questions {
+  padding: 1px 0 100px; /* Adjusted padding */
+}
+
+.questions button {
+  margin-top: 50px;
+}
+
+/* --------------------------------------------------------------------------------
+Availability Data
+-------------------------------------------------------------------------------- */
+
+.availability-item {
+  margin-bottom: 10px;
+}
+
+/* --------------------------------------------------------------------------------
+Top Login Navigation & Weather Data
+-------------------------------------------------------------------------------- */
+
+.weather-container {
+  padding-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #f2f2f2;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -40px;
+  background-color: #f2f2f2;
+}
+
+.weather-item {
+  font-size: 10px;
+  padding-right: 20px;
+}
+
+.weather-item img {
+  width: 35px;
+  height: 35px;
+  border-radius: 10px;
+}
+
+.nav-item {
+  color: #132640;
+}
+.nav-item svg {
+  height: 30px;
+  width: 30px;
 }

@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
-import './TopLoginNav.css';
+import '../../App/App.css';
 
 function TopLoginNav() {
   const user = useSelector((store) => store.user);

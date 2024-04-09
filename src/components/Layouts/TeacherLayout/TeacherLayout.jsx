@@ -5,7 +5,7 @@ import SideNavTeacher from '../../Navigation/SideNavTeacher/SideNavTeacher';
 import TopLoginNav from '../../Navigation/TopLoginNav/TopLoginNav';
 import WeatherData from '../../DataComponents/WeatherData/WeatherData.jsx';
 
-import '../MainLayout/Layout.css';
+import '../../App/App.css';
 
 export default function TeacherLayout({ children }) {
   return (

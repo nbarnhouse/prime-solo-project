@@ -19,7 +19,7 @@ import {
 import TeacherLayout from '../../Layouts/TeacherLayout/TeacherLayout.jsx';
 //import BasicTextInput from '../../Widgets/BasicTextInput/BasicTextInput.jsx';
 //import BasicDatePicker from '../../DateWidgets/DatePicker/BasicDatePicker.jsx';
-import '../../Layouts/MainLayout/Layout.css';
+import '../../App/App.css';
 
 export default function AbsenceTeacher() {
   const history = useHistory();
@@ -82,11 +82,7 @@ export default function AbsenceTeacher() {
   return (
     <TeacherLayout>
       <div className="frame">
-        <br></br>
-        <br></br>
         <h2>Create Absence</h2>
-        <br></br>
-        <br></br>
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Item>
