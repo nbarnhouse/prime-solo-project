@@ -96,6 +96,7 @@ function App() {
           >
             <HomeSub />
           </ProtectedRoute>
+
           <ProtectedRoute
             exact
             path="/schedulesub" // shows Teacher Home Page (logged in)
