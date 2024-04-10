@@ -45,7 +45,7 @@ export default function RegisterPageRole() {
   };
 
   return (
-    <div className="roledisplay">
+    <div className="formPanel">
       <h2>What is your role?:</h2>
       <button
         className={`btn ${selectedButton === 'Teacher' ? 'selected' : ''}`}
@@ -65,9 +65,11 @@ export default function RegisterPageRole() {
       >
         Substitute
       </button>
-      <button className="btn" onClick={handleSubmit}>
-        Submit
-      </button>
+      <div>
+        <button className="btn" onClick={handleSubmit}>
+          Submit
+        </button>
+      </div>
     </div>
   );
 }
