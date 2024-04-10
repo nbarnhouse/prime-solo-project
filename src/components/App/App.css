@@ -181,6 +181,7 @@ Form Treatment
 
 .boldText {
   font-weight: bold;
+  color: white;
 }
 
 .roledisplay {
@@ -201,7 +202,7 @@ Top Main Navigation
 -------------------------------------------------------------------------------- */
 
 .nav {
-  background-color: #132640;
+  background-color: black;
   padding: 20px;
   position: fixed;
   top: 0;
@@ -273,12 +274,16 @@ Footer
 -------------------------------------------------------------------------------- */
 
 footer {
-  background-color: #132640;
+  background-color: black;
   color: white;
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
 }
 
 footer img {
@@ -292,23 +297,22 @@ Landing Page
 
 h1 {
   font-size: 94px;
+  text-align: center;
 }
 
 h3 {
   font-size: 60px;
-  color: gray;
-  text-align: right;
-  margin-top: -70px;
-  margin-right: 400px;
+  color: #f2ab27;
+  text-align: center;
+  margin-top: -60px;
+  margin-left: 300px;
 }
 
 .title {
-  background-color: green;
+  background-color: #7b85a6;
   margin: 100px 0px;
-  padding: 1px 0; /* Adjusted padding */
+  padding: 1px 0;
 }
-
-/* background-color: #f2f2f2; */
 
 .info,
 .infotwo {
@@ -323,6 +327,11 @@ h3 {
 
 .questions button {
   margin-top: 50px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
 }
 
 /* --------------------------------------------------------------------------------
