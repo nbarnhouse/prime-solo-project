@@ -68,7 +68,9 @@ function LoginPage() {
             <span className="boldText"> Register</span>
           </button>
         </center>
-        <input className="btn" type="submit" name="submit" value="Log In" />
+        <div className="center">
+          <input className="btn" type="submit" name="submit" value="Log In" />
+        </div>
       </form>
     </>
   );

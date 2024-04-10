@@ -90,7 +90,7 @@ function RegistrationPage() {
             <span className="boldText"> Log in</span>
           </button>
         </div>
-        <div>
+        <div className="center">
           <BasicButton buttonText="Register" value="register" type="submit" />
         </div>
       </form>

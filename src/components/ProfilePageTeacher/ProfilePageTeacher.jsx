@@ -63,7 +63,7 @@ export default function ProfilePageTeacher() {
           onChange={(event) => setGrade(event.target.value)}
         />
       </div>
-      <div>
+      <div className="center">
         <input
           className="btn"
           type="button"

@@ -43,7 +43,7 @@ export default function ProfilePageSub() {
           onChange={(event) => setNumber(event.target.value)}
         />
       </div>
-      <div>
+      <div className="center">
         <input
           className="btn"
           type="button"
