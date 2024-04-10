@@ -17,14 +17,11 @@ import RequestData from '../../DataComponents/RequestData/RequestData.jsx';
 import '../../App/App.css';
 
 export default function HomeSub() {
+  const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   const acceptedRequests = useSelector((store) => store.acceptedRequest);
   const [value, setValue] = useState(dayjs('2024-04-25'));
   const [value2, setValue2] = useState(dayjs('2024-05-26'));
-
-  const datesArray = ['2024-04-14', '2024-04-16', '2024-04-18'];
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch({ type: 'FETCH_ACCEPTED_REQUESTS' });
@@ -90,8 +87,6 @@ export default function HomeSub() {
             <Grid item xs={4}>
               <Item>
                 <DateCalendar
-                  referenceDate={dayjs('2024-05-01')}
-                  views={['year', 'month', 'day']}
                   value={value2}
                   onChange={(newValue2) => setValue2(newValue2)}
                 />

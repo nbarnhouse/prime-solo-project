@@ -46,29 +46,31 @@ export default function RegisterPageRole() {
 
   return (
     <div className="formPanel">
-      <h2>What is your role?:</h2>
-      <button
-        className={`btn ${selectedButton === 'Teacher' ? 'selected' : ''}`}
-        id="btnReg"
-        type="button"
-        onClick={() => handleRoleSelection('Teacher')}
-        aria-pressed={selectedButton === 'Teacher'}
-      >
-        Teacher
-      </button>
-      <button
-        className={`btn ${selectedButton === 'Substitute' ? 'selected' : ''}`}
-        id="btnReg2"
-        type="button"
-        onClick={() => handleRoleSelection('Substitute')}
-        aria-pressed={selectedButton === 'Substitute'}
-      >
-        Substitute
-      </button>
-      <div>
-        <button className="btn" onClick={handleSubmit}>
-          Submit
+      <div className="center-role">
+        <h2>What is your role?:</h2>
+        <button
+          className={`btn ${selectedButton === 'Teacher' ? 'selected' : ''}`}
+          id="btnReg"
+          type="button"
+          onClick={() => handleRoleSelection('Teacher')}
+          aria-pressed={selectedButton === 'Teacher'}
+        >
+          Teacher
         </button>
+        <button
+          className={`btn ${selectedButton === 'Substitute' ? 'selected' : ''}`}
+          id="btnReg2"
+          type="button"
+          onClick={() => handleRoleSelection('Substitute')}
+          aria-pressed={selectedButton === 'Substitute'}
+        >
+          Substitute
+        </button>
+        <div>
+          <button className="btn" onClick={handleSubmit}>
+            Submit
+          </button>
+        </div>
       </div>
     </div>
   );

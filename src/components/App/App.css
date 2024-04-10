@@ -225,6 +225,7 @@ Top Main Navigation
 .nav-title svg {
   height: 40px;
   width: 40px;
+  vertical-align: middle;
 }
 
 /* --------------------------------------------------------------------------------
@@ -297,21 +298,20 @@ Landing Page
 
 h1 {
   font-size: 94px;
-  text-align: center;
+  margin-bottom: -80px;
 }
 
 h3 {
   font-size: 60px;
   color: #f2ab27;
-  text-align: center;
-  margin-top: -60px;
-  margin-left: 300px;
 }
 
 .title {
-  background-color: #7b85a6;
-  margin: 100px 0px;
-  padding: 1px 0;
+  margin-top: 275px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .info,
@@ -333,6 +333,15 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
+}
+
+.center-role {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  flex-direction: column;
 }
 
 /* --------------------------------------------------------------------------------

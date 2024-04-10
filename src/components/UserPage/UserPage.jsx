@@ -1,6 +1,7 @@
 import React from 'react';
 import LogOutButton from '../Widgets/LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
+import CalendarView from '../DateWidgets/CalendarView/CalendarView.jsx';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -15,6 +16,8 @@ function UserPage() {
       <h2>Welcome, {user.first_name}!</h2>
       <p>Your User ID is: {user.id}</p>
       <p>Your Teacher ID is: {teacherId}</p>
+
+      <CalendarView />
 
       <LogOutButton className="btn" />
     </div>
