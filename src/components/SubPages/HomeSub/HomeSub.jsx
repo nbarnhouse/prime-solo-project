@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { styled } from '@mui/material/styles';
@@ -6,17 +6,23 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { DateTime } from 'luxon';
 import dayjs from 'dayjs';
+
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
+
 import SubLayout from '../../Layouts/SubLayout/SubLayout.jsx';
 import RequestData from '../../DataComponents/RequestData/RequestData.jsx';
-import CalendarView from '../../DateWidgets/CalendarView/CalendarView.jsx';
 
 import '../../App/App.css';
 
 export default function HomeSub() {
   const user = useSelector((store) => store.user);
   const acceptedRequests = useSelector((store) => store.acceptedRequest);
-  //const request = useSelector((store) => store.request);
-  const currentDate = dayjs();
+  const [value, setValue] = useState(dayjs('2024-04-25'));
+  const [value2, setValue2] = useState(dayjs('2024-05-26'));
+
+  const datesArray = ['2024-04-14', '2024-04-16', '2024-04-18'];
 
   const dispatch = useDispatch();
 
@@ -40,56 +46,66 @@ export default function HomeSub() {
 
   return (
     <SubLayout>
-      <div className="frame">
-        <h2>Welcome, {user.first_name}!</h2>
-        <Grid container spacing={3}>
-          <Grid item xs={4}>
-            <Item>
-              <div className="textLeft">
-                <h4>Upcoming Assignments</h4>
-                {acceptedRequests.length > 0 ? (
-                  acceptedRequests.slice(0, 1).map((request) => (
-                    <div key={request.id}>
-                      {console.log('Request:', request)}
-                      <p>
-                        {DateTime.fromISO(request.request_start_date).toFormat(
-                          'EEEE'
-                        )}{' '}
-                        {DateTime.fromISO(request.request_start_date).toFormat(
-                          'MMMM dd'
-                        )}
-                      </p>
-                      <p>{request.school}</p>
-                      <p>
-                        Sub for: {request.first_name} {request.last_name}
-                      </p>
-                      <p>Room: {request.room_number}</p>
-                    </div>
-                  ))
-                ) : (
-                  <p>No Current Assignments</p>
-                )}
-              </div>
-            </Item>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <div className="frame">
+          <h2>Welcome, {user.first_name}!</h2>
+          <Grid container spacing={3}>
+            <Grid item xs={4}>
+              <Item>
+                <div className="textLeft">
+                  <h4>Upcoming Assignments</h4>
+                  {acceptedRequests.length > 0 ? (
+                    acceptedRequests.slice(0, 1).map((request) => (
+                      <div key={request.id}>
+                        {console.log('Request:', request)}
+                        <p>
+                          {DateTime.fromISO(
+                            request.request_start_date
+                          ).toFormat('EEEE')}{' '}
+                          {DateTime.fromISO(
+                            request.request_start_date
+                          ).toFormat('MMMM dd')}
+                        </p>
+                        <p>{request.school}</p>
+                        <p>
+                          Sub for: {request.first_name} {request.last_name}
+                        </p>
+                        <p>Room: {request.room_number}</p>
+                      </div>
+                    ))
+                  ) : (
+                    <p>No Current Assignments</p>
+                  )}
+                </div>
+              </Item>
+            </Grid>
+            <Grid item xs={4}>
+              <Item>
+                <DateCalendar
+                  value={value}
+                  onChange={(newValue) => setValue(newValue)}
+                />
+              </Item>
+            </Grid>
+            <Grid item xs={4}>
+              <Item>
+                <DateCalendar
+                  referenceDate={dayjs('2024-05-01')}
+                  views={['year', 'month', 'day']}
+                  value={value2}
+                  onChange={(newValue2) => setValue2(newValue2)}
+                />
+              </Item>
+            </Grid>
+            <Grid item xs={12} style={{ height: `${gridHeight}px` }}>
+              <Item>
+                <h4>Available Assignments</h4>
+                <RequestData />
+              </Item>
+            </Grid>
           </Grid>
-          <Grid item xs={4}>
-            <Item>
-              <CalendarView />
-            </Item>
-          </Grid>
-          <Grid item xs={4}>
-            <Item>
-              <CalendarView referenceDate={dayjs().add(1, 'month')} />
-            </Item>
-          </Grid>
-          <Grid item xs={12} style={{ height: `${gridHeight}px` }}>
-            <Item>
-              <h4>Available Assignments</h4>
-              <RequestData />
-            </Item>
-          </Grid>
-        </Grid>
-      </div>
+        </div>
+      </LocalizationProvider>
     </SubLayout>
   );
 }

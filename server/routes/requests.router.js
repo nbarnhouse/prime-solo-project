@@ -109,17 +109,18 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   console.log('POST Request req.body', req.body);
 
   const newReq = req.body;
+  const teacherId = req.params.teacher_id;
 
   const queryText = `
-    INSERT INTO "requests" ("request_start_date", "reason", "admin_notes", "sub_notes", "user_id")
+    INSERT INTO "requests" ("request_start_date", "reason", "admin_notes", "sub_notes", "teacher_id")
     VALUES ($1, $2, $3, $4, $5)
   `;
   const queryValues = [
-    newReq.date,
+    newReq.request_start_date,
     newReq.reason,
-    newReq.adminnote,
-    newReq.subnote,
-    newReq.userId,
+    newReq.admin_notes,
+    newReq.sub_notes,
+    teacherId,
   ];
 
   pool

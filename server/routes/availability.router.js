@@ -28,7 +28,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 router.get('/', rejectUnauthenticated, (req, res) => {
   pool
     .query(
-      `SELECT * FROM "substitute_availability" WHERE user_id = $1 ORDER BY "substitute_availability".date;`,
+      `SELECT * FROM "substitute_availability" WHERE user_id = $1 ORDER BY "substitute_availability".date DESC;`,
       [req.user.id]
     )
     .then((result) => {
