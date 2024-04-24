@@ -11,7 +11,7 @@ SubScheduling Made Easy
 
 ### Prerequisites
 
-- [npm] (https://www.npmjs.com)
+- [npm](https://www.npmjs.com)
 - [Node.js](https://nodejs.org/en/)
 - [PostgreSQL](https://www.postgresql.org)
 - [Nodemon](https://nodemon.io)
@@ -65,4 +65,4 @@ Thanks to [Prime Digital Academy](www.primeacademy.io) who equipped and helped m
 
 ## Support
 
-If you have suggestions or issues, please email me at [nicolebarnhouse.com]
+If you have suggestions or issues, please email me at [nicolebarnhouse@gmail.com]
