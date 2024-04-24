@@ -26,9 +26,9 @@ SubScheduling Made Easy
 
 ## Options if not already installed
 
-npm install
-npm install redux-saga
-npm install redux-logger
+- npm install
+- npm install redux-saga
+- npm install redux-logger
 
 ## File Structure
 
