@@ -4,10 +4,8 @@ const router = express.Router();
 
 const {
   rejectUnauthenticated,
-  // eslint-disable-next-line no-undef
 } = require('../modules/authentication-middleware');
 
-// //GET route ALL (FOR ADMIN USE) DO NOT UNCOMMENT => MOVING TO NEW FILE
 router.get('/', rejectUnauthenticated, (req, res) => {
   pool
     .query(
