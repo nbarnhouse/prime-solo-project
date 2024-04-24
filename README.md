@@ -39,11 +39,13 @@ npm install redux-logger
 
 ## Usage
 
-This is a simple example of using saga to handle asynchronous calls.
+This application uses saga and redux for state management and handles full CRUD operations.
 
 1. Navigate to the main page
-2. Enter in a plant name to add it to the garden
-3. View results where it has been added
+2. Register or Login
+3. View summary page as a subsititue
+4. Customize your schedule, view available assignments, etc.
+5. Arrive on time and fill in for a teacher who needs you
 
 ## Built With
 
