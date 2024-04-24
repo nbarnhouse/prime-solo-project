@@ -49,17 +49,17 @@ This application uses saga and redux for state management and handles full CRUD 
 
 ## Built With
 
-React JS
-Node JS
-Javascript
-HTML
-CSS
-Redux Saga
-Redux Logger
-Axios
-Express
-Nodemon
-Material UI
+- React JS
+- Node JS
+- Javascript
+- HTML
+- CSS
+- Redux Saga
+- Redux Logger
+- Axios
+- Express
+- Nodemon
+- Material UI
 
 ## Acknowledgement
 
