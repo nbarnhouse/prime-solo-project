@@ -67,4 +67,4 @@ Thanks to [Prime Digital Academy](www.primeacademy.io) who equipped and helped m
 
 ## Support
 
-If you have suggestions or issues, please email me at [nicolebarnhouse@gmail.com]
+If you have suggestions or issues, please email me at [nicolebarnhouse@gmail.com](mailto:nicolebarnhouse@gmail.com).
